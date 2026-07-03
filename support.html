@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Mosaic Collage Maker</title>
+<style>
+  :root {
+    --ink: #1c2430;
+    --muted: #5b6675;
+    --accent: #2f6fb0;
+    --border: #e2e6eb;
+    --bg: #fafbfc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .app-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .intro {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 16px 0 40px;
+  }
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 40px 0 18px;
+  }
+  .qa {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .qa:last-child { border-bottom: none; }
+  .q {
+    font-size: 15.5px;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .a {
+    font-size: 15px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .contact-box {
+    margin-top: 8px;
+    padding: 14px 18px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  .contact-box a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .contact-box a:hover { text-decoration: underline; }
+  .hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 32px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back:hover { color: var(--accent); }
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">&larr; Back</a>
+  <div class="app-name">Mosaic Collage Maker</div>
+  <h1>Support</h1>
+  <p class="intro">Need help, found a bug, or have a suggestion? This page covers common questions — for the full guide, see the <a href="help.html">Help &amp; Guide</a> page. For anything else, contact details are at the bottom.</p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="qa">
+    <p class="q">How does the automatic layout work?</p>
+    <p class="a">Load a folder of photos and the app automatically distributes them across as many pages as needed, generating a randomised mosaic-style layout for each page. You can then freely adjust any page afterward — move, resize, or swap individual photos, add frames or text boxes, and fine-tune anything you like.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">What photo formats are supported?</p>
+    <p class="a">JPEG and PNG are fully supported. HEIC/HEIF photos (the default format for recent iPhone photos) are also supported, since macOS can decode these natively.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">How do I export or print my collage?</p>
+    <p class="a">Use Export Page or Export All to save your pages as JPEG images (or a ZIP of JPEGs for multiple pages). To print, use the Save for Printing option, which prepares your pages for you to print from Preview.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">Where are my exported files saved?</p>
+    <p class="a">You'll be asked to choose a save location each time you export, print, save a session, or create an archive — nothing is saved automatically to a fixed location.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">Can I save my work and come back to it later?</p>
+    <p class="a">Yes. Use Save to store your current project as a session file, and Restore to reload it later. Use Archive to bundle your project together with copies of the photos themselves into one portable file — useful if you want to move a project to another Mac. You can also save a layout as a Template, without photos, to reuse the same design with a fresh set of photos.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">Does this app use the internet or collect any data?</p>
+    <p class="a">No. Mosaic Collage Maker works entirely offline and does not collect, transmit, or share any data. See the <a href="privacy.html">Privacy Policy</a> for full details.</p>
+  </div>
+
+  <div class="qa">
+    <p class="q">What are the system requirements?</p>
+    <p class="a">Mosaic Collage Maker runs on macOS. For best performance with very large photo libraries (hundreds of photos across many pages), a Mac with sufficient available memory is recommended.</p>
+  </div>
+
+  <h2>Still Need Help?</h2>
+  <p style="font-size:15px;">If your question isn't answered above, or you'd like to report a bug or suggest a feature, please get in touch:</p>
+  <div class="contact-box">
+    ✉️ <a href="mailto:stevendevmosaic@gmail.com">stevendevmosaic@gmail.com</a>
+  </div>
+  <p class="hint">When reporting a bug, it's helpful to include: what you were doing when the issue occurred, how many photos/pages were involved, and any error message you saw.</p>
+
+  <footer>Mosaic Collage Maker · Support</footer>
+</div>
+</body>
+</html>
