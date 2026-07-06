@@ -269,6 +269,18 @@
         <li>Photos are automatically scaled to properly fill their frame even on pages you never manually open — you don't need to click through every page before exporting.</li>
         <li>If exporting produces a different page count than expected, the app will tell you directly rather than silently shipping an incomplete result.</li>
       </ul>
+
+      <h3>Roughly how long should this take?</h3>
+      <p>Saving, Archiving, and Exporting all write to disk at a similar rate — measured at roughly <strong>10&ndash;11 MB/s</strong> during testing. That figure is IPC round-trip overhead, not raw disk or CPU speed, so it's a reasonable planning number across different machines.</p>
+      <table>
+        <tr><th>Photos in library (~6MB each)</th><th>Approx. Archive size</th><th>Approx. write time</th></tr>
+        <tr><td>100</td><td>600MB</td><td>~1 minute</td></tr>
+        <tr><td>500</td><td>3GB</td><td>~5 minutes</td></tr>
+        <tr><td>1,000</td><td>6GB</td><td>~9&ndash;10 minutes</td></tr>
+        <tr><td>1,500</td><td>9GB</td><td>~14 minutes</td></tr>
+      </table>
+      <p>For <strong>Export Page</strong>, <strong>Export All</strong>, and <strong>Print</strong>, a single rendered page at 300 DPI is far smaller than a full Archive — roughly 8&ndash;16MB for A4 (2480&times;3508px) and 18&ndash;30MB for A3 (3508&times;4961px), depending on how busy the layout is. At the write speed above, that's only 1&ndash;3 seconds of actual disk time per page. For a large multi-page export, most of the total time is spent <em>rendering</em> each page (drawing every photo into its frame and encoding the JPEG) rather than writing it to disk — rendering speed scales with photos-per-page and your computer's processor, not disk throughput, so it isn't covered by the figures above.</p>
+      <div class="tip"><strong>Note:</strong> these figures come from real measurements on one machine and will vary with your own disk, processor, and how visually complex each page is — treat them as a rough planning guide, not a guarantee.</div>
     </section>
 
     <section id="troubleshooting">
