@@ -240,7 +240,7 @@
       </table>
 
       <h3>Why Archive is often the better choice</h3>
-      <p>A plain Save is small and fast, but it only remembers your photos <em>by name</em> — it depends on those exact files still being in the same folder, with the same names, whenever you come back to restore it. If you reorganise your photo library, rename files, or move to a different Mac, a plain Save can leave you hunting for the right folder.</p>
+      <p>A plain Save is small and fast, but it only remembers your photos <em>by name</em> — it depends on those exact files still being in the same folder, with the same names, whenever you come back to restore it. If you reorganise your photo library, rename files, or move to a different computer, a plain Save can leave you hunting for the right folder.</p>
       <p><strong>Archive avoids that problem entirely, because your photos travel inside the file itself.</strong> Restoring an archive doesn't require finding anything — everything needed is already there in the ZIP. That makes it the more genuinely reliable option, especially for a project you care about keeping long-term, or one you might want to reopen on a different computer.</p>
       <div class="warn"><strong>The trade-off:</strong> because Archive physically includes every photo, the file size scales with your library. A project built from a few dozen photos archives to a modest file — but a project using hundreds of full-resolution photos can produce a genuinely large ZIP file, taking longer to create and more disk space to store. For very large libraries, a plain Save (paired with keeping your original photo folder somewhere safe) may be the more practical everyday choice, with an occasional Archive as a more durable checkpoint.</div>
       <p>A reasonable approach: use <strong>Save</strong> for your regular day-to-day working file, and make an <strong>Archive</strong> once a project is finished, or before any major reorganisation of your photo folders — that way you always have one fully self-contained, future-proof copy, without paying the file-size cost on every single save.</p>
@@ -258,7 +258,7 @@
     <section id="export">
       <h2>Export &amp; Print</h2>
       <p><strong>Export Page</strong> and <strong>Export All</strong> save your pages as JPEG images (a ZIP of JPEGs when exporting multiple pages).</p>
-      <p><strong>Print</strong> (labelled <strong>Save for Printing</strong> in the Mac app) prepares your page(s) as JPEG and asks where to save them — open the saved file(s) in Preview and print from there with Cmd+P. This two-step approach is necessary because macOS doesn't allow apps like this one to open a live print dialog directly, but it gives you full control over paper size and scaling through Preview's own print options.</p>
+      <p><strong>Print</strong> (labelled <strong>Save for Printing</strong> in the app) prepares your page(s) as JPEG and asks where to save them — open the saved file(s) in your photo viewer (Preview on Mac, Photos on Windows) and print from there with Cmd+P (Mac) or Ctrl+P (Windows). This two-step approach is necessary because neither platform's native app framework allows an app like this one to open a live print dialog directly, but it gives you full control over paper size and scaling through your photo viewer's own print options.</p>
     </section>
 
     <section id="large">
@@ -276,7 +276,7 @@
       <h3>Red "⚠ DPI" badge on a photo</h3>
       <p>This means that photo is being stretched beyond what looks sharp at print size in that particular frame — the badge shows the approximate effective resolution. Zoom out slightly, use a higher-resolution photo, or use a smaller frame or page size.</p>
       <h3>HEIC photos not loading</h3>
-      <p>HEIC/HEIF (the default iPhone photo format) requires native decoding support, which macOS provides. If you're seeing HEIC photos skipped, convert them to JPEG first — most photo apps offer this as an export option.</p>
+      <p>HEIC/HEIF (the default iPhone photo format) requires native decoding support. macOS provides this, so HEIC/HEIF photos work normally on Mac. Windows does not, so on Windows these photos are skipped (and, when restoring an Archive, the app will tell you how many were left blank for this reason). If you're seeing HEIC photos skipped, convert them to JPEG first — most photo apps offer this as an export option.</p>
       <h3>A frame's photo looks off-centre with a border on</h3>
       <p>This was a known issue in earlier versions, now fixed — text and photo positioning both account for border thickness. If you're seeing this, make sure you're on the latest version.</p>
     </section>
