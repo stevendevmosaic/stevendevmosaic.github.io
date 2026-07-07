@@ -104,6 +104,28 @@
   .entry p { font-size: 15px; margin: 0 0 12px; }
   .entry ul { margin: 0 0 12px; padding-left: 22px; }
   .entry li { font-size: 15px; margin-bottom: 4px; }
+  .entry table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 16px;
+    font-size: 14px;
+  }
+  .entry th, .entry td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .entry th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .entry td:not(:first-child) { text-align: right; white-space: nowrap; }
+  .entry th:not(:first-child) { text-align: right; }
+  .table-scroll { overflow-x: auto; }
   .back {
     display: inline-block;
     margin-bottom: 12px;
@@ -159,6 +181,52 @@
   </div>
 
   <div class="entries">
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-learning">Learning</span>
+        <span class="entry-date">7 July 2026</span>
+      </div>
+      <h3>Real-world timings on two very different machines</h3>
+      <p>To get a proper sense of how the app behaves at scale, I ran the exact
+      same job — a 380-page project built from 1,400 photos, producing a 2.1GB
+      archive — on two machines at opposite ends of the spectrum:</p>
+      <div class="table-scroll">
+      <table>
+        <tr>
+          <th>Same 380-page / 1,400-photo job</th>
+          <th>Mac Studio (M2, 32GB, macOS&nbsp;15.6)</th>
+          <th>HP Pavilion (i5-7400, 8GB, Win&nbsp;10)</th>
+        </tr>
+        <tr>
+          <td>Save 2.1GB archive</td>
+          <td>~3½ min</td>
+          <td>~22 min</td>
+        </tr>
+        <tr>
+          <td>Render &amp; export all 380 pages to JPEG</td>
+          <td>~4 min</td>
+          <td>~24 min</td>
+        </tr>
+      </table>
+      </div>
+      <p>That's roughly a six-fold difference — but it's worth being clear about
+      <em>why</em>, because it isn't really a Mac-versus-Windows story. The
+      HP is a modest 2017 machine (a low-power quad-core with just 8GB of
+      memory); the Mac Studio is a current high-performance chip with four times
+      the RAM. Almost the entire gap is that hardware difference, not the
+      operating system — a modern Windows PC would land far closer to the Mac.
+      The takeaway isn't "use a Mac," it's "on older or low-memory hardware,
+      large projects genuinely take real time — the app is working, not stuck."</p>
+      <p>One result stood out as genuinely useful, though: on the Windows
+      machine I tested writing the output to a fast SSD versus an old spinning
+      hard drive, and there was <strong>no discernible difference</strong>
+      either way. If the app were limited by disk speed, the SSD would have
+      been dramatically faster — the fact that it wasn't confirms the real
+      bottleneck is the internal data-handoff overhead inside the app, not the
+      disk (the earlier entry below on why the native app is slower than a
+      browser tab goes into that overhead in detail).</p>
+    </article>
 
     <article class="entry">
       <div class="entry-meta">
