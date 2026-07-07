@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Mosaic Collage Maker</title>
+<style>
+  :root {
+    --ink: #1c2430;
+    --muted: #5b6675;
+    --accent: #2f6fb0;
+    --border: #e2e6eb;
+    --bg: #fafbfc;
+    --tip-bg: #eef5fc;
+    --tip-border: #c9def0;
+    --warn-bg: #fff4ec;
+    --warn-border: #f0c9a8;
+    --feature-bg: #eafaf1;
+    --feature-border: #a8dfc0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 100px;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .app-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .intro {
+    margin: 20px 0 8px;
+    padding-bottom: 8px;
+  }
+  .intro p { font-size: 15px; margin: 0 0 14px; }
+  .legend {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 24px 0 40px;
+  }
+  h2.section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 0 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  article.entry {
+    margin: 28px 0 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  article.entry:last-child { border-bottom: none; }
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .entry-date {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    line-height: 1.4;
+  }
+  .tag-feature { background: var(--feature-bg); color: #1c7a45; border: 1px solid var(--feature-border); }
+  .tag-bug     { background: var(--warn-bg);    color: #b25a00; border: 1px solid var(--warn-border); }
+  .tag-learning{ background: var(--tip-bg);     color: var(--accent); border: 1px solid var(--tip-border); }
+  .tag-update  { background: #eef0f3;           color: var(--muted); border: 1px solid var(--border); }
+  .entry h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+  .entry p { font-size: 15px; margin: 0 0 12px; }
+  .entry ul { margin: 0 0 12px; padding-left: 22px; }
+  .entry li { font-size: 15px; margin-bottom: 4px; }
+  .back {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back:hover { color: var(--accent); }
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">&larr; Back</a>
+  <div class="app-name">Mosaic Collage Maker</div>
+  <h1>Blog</h1>
+
+  <div class="intro">
+    <p>I used to rely on LumaPix FotoFusion to lay out big batches of family
+    photos into printable pages — point it at a folder, get back a set of
+    nicely arranged pages ready to print or turn into a photobook. FotoFusion
+    has been defunct for years, and I never found anything that did quite the
+    same job, so eventually I built my own version of it.</p>
+    <p>It started as a single self-contained HTML file with no build step,
+    put together over a series of conversations with Claude (Anthropic), and
+    has since grown into a proper native app for both Mac and Windows. This
+    page is where I'll keep a running, dated log of what's changing —
+    confirmed feature requests, bugs I'm actively chasing down, and things
+    I've learned from actually using the app myself at real scale — newest
+    first.</p>
+  </div>
+
+  <div class="legend">
+    <span class="tag tag-update">Update</span>
+    <span class="tag tag-feature">Feature request</span>
+    <span class="tag tag-bug">Bug investigation</span>
+    <span class="tag tag-learning">Learning</span>
+  </div>
+
+  <div class="entries">
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-update">Update</span>
+        <span class="entry-date">6 July 2026</span>
+      </div>
+      <h3>Mac and Windows are back on one shared codebase</h3>
+      <p>The Windows port had picked up several fixes during its own testing
+      that hadn't made it back into the Mac build yet, so the two had quietly
+      forked. Reconciled everything into a single <code>index.html</code>
+      that both platforms now build from, tracked in one private repo instead
+      of hand-copied files with version-number suffixes — should make it a
+      lot harder for the two to drift apart silently again.</p>
+      <p>Along the way this also caught and fixed a real, pre-existing bug on
+      Mac: toggling a border checkbox, moving the frame-size slider, or
+      swapping two photos would silently break Alt+drag frame-moving on the
+      current page until something else forced a full re-render. Fixed
+      before this round of submissions went out.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-bug">Bug investigation</span>
+        <span class="entry-date">6 July 2026</span>
+      </div>
+      <h3>Large Save/Archive/Export operations could hang indefinitely</h3>
+      <p>Found while testing a ~2GB archive: the native save dialog would
+      appear, a 0-byte file would get created, and then nothing would ever
+      happen — no error, no progress, no timeout. Traced it to how the app
+      handed a large file over to the native save code internally, which
+      turned out to silently stall at that scale. Rewritten to write in
+      fixed-size chunks instead, which has since completed cleanly on
+      multi-gigabyte archives with steady, visible progress.</p>
+      <p>Windows testing hadn't shown this exact symptom (a similar save was
+      just slow, not hung) — but given it's the same underlying mechanism,
+      the fix is going into the Windows build too before its next
+      submission, rather than assuming it's fine there.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-learning">Learning</span>
+        <span class="entry-date">6 July 2026</span>
+      </div>
+      <h3>Why the native app is slower than the plain browser version</h3>
+      <p>Same file, same photos, same 400-page archive: under 30 seconds in
+      a plain browser tab, several minutes in the installed app. Not a
+      regression — a real architectural cost. A browser can hand a finished
+      file straight to its own download machinery with no extra steps. A
+      sandboxed native app can't take that shortcut — every chunk of data has
+      to cross an internal bridge between the app's web content and its
+      native file-writing code, and that crossing has real overhead per
+      call, independent of how much data is in each chunk.</p>
+      <p>Practical upshot: this is tunable (fewer, larger chunks means fewer
+      crossings) but won't ever fully close the gap to a bare browser tab.
+      Measured throughput on native writes has been holding around
+      10&ndash;11&nbsp;MB/s in testing so far — see the
+      <a href="help.html#large">Help Guide</a> for planning-purposes timing
+      estimates at various library sizes.</p>
+    </article>
+
+  </div>
+
+  <footer>Mosaic Collage Maker · Blog</footer>
+</div>
+</body>
+</html>
