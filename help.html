@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Help &amp; Guide — Mosaic Collage Maker</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
   :root {
     --ink: #1c2430;
@@ -150,16 +151,33 @@
     .layout { display: block; }
     nav { position: static; width: auto; max-height: none; padding: 24px 24px 0; }
   }
+  /* Brand: mosaic colour strip echoing the app icon's tiles */
+  .brandbar {
+    height: 4px;
+    background: linear-gradient(90deg,
+      #e8695f 0 16.66%, #f0932b 0 33.33%, #35c759 0 50%,
+      #2ec4a0 0 66.66%, #3b93e0 0 83.33%, #e74c3c 0 100%);
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px; width: fit-content;
+    text-decoration: none; margin: 0 0 6px;
+  }
+  .brand img { width: 26px; height: 26px; border-radius: 6px; display: block; }
+  .brand span { font-size: 15px; font-weight: 600; color: var(--accent); }
+  .brand:hover span { text-decoration: underline; }
 </style>
 </head>
 <body>
+<div class="brandbar"></div>
 <div class="layout">
   <nav>
     <a href="#start">Getting Started</a>
     <a href="#editing">Editing a Page</a>
     <a href="#text">Text Boxes</a>
+    <a href="#pinning">Pinning &amp; Reshuffle</a>
     <a href="#setup">Page Setup</a>
     <a href="#saving">Saving Your Work</a>
+    <a href="#templates">Templates</a>
     <a href="#restoring">Restoring a Project</a>
     <a href="#export">Export &amp; Print</a>
     <a href="#large">Large Photo Libraries</a>
@@ -167,7 +185,7 @@
   </nav>
   <div class="wrap">
     <a class="back" href="./">&larr; Back</a>
-    <div class="app-name">Mosaic Collage Maker</div>
+    <a class="brand" href="./"><img src="logo.png" alt=""><span>Mosaic Collage Maker</span></a>
     <h1>Help &amp; Guide</h1>
     <p class="intro">Everything below covers the app in depth. For quick answers to common questions, see the <a href="support.html">Support page</a> instead — this guide is for when you want the full picture.</p>
 
@@ -182,19 +200,19 @@
       <h3>Before you press Generate</h3>
       <p>A handful of settings in the sidebar shape what Generate actually produces — worth setting these deliberately rather than leaving them at their defaults:</p>
       <ul>
-        <li><strong>Number of Pages</strong> — think of this as a <em>maximum</em>, not a fixed target. Generate stops either once it reaches this many pages, or once it runs out of photos, whichever happens first. If you set this too low for a large photo library, some photos will be left unused rather than automatically spilling onto extra pages — if you want every photo included, make sure Number of Pages is comfortably high enough for your library size (or raise Photos per Page instead, since that also affects how many photos each page can absorb).</li>
+        <li><strong>Number of Pages</strong> — a <em>target</em> rather than a hard cap. Generate uses <strong>every photo in your library</strong>, distributing them across pages while keeping each page inside your Photos per Page range. It lands on exactly the number of pages you asked for whenever the arithmetic allows — that is, when your photo count falls between <em>pages × minimum</em> and <em>pages × maximum</em>. When it can't, it flexes the page count rather than dropping photos: more pages if you have too many for the target, fewer if you have too few. Either way the app tells you plainly what it did and why, so you're never left wondering where a photo went.</li>
         <li><strong>Photos per Page (Min/Max)</strong> — each page gets a random number of photos within this range, which is what gives the mosaic its varied, organic feel rather than a rigid uniform grid. A tighter range (e.g. 8–10) gives more consistent-looking pages; a wider range (e.g. 4–16) gives more visual variety page to page.</li>
         <li><strong>Paper/Page Size</strong> — set this before generating, since it directly affects how photos get cropped to fill each frame. Changing page size after the fact still works, but frames and photos will need to be re-fitted to the new proportions. See <a href="#setup">Page Setup</a> below for the full list of sizes, including custom presets.</li>
         <li><strong>Orientation</strong> and <strong>Photo Order</strong> — orientation controls whether pages are portrait, landscape, or a mix; photo order controls whether photos are placed in filename order or shuffled randomly across pages.</li>
       </ul>
       <p>From there, every page is fully editable — nothing about the automatic layout is locked in. Think of Generate as a fast, high-quality starting point, not a final answer.</p>
-      <div class="tip"><strong>Tip:</strong> if you don't love a particular layout, use <strong>Reshuffle</strong> to regenerate that page with a fresh random arrangement, without touching your other pages.</div>
+      <div class="tip"><strong>Tip:</strong> if you don't love a particular layout, use <strong>Reshuffle</strong> to regenerate that page with a fresh random arrangement, without touching your other pages. If there are items you want to stay put while everything else moves, see <a href="#pinning">Pinning &amp; Reshuffle</a>.</div>
       <div class="warn"><strong>Margins tip, especially if printing via a photobook service:</strong> many commercial photobook printers trim or fold the outer edge of each page during binding, which can quietly crop a few millimetres off — most noticeably at the <em>binding edge</em>. If you're printing through a service like this rather than on your own printer, it's worth setting a larger-than-default margin, particularly on the side that will sit in the binding, so nothing important (faces, text, the edge of a photo) ends up lost in the trim.
         <p style="margin:12px 0 0;font-size:14px"><strong>Crucially, how much gets trimmed varies from one manufacturer to the next</strong> — there's no single set of margins that's right everywhere, so treat any specific values as a starting point and run your own small test print before committing to a large order.</p>
-        <p style="margin:12px 0 4px;font-size:14px">As a reference point, these sidebar margin settings have been tested and work well with the following services:</p>
+        <p style="margin:12px 0 4px;font-size:14px">As a reference point, these margin settings have been tested and work well with the following services. Each margin slider shows its size in millimetres beneath it, so you can dial in the measurement directly (the slider position is given in brackets):</p>
         <ul style="font-size:14px;margin:0 0 4px">
-          <li><strong>Photobox</strong> — Top 20, Bottom 20, Left 80, Right 54.</li>
-          <li><strong>Colorland</strong> — Top 30, Bottom 30, Left and Right the same as Photobox (Left 80, Right 54).</li>
+          <li><strong>Photobox</strong> — Top 10&nbsp;mm, Bottom 10&nbsp;mm, Left 40&nbsp;mm, Right 27&nbsp;mm <em>(sliders 20 / 20 / 80 / 54)</em>.</li>
+          <li><strong>Colorland</strong> — Top 15&nbsp;mm, Bottom 15&nbsp;mm, with Left and Right the same as Photobox — 40&nbsp;mm and 27&nbsp;mm <em>(sliders 30 / 30 / 80 / 54)</em>.</li>
           <li><strong>Printerpix</strong> — works with either of the above.</li>
         </ul></div>
 
@@ -239,10 +257,39 @@
       <p>Frame Border (in settings) has two independent toggles — one for photos, one for text boxes — sharing a single thickness slider. Turn on just the one you want; they don't have to match.</p>
     </section>
 
+    <section id="pinning">
+      <h2>Pinning &amp; Reshuffle</h2>
+      <p><strong>Reshuffle</strong> rearranges the current page into a fresh mosaic. By default everything on the page is fair game — every frame gets a new size and position.</p>
+      <p><strong>Pinning</strong> is how you tell it what to leave alone. Pin a frame or a text box and it keeps its exact position and size, while the mosaic re-tessellates <em>around</em> it instead of landing on top.</p>
+      <ul>
+        <li><strong>Pin a frame</strong> — select it and use the <strong>📌</strong> button in its toolbar</li>
+        <li><strong>Pin a text box</strong> — select it and click the <strong>📌</strong> badge on its corner</li>
+        <li>Pinned items are highlighted, so you can see at a glance what's locked down</li>
+      </ul>
+      <p>That makes it easy to anchor a fixed element — a title, a logo, a caption panel, a favourite photo — and then keep reshuffling until the rest of the page falls into place around it.</p>
+      <div class="tip"><strong>Tip:</strong> the more you pin, the less room the mosaic has left to play with. Pin enough that each remaining gap only fits a single photo and Reshuffle can still change <em>which</em> photo sits in each gap, but the frame sizes themselves are fixed by the space your pinned items leave behind. That's geometry rather than a fault — unpin something, or leave larger gaps, if you want more variety.</div>
+      <p>Text boxes that came from a <a href="#templates">template</a> are pinned for you automatically, since a template's text is usually fixed branding you don't want photos landing on top of.</p>
+    </section>
+
     <section id="setup">
       <h2>Page Setup</h2>
       <p>Page size options include standard sizes (A3, A4, A5, US Letter), square formats (8×8", 10×10"), and a fully custom size in millimetres. If you use a custom size often, save it as a named preset so it's available in the dropdown from then on.</p>
       <p>Margins, gap between frames, and snap distance are all adjustable, and can be saved as your personal defaults (⚙ Defaults) so every new project starts exactly how you like it. If you're printing through a photobook service rather than at home, see the margin/binding tip in <a href="#start">Getting Started</a> before settling on your margin values.</p>
+
+      <h3>Margins, gaps and borders are real measurements</h3>
+      <p>Each margin slider shows its size in <strong>millimetres</strong> underneath it. Those are genuine physical measurements: a given slider value is the same real-world size whatever page size you're working at, whatever screen you're on, and whatever size the app window happens to be when you set it.</p>
+      <p>That matters most on a long project built <strong>over several sittings</strong> — a photobook assembled across months, perhaps on more than one computer. Every section you produce gets identical margins, gaps and border widths, so the finished book stays consistent from cover to cover rather than drifting section by section.</p>
+
+      <h3>Page background</h3>
+      <p>The page background isn't limited to black or white — choose <strong>any colour</strong> you like. Frame border contrast adjusts automatically, so borders stay visible against whatever background you pick.</p>
+      <p>You can also <strong>import your own background image</strong>. It's scaled to cover the page and sits behind the mosaic, and it's baked into the exported JPEG — so what you see on screen is what you get in the file.</p>
+
+      <h3>Changing page size after you've built your pages</h3>
+      <p>Changing the page size and pressing Generate rebuilds everything from scratch, which throws away the arrangement you've worked on. <strong>↔ Resize pages to this size</strong> avoids that — it rescales the pages you already have onto the new size, keeping the layout, each photo's zoom, pan and rotation, and all your text.</p>
+      <ul>
+        <li>Between sizes with the <strong>same proportions</strong> — A4 to A3, for instance — the result is lossless: everything simply scales up or down.</li>
+        <li>Between <strong>different proportions</strong> — A4 to a square format, say — your layout is fitted onto the new page without being stretched or distorted, which leaves some clear space along two edges. The app warns you before doing this so it's never a surprise.</li>
+      </ul>
     </section>
 
     <section id="saving">
@@ -260,6 +307,21 @@
       <p><strong>Archive avoids that problem entirely, because your photos travel inside the file itself.</strong> Restoring an archive doesn't require finding anything — everything needed is already there in the ZIP. That makes it the more genuinely reliable option, especially for a project you care about keeping long-term, or one you might want to reopen on a different computer.</p>
       <div class="warn"><strong>The trade-off:</strong> because Archive physically includes every photo, the file size scales with your library. A project built from a few dozen photos archives to a modest file — but a project using hundreds of full-resolution photos can produce a genuinely large ZIP file, taking longer to create and more disk space to store. For very large libraries, a plain Save (paired with keeping your original photo folder somewhere safe) may be the more practical everyday choice, with an occasional Archive as a more durable checkpoint.</div>
       <p>A reasonable approach: use <strong>Save</strong> for your regular day-to-day working file, and make an <strong>Archive</strong> once a project is finished, or before any major reorganisation of your photo folders — that way you always have one fully self-contained, future-proof copy, without paying the file-size cost on every single save.</p>
+    </section>
+
+    <section id="templates">
+      <h2>Templates</h2>
+      <p><strong>Save as Template</strong> stores a layout with every photo reference deliberately stripped out — the design, the text, the pinned branding, but none of your pictures. Restore it later and you get that design back, empty and ready for a fresh set of photos.</p>
+
+      <h3>From Template</h3>
+      <p><strong>🗂️⚡ From Template</strong> takes that further: it repeats the loaded template's design across as many pages as you ask for, pouring your photos into the frames as it goes.</p>
+      <ul>
+        <li>The template's <strong>text and pinned items are preserved on every page</strong> — your fixed branding stays exactly where you put it</li>
+        <li>The <strong>image frames are reshuffled afresh on each page</strong>, so no two pages come out as identical copies</li>
+        <li>If your template contains more than one design page, they <strong>alternate</strong> (A/B/A/B…) through the run</li>
+      </ul>
+      <p>It's the quickest way to build a long, visually consistent run of pages — a travel book, a yearbook, a catalogue — where every page should share a family resemblance without being a carbon copy of the last.</p>
+      <div class="tip"><strong>Tip:</strong> build the template once with the branding exactly where you want it, <a href="#pinning">pin</a> anything that must not move, then let From Template do the repetitive work.</div>
     </section>
 
     <section id="restoring">
@@ -284,6 +346,7 @@
         <li>Generating and exporting hundreds of pages takes real time — the progress bar reflects genuine per-page work, not a placeholder.</li>
         <li>Photos are automatically scaled to properly fill their frame even on pages you never manually open — you don't need to click through every page before exporting.</li>
         <li>If exporting produces a different page count than expected, the app will tell you directly rather than silently shipping an incomplete result.</li>
+        <li>Archives and multi-page exports are written straight to disk as they are built, rather than being assembled in memory first — so memory use stays low and steady however large the export becomes.</li>
       </ul>
 
       <h3>Roughly how long should this take?</h3>
