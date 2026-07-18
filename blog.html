@@ -201,6 +201,156 @@
     <article class="entry">
       <div class="entry-meta">
         <span class="tag tag-update">Update</span>
+        <span class="entry-date">18 July 2026</span>
+      </div>
+      <h3>What's in the next update — pinning, templates and backgrounds</h3>
+      <p>The next release is currently in testing. It's the largest batch of
+      changes since launch, and most of it comes from actually using the app on
+      my own photobooks and running into the limits.</p>
+      <ul>
+        <li><strong>Pinned frames and text.</strong> Pin anything you don't want
+        moved — a title, a logo, a favourite photo — and Reshuffle re-tessellates
+        the mosaic <em>around</em> it instead of landing on top.</li>
+        <li><strong>Generate from Template.</strong> Save a design as a template,
+        then repeat it across as many pages as you like, pouring your photos in
+        as it goes. The pinned branding stays put on every page while the image
+        frames reshuffle, so pages share a family resemblance without being
+        identical.</li>
+        <li><strong>Backgrounds.</strong> Any colour you like rather than just
+        black or white, and you can import your own background image.</li>
+        <li><strong>Resize pages without regenerating.</strong> Changing page
+        size used to mean rebuilding from scratch and losing your arrangement.
+        Now you can rescale existing pages onto a new size, keeping the layout,
+        each photo's zoom and crop, and your text.</li>
+        <li><strong>Every photo gets used.</strong> Number of Pages is now a
+        target rather than a cap — the page count flexes so nothing is silently
+        left out, and the app tells you plainly if it had to differ from what
+        you asked for.</li>
+        <li><strong>Margins in millimetres.</strong> Each margin slider now shows
+        its real size in mm. More on why that turned out to matter below.</li>
+      </ul>
+      <p>I'd rather test this properly than ship it quickly, so it'll go out when
+      I'm satisfied it behaves — the entries below are some of what testing has
+      turned up so far.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-bug">Bug investigation</span>
+        <span class="entry-date">17 July 2026</span>
+      </div>
+      <h3>Margins that quietly changed size depending on your window</h3>
+      <p>This one started as a small puzzle and turned into the most worthwhile
+      fix of the batch. While testing I noticed the margin readout changing when
+      I resized the app window. The slider hadn't moved, so why was the number
+      different?</p>
+      <p>The answer was in how margins were stored. Margins, gaps and border
+      thickness were all held as <em>screen</em> pixels and converted to real page
+      pixels using the current on-screen scale — which depends on how big the
+      window happens to be. So the same slider setting baked a different
+      <em>physical</em> size depending on the size of your window at the moment
+      you pressed Generate.</p>
+      <p>On its own that sounds academic. Then I thought about how I actually use
+      this app: a travel photobook covering a year, built in sections over
+      several months, sometimes on a different machine. Each section made at a
+      slightly different window size would print with slightly different margins
+      — and I wouldn't find out until the finished book arrived. A silent
+      inconsistency that only shows up on paper is about the worst kind of bug
+      there is.</p>
+      <p>Margins, gaps and borders are now genuine physical measurements,
+      converted through the page's print resolution. A given slider value is the
+      same real-world size regardless of your window, your screen, your machine,
+      or even the page size. A margin of 10&nbsp;mm is 10&nbsp;mm on A5, A4, A3
+      or a custom size. The mm readout is now exact and stops moving when you
+      resize.</p>
+      <p>Worth noting this wasn't a new fault introduced by the new features —
+      it had been there since the very first version, including the one currently
+      on both stores. It simply took building something long enough, in enough
+      separate sittings, to notice.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-bug">Bug investigation</span>
+        <span class="entry-date">17 July 2026</span>
+      </div>
+      <h3>The same bug, hiding behind a second door</h3>
+      <p>Testing Generate from Template, I found photos landing on top of the
+      template's text boxes. The text was still readable — it draws last, so it
+      sits over the top — but the layout underneath was plainly wrong.</p>
+      <p>The cause was straightforward enough. The mosaic flows around
+      <em>pinned</em> items, and the template feature assumed the template's text
+      would be pinned. Templates where I'd remembered to pin the text worked
+      perfectly; one where I hadn't broke silently. Since a template's text is
+      fixed branding by definition, the fix was to treat it as protected whether
+      or not it had been pinned by hand.</p>
+      <p>I fixed that, built it, tested it — and it still happened. Which was the
+      genuinely useful part.</p>
+      <p>The fix only covered the <em>From Template</em> button. But I'd been
+      reproducing it a different way: load an old template and press
+      <strong>Reshuffle</strong>. That's a completely separate entry point into
+      the same underlying behaviour, and it wasn't covered. One root cause, two
+      doors into it, and I'd only shut one.</p>
+      <p>The lesson I'm taking from it: when you find the cause of a bug, don't
+      stop at the path you happened to be testing. Ask what <em>else</em> reaches
+      the same code. Fixing it at the point where the template is loaded — rather
+      than at one button that happens to use it — closed both doors at once.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-learning">Learning</span>
+        <span class="entry-date">16 July 2026</span>
+      </div>
+      <h3>Why saving a large project used 18GB of memory</h3>
+      <p>Exporting a big archive was pushing memory use to somewhere between 14
+      and 18GB. It wasn't a leak — it would climb, drop back sharply, then climb
+      again — but it was far more than the job actually needed.</p>
+      <p>The reason was simple once I looked: the app built the <em>entire</em>
+      ZIP in memory first, then handed the finished thing over to be written to
+      disk. Every photo in the project had to be held at once before a single
+      byte was saved. The bigger the project, the bigger the peak.</p>
+      <p>It now writes each item straight to disk as it goes, so only one photo
+      is in memory at a time rather than the whole archive. Rendering a set of
+      pages now holds steady at around 2GB regardless of how many pages there
+      are, and the peak no longer scales with the size of the project. As a
+      bonus, writing in larger chunks became safe once memory pressure was gone,
+      which made the write itself considerably quicker too.</p>
+      <p>The general lesson, which I keep relearning: it's worth asking whether
+      you need the whole thing assembled before you start, or whether you can
+      just deal with it a piece at a time.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-learning">Learning</span>
+        <span class="entry-date">16 July 2026</span>
+      </div>
+      <h3>When Reshuffle appears to stop working</h3>
+      <p>While testing pinned items I hit something that looked like a bug and
+      turned out to be geometry. On a heavily pinned template, the first
+      Reshuffle rearranged everything nicely — and every Reshuffle after that
+      only swapped the photos around, leaving the frame sizes identical.</p>
+      <p>What's happening is that pinned items carve the page into separate
+      pockets of free space. On the template I was testing, five pinned text
+      boxes left exactly six gaps, and I had six photos — so each photo got a gap
+      to itself. When a gap holds a single photo, that gap <em>is</em> the frame:
+      there's nothing left to subdivide, so its size can't vary. The only freedom
+      remaining is which photo sits in which gap.</p>
+      <p>I'd already added that photo-swapping deliberately, so repeat
+      reshuffles still visibly do something rather than appearing dead. But it's
+      worth understanding the trade-off: the more you pin, the less room the
+      mosaic has to work with. If you want frame sizes to keep varying, leave it
+      some larger gaps to play in.</p>
+      <p>I've decided to leave this as it is. Resizing frames further would mean
+      either overlapping the things you deliberately pinned, or leaving blank
+      holes in the page — both worse than the honest answer, which is that you've
+      told it exactly where everything goes.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-update">Update</span>
         <span class="entry-date">12 July 2026</span>
       </div>
       <h3>Now live on the Mac App Store and the Microsoft Store</h3>
