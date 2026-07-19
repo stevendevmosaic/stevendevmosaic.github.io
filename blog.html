@@ -201,6 +201,78 @@
     <article class="entry">
       <div class="entry-meta">
         <span class="tag tag-update">Update</span>
+        <span class="entry-date">19 July 2026</span>
+      </div>
+      <h3>Changing your mind without starting over</h3>
+      <p>Testing the next update turned up something that had quietly annoyed me
+      for ages without my ever stopping to name it: if you wanted to change the
+      page size, the margins or the spacing between photos, you had to press
+      Generate — which rebuilt everything and threw away whatever arrangement
+      you'd already worked on. A small change of mind cost you all your work.</p>
+      <p>Worse, changing to a page of a different <em>shape</em> — A4 to square,
+      say — simply centred your old layout on the new page and left empty bands
+      down two sides. Technically it avoided distorting anything. In practice it
+      was useless: to make anything of it you had to resize every frame by hand,
+      which is exactly the work this app exists to avoid.</p>
+      <p>So there are now four buttons that apply a setting to the pages you
+      already have, rather than rebuilding them: resize the pages, apply new
+      margins, apply new spacing, and tidy up alignment. Your photos, their crops
+      and zoom, and all your text stay exactly as they were. And when the new page
+      is a different shape, the app now asks whether you'd like it re-flowed into
+      a fresh mosaic built for that shape, or your existing arrangement stretched
+      to fit.</p>
+      <p>The part I enjoyed was discovering all three were the same problem. The
+      gap between photos isn't really part of the layout — the page is divided
+      into tiles that fit together exactly, and the gap is just an inset applied
+      afterwards. Since the app records the gap it used, that's perfectly
+      reversible: you can recover the original division, move it wherever you
+      like, and re-apply any gap you want. Three features, one piece of
+      arithmetic.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-bug">Bug investigation</span>
+        <span class="entry-date">19 July 2026</span>
+      </div>
+      <h3>Six pixels</h3>
+      <p>On page 20 of a 25-page book I was testing, the bottom edges of the two
+      top photos didn't line up. Not by much — about half a millimetre. But it
+      looked wrong in a way I couldn't ignore, and I'd noticed the same thing
+      before without ever pinning it down.</p>
+      <p>The cause is in how the mosaic is built. The page is divided in two, then
+      each half divided again, and so on — with each division choosing its own
+      random proportions. Nothing makes one half agree with the other. On that
+      page the left column divided at one point and the right column six pixels
+      lower, and there's no rule that says they shouldn't.</p>
+      <p>What makes it look like a mistake rather than variety is precisely how
+      <em>small</em> it is. Things should either line up exactly or differ
+      obviously; six pixels reads as a failed attempt at alignment. When I checked
+      the whole file, 9 of the 25 pages had at least one — the worst a
+      hair-splitting 0.9 pixels apart.</p>
+      <p>The fix snaps edges that land within a whisker of each other onto a single
+      line before the page is drawn, leaving genuinely different divisions well
+      alone. Across 1,500 test layouts the offsets small enough to look like
+      mistakes essentially vanished, while the layouts stayed just as varied.</p>
+      <p>Then I realised the fix had a hole in it. It only applies as a page is
+      being <em>created</em>, so it can't reach a book you've already made — and
+      reopening my test project showed the same six pixels sitting there. The only
+      way to clean up an existing page was to reshuffle it, which fixes the
+      alignment by rearranging the page: not much use for a book you've already
+      laid out.</p>
+      <p>So there's now a <strong>Tidy frame alignment</strong> button that nudges
+      those edges into line on pages you already have, without moving anything
+      else. On my test book it cleared 22 near-misses down to 3 — and those three
+      are large enough to look intentional. Pinned frames don't move, and running
+      it twice does nothing the second time.</p>
+      <p>The lesson worth writing down: a fix applied at the moment something is
+      created doesn't repair what already exists. Obvious in hindsight, easy to
+      miss when you've just watched your fix work perfectly on a fresh page.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag tag-update">Update</span>
         <span class="entry-date">18 July 2026</span>
       </div>
       <h3>What's in the next update — pinning, templates and backgrounds</h3>
