@@ -3,92 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mosaic Collage Maker</title>
+<title>Mosaic Collage Maker — print-ready photo collage pages for photobooks (Mac &amp; Windows)</title>
+<meta name="description" content="Turn a folder of photos into print-ready collage pages for a photobook. Mosaic Collage Maker lays out hundreds of photos across multiple pages automatically, at any page size in millimetres, and exports 300 DPI JPEGs. One-off purchase for Mac and Windows. Works offline.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mosaic Collage Maker — print-ready photo collage pages for photobooks">
+<meta property="og:description" content="Turn a folder of photos into print-ready collage pages for a photobook. Automatic multi-page layout at any size, exported as 300 DPI JPEGs. Mac and Windows.">
+<meta property="og:url" content="https://stevendevmosaic.github.io/">
+<meta property="og:image" content="https://stevendevmosaic.github.io/logo.png">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   :root {
-    --ink: #1c2430;
-    --muted: #5b6675;
-    --accent: #2f6fb0;
-    --border: #e2e6eb;
-    --bg: #fafbfc;
+    --ink: #1c2430; --muted: #5b6675; --accent: #2f6fb0;
+    --border: #e2e6eb; --bg: #fafbfc; --card: #fff;
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
+    margin: 0; background: var(--bg); color: var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    line-height: 1.65;
   }
-  .wrap {
-    max-width: 480px;
-    padding: 40px 24px;
-    text-align: center;
-  }
-  h1 {
-    font-size: 26px;
-    font-weight: 700;
-    margin: 0 0 8px;
-    letter-spacing: -0.01em;
-  }
-  p.tagline {
-    font-size: 15px;
-    color: var(--muted);
-    margin: 0 0 36px;
-  }
-  .links {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .links a {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .links a:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-  /* Brand: mosaic colour strip echoing the app icon's tiles */
   .brandbar {
-    position: fixed; top: 0; left: 0; right: 0; height: 4px;
+    position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 5;
     background: linear-gradient(90deg,
       #e8695f 0 16.66%, #f0932b 0 33.33%, #35c759 0 50%,
       #2ec4a0 0 66.66%, #3b93e0 0 83.33%, #e74c3c 0 100%);
   }
-  .hero-logo {
-    width: 80px; height: 80px; border-radius: 18px;
-    display: block; margin: 0 auto 18px;
-    box-shadow: 0 3px 14px rgba(28, 36, 48, 0.16);
+  /* Sticky nav so Help, Blog and Support are always one click away */
+  .topnav {
+    position: sticky; top: 4px; z-index: 4;
+    background: rgba(250,251,252,.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;
+    padding: 9px 12px;
   }
+  .topnav a {
+    font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;
+    padding: 6px 13px; border-radius: 6px;
+  }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 22px 70px; }
+  header { text-align: center; margin-bottom: 46px; }
+  .hero-logo {
+    width: 88px; height: 88px; border-radius: 20px; display: block; margin: 0 auto 18px;
+    box-shadow: 0 3px 14px rgba(28,36,48,.16);
+  }
+  h1 { font-size: 30px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.015em; }
+  .tagline { font-size: 17px; color: var(--muted); margin: 0 auto 26px; max-width: 560px; }
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 12px; letter-spacing: -.01em; }
+  h3 { font-size: 16px; font-weight: 700; margin: 22px 0 4px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .stores a {
+    display: inline-block; padding: 11px 22px; border-radius: 8px; text-decoration: none;
+    font-size: 15px; font-weight: 600; background: var(--accent); color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .stores a.alt { background: var(--card); color: var(--ink); border-color: var(--border); }
+  .stores a:hover { opacity: .9; }
+  .note { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px; margin: 0 0 14px;
+  }
+  .card h3 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .facts div {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; font-size: 14.5px;
+  }
+  .facts b { display: block; font-size: 13px; text-transform: uppercase;
+             letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; font-weight: 700; }
+  nav.links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  nav.links a {
+    display: inline-block; padding: 9px 18px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--ink);
+    text-decoration: none; font-size: 14px; font-weight: 600;
+  }
+  nav.links a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 42px; }
+  a { color: var(--accent); }
 </style>
 </head>
 <body>
 <div class="brandbar"></div>
+<nav class="topnav">
+  <a href="help.html">Help Guide</a>
+  <a href="templates.html">Templates</a>
+  <a href="support.html">Support</a>
+  <a href="blog.html">Blog</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
 <div class="wrap">
+
+<header>
   <img class="hero-logo" src="logo.png" alt="Mosaic Collage Maker app icon">
   <h1>Mosaic Collage Maker</h1>
-  <p class="tagline">Automatic multi-page photo layout for Mac and Windows</p>
-  <div class="links">
-    <a href="help.html">Help Guide</a>
-    <a href="templates.html">Templates</a>
-    <a href="support.html">Support</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="blog.html">Blog</a>
+  <p class="tagline">Turn a folder of photos into print-ready collage pages for a photobook — laid out automatically, at any page size, in minutes rather than hours.</p>
+  <div class="stores">
+    <a href="https://apps.apple.com/gb/app/mosaic-collage-maker/id6787194096?mt=12">Mac App Store</a>
+    <a class="alt" href="https://apps.microsoft.com/detail/9n55n225sbf7">Microsoft Store</a>
   </div>
+  <p class="note">One-off purchase — no subscription, no account, no internet connection needed.</p>
+</header>
+
+<h2>What it does</h2>
+<p>If you have ever tried to fill a photobook page with several photos, you will know how slow it is: dragging pictures in one at a time, nudging them into line, and starting over when you change the page size. Mosaic Collage Maker does the arranging for you.</p>
+<p>Point it at a folder of photos, choose the page size your photobook service asks for, and press Generate. It builds a mosaic layout for every page and uses <strong>all</strong> your photos — not just the first few — spreading them across as many pages as it takes.</p>
+<p>Then everything stays editable. Move frames, swap photos, zoom and reposition each picture, add captions, change the margins. Nothing is locked in, and you never have to start again.</p>
+
+<h2>Made for photobooks, not screens</h2>
+<ul>
+  <li><strong>Any page size, in millimetres.</strong> Photobook services rarely use exact A4 or A3 — enter the size they actually specify and save it as a named preset.</li>
+  <li><strong>Margins, gaps and borders are real measurements.</strong> A 20&nbsp;mm margin is 20&nbsp;mm on the printed page, whatever your screen or window size.</li>
+  <li><strong>300&nbsp;DPI JPEG export</strong>, one file per page or the whole book as a ZIP, ready to upload to your printer.</li>
+  <li><strong>Built for large sets.</strong> Hundreds of photos and hundreds of pages, on ordinary hardware.</li>
+  <li><strong>Change your mind without losing work.</strong> Apply new margins, spacing or a different page size to pages you have already arranged.</li>
+</ul>
+
+<h2>Common questions</h2>
+
+<div class="card">
+  <h3>How do I fit lots of photos on one photobook page?</h3>
+  <p>That is exactly what this does. Choose how many photos you want per page — a minimum and a maximum — and it builds a mosaic layout for each page automatically, with every photo placed.</p>
 </div>
+
+<div class="card">
+  <h3>Will it work with my photobook service?</h3>
+  <p>Yes, provided you know the page size they want. Enter it in millimetres at 300&nbsp;DPI and save it as a named size. The <a href="help.html#setup">help guide</a> lists sizes and margins tested with Photobox, Colorland, Printerpix and Mixbook — always order a test print first, as services do change their sizes.</p>
+</div>
+
+<div class="card">
+  <h3>Can I make a large collage or a banner?</h3>
+  <p>Yes. A banner is simply a very wide page — enter the size you need and generate as normal.</p>
+</div>
+
+<div class="card">
+  <h3>Is it a subscription?</h3>
+  <p>No. It is a one-off purchase from the Mac App Store or Microsoft Store. There is no account to create and no sign-in.</p>
+</div>
+
+<div class="card">
+  <h3>Does it need an internet connection?</h3>
+  <p>No. It works entirely offline. Your photos never leave your computer — the app makes no network calls at all. See the <a href="privacy.html">privacy policy</a>.</p>
+</div>
+
+<div class="card">
+  <h3>Can I reuse a design across several books?</h3>
+  <p>Yes. Save a page design as a template — layout and branding but no photos — then generate a whole new book from it with a different set of photos.</p>
+</div>
+
+<h2>At a glance</h2>
+<div class="facts">
+  <div><b>Platforms</b>macOS 13 or later, and Windows</div>
+  <div><b>Price</b>One-off purchase, no subscription</div>
+  <div><b>Output</b>300 DPI JPEG, per page or as a ZIP</div>
+  <div><b>Page sizes</b>Any size in millimetres, plus A3, A4, Letter and square</div>
+  <div><b>Privacy</b>Fully offline, no account, no tracking</div>
+  <div><b>Made by</b>One developer, who answers his own support email</div>
+</div>
+
+<nav class="links">
+  <a href="help.html">Help Guide</a>
+  <a href="templates.html">Templates</a>
+  <a href="support.html">Support</a>
+  <a href="blog.html">Blog</a>
+  <a href="privacy.html">Privacy Policy</a>
+</nav>
+
+<footer>Made by Steven Muir. Questions and feature requests are genuinely welcome — see <a href="support.html">Support</a>.</footer>
+
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Mosaic Collage Maker",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "macOS 13 or later, Windows",
+  "description": "Turn a folder of photos into print-ready collage pages for a photobook. Lays out hundreds of photos across multiple pages automatically at any page size in millimetres, and exports 300 DPI JPEGs. Works offline.",
+  "url": "https://stevendevmosaic.github.io/",
+  "image": "https://stevendevmosaic.github.io/logo.png",
+  "author": { "@type": "Person", "name": "Steven Muir" },
+  "offers": { "@type": "Offer", "category": "one-time purchase" },
+  "featureList": [
+    "Automatic multi-page mosaic photo layout",
+    "Custom page sizes in millimetres at 300 DPI",
+    "Physical margins, gaps and borders",
+    "300 DPI JPEG export, per page or whole book as ZIP",
+    "Reusable page templates",
+    "Works entirely offline"
+  ]
+}
+</script>
 </body>
 </html>
