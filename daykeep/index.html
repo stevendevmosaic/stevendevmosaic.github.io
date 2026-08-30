@@ -89,6 +89,16 @@
   .bridge img { width: 54px; height: 54px; border-radius: 12px; flex: none; box-shadow: 0 2px 8px rgba(28,36,48,.12); }
   .bridge .txt { font-size: 14.5px; }
   .bridge b { display: block; margin-bottom: 2px; }
+  .switch { background: linear-gradient(180deg, #fbf6ec, var(--card)); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .switch h3 { margin-top: 0; color: var(--accent-deep); }
+  .switch p:last-child { margin-bottom: 0; }
+  .compare-scroll { overflow-x: auto; }
+  .compare { width: 100%; border-collapse: collapse; margin: 6px 0 8px; font-size: 14.5px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .compare th, .compare td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .compare thead th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 700; }
+  .compare tbody th { width: 24%; color: var(--muted); font-weight: 700; }
+  .compare td.us { background: #eef6f4; font-weight: 600; color: var(--ink); }
+  .compare tr:last-child td, .compare tr:last-child th { border-bottom: none; }
   nav.links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
   nav.links a {
     display: inline-block; padding: 9px 18px; background: var(--card);
@@ -167,6 +177,28 @@
   </div>
 </div>
 
+<h2>Coming from Day One?</h2>
+<div class="switch">
+  <h3>Bring your whole journal across</h3>
+  <p>Daykeep imports a <strong>Day One</strong> export directly, so switching does not mean starting over. In Day One, make a <em>JSON</em> export; in Daykeep, choose <em>Import from Day One</em> and pick the zip. Your entries, photos, tags, dates and any place and weather come across into a new journal — and a summary shows you exactly what was imported.</p>
+</div>
+
+<h2>How Daykeep compares</h2>
+<p>Daykeep makes a few deliberate choices that set it apart from most journalling apps. Comparisons here are general — apps differ and features change — but the shape of Daykeep is the point: pay once, keep your own data, and always be able to get it out again.</p>
+<div class="compare-scroll">
+<table class="compare">
+  <thead><tr><th scope="col"></th><th scope="col">Daykeep</th><th scope="col">Many journal apps</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Price</th><td class="us">One-off — free, with a single optional Plus unlock</td><td>An ongoing subscription for the full features</td></tr>
+    <tr><th scope="row">Your entries</th><td class="us">In your own iCloud — no account to create</td><td>An account, often kept on the maker's servers</td></tr>
+    <tr><th scope="row">Switching in</th><td class="us">Import your Day One journal directly</td><td>Often no easy way to bring a journal in</td></tr>
+    <tr><th scope="row">Getting out</th><td class="us">Back up to a file, print, or export a photobook</td><td>Export varies — some keep you in</td></tr>
+    <tr><th scope="row">On paper</th><td class="us">Print a clean book, or a designed photobook via Collage</td><td>Printing is limited or premium-only</td></tr>
+    <tr><th scope="row">Devices</th><td class="us">iPhone, iPad &amp; Mac — one purchase</td><td>Per-platform, or gated behind the subscription</td></tr>
+  </tbody>
+</table>
+</div>
+
 <h2>Common questions</h2>
 
 <div class="card">
@@ -192,6 +224,11 @@
 <div class="card">
   <h3>Can I really turn a journal into a printed book?</h3>
   <p>Yes — two ways. Print a clean book directly from Daykeep, or export the journal to <a href="../collage.html">Mosaic Collage Maker</a> for a designed photobook you can order from any print service.</p>
+</div>
+
+<div class="card">
+  <h3>Can I move my journal over from Day One?</h3>
+  <p>Yes. Export your Day One journal as JSON and use <em>Import from Day One</em> in Daykeep — your entries, photos, tags, dates, places and weather come across into a new journal. See the <a href="help.html#dayone">guide</a>.</p>
 </div>
 
 <h2>At a glance</h2>
