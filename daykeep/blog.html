@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Daykeep</title>
+<meta name="description" content="Development notes and updates for Daykeep, a private journalling app for iPhone, iPad and Mac — newest first.">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root {
+    --ink: #26332f; --muted: #7c7468; --accent: #2C8C86; --accent-deep: #14625C;
+    --terra: #B5563A; --border: #e7ddca; --bg: #f6efe1; --card: #fffdf8;
+    --tip-bg: #eef6f4; --tip-border: #cfe6e0;
+    --warn-bg: #fbeee6; --warn-border: #e6c3ad;
+    --feature-bg: #edf6f0; --feature-border: #b9ddc7;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.65; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 100px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 30px; font-weight: 700; margin: 0 0 4px; }
+  .intro { margin: 20px 0 8px; padding-bottom: 8px; }
+  .intro p { font-size: 15px; margin: 0 0 14px; }
+  .legend { display: flex; gap: 8px; flex-wrap: wrap; margin: 24px 0 40px; }
+  article.entry { margin: 28px 0 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+  article.entry:last-child { border-bottom: none; }
+  .entry-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .entry-date { font-size: 13px; color: var(--muted); font-style: italic; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 3px 9px; border-radius: 999px; line-height: 1.4; }
+  .tag-feature { background: var(--feature-bg); color: #1c7a5f; border: 1px solid var(--feature-border); }
+  .tag-bug     { background: var(--warn-bg);    color: #a85a2c; border: 1px solid var(--warn-border); }
+  .tag-learning{ background: var(--tip-bg);     color: var(--accent-deep); border: 1px solid var(--tip-border); }
+  .tag-update  { background: #efece2;           color: var(--muted); border: 1px solid var(--border); }
+  .entry h3 { font-size: 17px; font-weight: 700; margin: 0 0 8px; }
+  .entry p { font-size: 15px; margin: 0 0 12px; }
+  .entry ul { margin: 0 0 12px; padding-left: 22px; }
+  .entry li { font-size: 15px; margin-bottom: 4px; }
+  .back { display: inline-block; margin-bottom: 12px; font-size: 13px; color: var(--muted); text-decoration: none; }
+  .back:hover { color: var(--accent); }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+  .brandbar { height: 4px; background: linear-gradient(90deg, #14625C 0 25%, #2C8C86 0 50%, #B5563A 0 75%, #EAD9BE 0 100%); }
+  .brand { display: flex; align-items: center; gap: 10px; width: fit-content; text-decoration: none; margin: 0 0 6px; }
+  .brand img { width: 26px; height: 26px; border-radius: 6px; display: block; }
+  .brand span { font-size: 15px; font-weight: 600; color: var(--accent); }
+  .brand:hover span { text-decoration: underline; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<div class="wrap">
+  <a class="back" href="../index.html">&larr; All apps</a>
+  <a class="brand" href="index.html"><img src="logo.png" alt="Daykeep logo"><span>Daykeep</span></a>
+  <h1>Blog</h1>
+
+  <div class="intro">
+    <p>Daykeep is my journalling app for iPhone, iPad and Mac. This page is a
+    running, dated log of how it is coming along — new features, things I am
+    fixing, and what I have learned building it — newest first.</p>
+    <p>The same honest note I keep on my other app applies here: I am a solo
+    developer. I build and maintain Daykeep on my own, in my own time. I read
+    everything that comes in and I genuinely want it to work well for you, but
+    replies and fixes arrive at the pace one person can realistically manage.
+    I would rather say that plainly than over-promise.</p>
+  </div>
+
+  <div class="legend">
+    <span class="tag tag-update">Update</span>
+    <span class="tag tag-feature">Feature</span>
+    <span class="tag tag-bug">Bug investigation</span>
+    <span class="tag tag-learning">Learning</span>
+  </div>
+
+  <article class="entry">
+    <div class="entry-meta">
+      <span class="entry-date">Coming soon</span>
+      <span class="tag tag-update">Update</span>
+    </div>
+    <h3>Daykeep is nearly here</h3>
+    <p>Daykeep is in final testing and heading to the App Store. It is a calm
+    place to keep your days: write an entry, drop in the photos that belong
+    with it, and keep as many journals as you like. It runs on iPhone, iPad
+    and Mac as a single purchase, and syncs privately through your own iCloud
+    — there is no Daykeep account and no server of mine that ever sees your
+    writing.</p>
+    <p>The app is free to use. An optional one-off <strong>Daykeep Plus</strong>
+    unlock adds unlimited journals, clean un-marked printing, and the full
+    tools for restoring backups. No subscription.</p>
+  </article>
+
+  <article class="entry">
+    <div class="entry-meta">
+      <span class="entry-date">Coming soon</span>
+      <span class="tag tag-feature">Feature</span>
+    </div>
+    <h3>Journal here, print there — Daykeep meets Mosaic Collage Maker</h3>
+    <p>The feature I am most pleased with connects Daykeep to my other app,
+    <a href="../collage.html">Mosaic Collage Maker</a>. You can export a whole
+    journal — photos, captions and the writing between them — as one file, open
+    it in Collage on your Mac or PC, and watch it pour into an editable,
+    print-ready photobook.</p>
+    <p>You pick a style, tidy anything you like, add a cover, and export a
+    print-ready PDF to order from any printer. The export from Daykeep is free;
+    Collage is the part that does the design. It turns a year of journalling
+    into a book you can hold.</p>
+  </article>
+
+  <article class="entry">
+    <div class="entry-meta">
+      <span class="entry-date">Coming soon</span>
+      <span class="tag tag-learning">Learning</span>
+    </div>
+    <h3>Why another journal app?</h3>
+    <p>I wanted a journal that treated my photos as part of the story rather
+    than an afterthought, kept my writing genuinely private, and let me get
+    my words back out again — as a file, or as a printed book — whenever I
+    wanted. I could not find one that did all three without a subscription, so
+    I built it.</p>
+    <p>The principles are simple: your journal is yours, it lives in your own
+    iCloud, and Daykeep never holds it hostage. Restoring your own backup is
+    always free. More notes will follow here as launch approaches.</p>
+  </article>
+
+  <footer>Made by Steven Muir. Questions and ideas are genuinely welcome — see <a href="support.html">Support</a>.</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daykeep — a private journal for iPhone, iPad &amp; Mac</title>
+<meta name="description" content="Daykeep is a calm, private journalling app for iPhone, iPad and Mac. Write with your photos, keep as many journals as you like, sync through your own iCloud, and turn a journal into a printed book. Free with an optional one-off Plus unlock.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/daykeep/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Daykeep — a private journal for iPhone, iPad &amp; Mac">
+<meta property="og:description" content="A calm, private journal. Write with your photos, keep as many journals as you like, sync through your own iCloud, and turn a journal into a real printed book.">
+<meta property="og:url" content="https://stevendevmosaic.github.io/daykeep/">
+<meta property="og:image" content="https://stevendevmosaic.github.io/daykeep/logo.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root {
+    --ink: #26332f; --muted: #7c7468; --accent: #2C8C86; --accent-deep: #14625C;
+    --terra: #B5563A; --border: #e7ddca; --bg: #f6efe1; --card: #fffdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .brandbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 5;
+    background: linear-gradient(90deg,
+      #14625C 0 25%, #2C8C86 0 50%, #B5563A 0 75%, #EAD9BE 0 100%);
+  }
+  .topnav {
+    position: sticky; top: 4px; z-index: 4;
+    background: rgba(246,239,225,.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;
+    padding: 9px 12px;
+  }
+  .topnav a {
+    font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;
+    padding: 6px 13px; border-radius: 6px;
+  }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 22px 70px; }
+  header { text-align: center; margin-bottom: 44px; }
+  .hero-logo {
+    width: 92px; height: 92px; border-radius: 20px; display: block; margin: 0 auto 18px;
+    box-shadow: 0 4px 16px rgba(20,60,55,.18);
+  }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 34px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.01em; }
+  .tagline { font-size: 17px; color: var(--muted); margin: 0 auto 26px; max-width: 560px; }
+  h2 { font-family: Georgia, "Times New Roman", serif; font-size: 22px; font-weight: 700; margin: 44px 0 12px; letter-spacing: -.005em; }
+  h3 { font-size: 16px; font-weight: 700; margin: 22px 0 4px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; align-items: center; }
+  .comingsoon {
+    display: inline-block; padding: 11px 22px; border-radius: 9px;
+    font-size: 15px; font-weight: 700; background: var(--accent); color: #fff;
+    opacity: .55; cursor: default;
+  }
+  .note { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px; margin: 0 0 14px;
+  }
+  .card h3 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .facts div {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px; font-size: 14.5px;
+  }
+  .facts b { display: block; font-size: 13px; text-transform: uppercase;
+             letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; font-weight: 700; }
+  .plus {
+    background: linear-gradient(180deg, #fbf6ec, var(--card));
+    border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; margin: 8px 0 0;
+  }
+  .plus h3 { margin-top: 0; color: var(--accent-deep); }
+  .plus .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-top: 8px; }
+  .plus .cols b { display: block; margin-bottom: 4px; }
+  .bridge {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px 22px; display: flex; gap: 16px; align-items: center;
+  }
+  .bridge img { width: 54px; height: 54px; border-radius: 12px; flex: none; box-shadow: 0 2px 8px rgba(28,36,48,.12); }
+  .bridge .txt { font-size: 14.5px; }
+  .bridge b { display: block; margin-bottom: 2px; }
+  nav.links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  nav.links a {
+    display: inline-block; padding: 9px 18px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--ink);
+    text-decoration: none; font-size: 14px; font-weight: 600;
+  }
+  nav.links a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 42px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="../index.html">⌂ Apps</a>
+  <a href="help.html">How it works</a>
+  <a href="blog.html">Blog</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+<div class="wrap">
+
+<header>
+  <img class="hero-logo" src="logo.png" alt="Daykeep app icon">
+  <h1>Daykeep</h1>
+  <p class="tagline">A calm, private journal for iPhone, iPad and Mac. Write with your photos, keep as many journals as you like, and turn any of them into a real printed book.</p>
+  <div class="stores">
+    <span class="comingsoon">Coming soon to the App&nbsp;Store</span>
+  </div>
+  <p class="note">Free to use, with an optional one-off Plus unlock — no subscription, no account, no adverts.</p>
+</header>
+
+<h2>What it is</h2>
+<p>Daykeep is a place to keep your days. Write an entry, drop in the photos that belong with it, and add a caption or two — the writing and the pictures stay together, in the order you put them. Over weeks and years it becomes something worth keeping: a record of a trip, a child growing up, a year of ordinary life.</p>
+<p>It is deliberately quiet. There is no feed, no streak to protect, nobody else in it. Just you, your words and your photos.</p>
+
+<h2>Why Daykeep</h2>
+<ul>
+  <li><strong>Private by design.</strong> Your journal lives in your own iCloud and syncs across your devices. There is no Daykeep account and no server of mine that ever sees your entries.</li>
+  <li><strong>Photos are first-class.</strong> Add as many as you like, place them between the words, set a cover, and let the entry hold its own little gallery.</li>
+  <li><strong>As many journals as you need.</strong> One for the family, one for a trip, one just for you.</li>
+  <li><strong>Made for keeping, not scrolling.</strong> Browse by day, by tag, or with “On This Day”; search back through everything you have written.</li>
+  <li><strong>It goes on paper.</strong> Print a journal as a clean book straight from the app, or send it to Mosaic Collage Maker for a fully designed photobook.</li>
+  <li><strong>One-off, not a subscription.</strong> The core app is free; a single Plus purchase unlocks the extras, for good.</li>
+</ul>
+
+<h2>What you can do</h2>
+<ul>
+  <li>Write entries that mix text and photos in any order</li>
+  <li>Keep multiple journals, each with its own colour and cover</li>
+  <li>Tag entries and filter by tag; jump to “On This Day” in past years</li>
+  <li>Add place and weather to an entry automatically</li>
+  <li>Search across everything you have written</li>
+  <li>Share a single entry as a beautifully designed card</li>
+  <li>Back up and restore your whole journal as a file</li>
+  <li>Print a journal as a book, or export it to Mosaic Collage Maker</li>
+</ul>
+
+<h2>Daykeep and Mosaic Collage Maker</h2>
+<div class="bridge">
+  <img src="../logo.png" alt="Mosaic Collage Maker app icon">
+  <div class="txt">
+    <b>Journal here, print there.</b>
+    Export a whole journal from Daykeep and open it in <a href="../collage.html">Mosaic Collage Maker</a> on your Mac or PC. Your photos, captions and writing pour into an editable, print-ready photobook — choose a style, tidy anything you like, and order it from any printer. The export is free; you just need the Collage app to lay it out.
+  </div>
+</div>
+
+<h2>Daykeep Plus</h2>
+<div class="plus">
+  <h3>Free forever — and a one-off unlock for the extras</h3>
+  <p>Everything you need to keep a journal is free: writing, unlimited photos, iCloud sync, backup, and restoring your own backups. <strong>Daykeep Plus</strong> is a single purchase — no subscription — that adds:</p>
+  <div class="cols">
+    <div><b>Unlimited journals</b>Keep more than two journals at once.</div>
+    <div><b>Clean printing</b>Print books and PDFs without the small Daykeep mark.</div>
+    <div><b>Full restore tools</b>Split or merge journals when you bring a backup back in.</div>
+  </div>
+</div>
+
+<h2>Common questions</h2>
+
+<div class="card">
+  <h3>Where is my journal stored?</h3>
+  <p>In your own iCloud account, and on your devices. Daykeep has no account system and no server that stores your entries — I never see them. See the <a href="privacy.html">privacy policy</a>.</p>
+</div>
+
+<div class="card">
+  <h3>Does it work on all my devices?</h3>
+  <p>Yes. Daykeep is one purchase that runs on iPhone, iPad and Mac, and your journals sync between them through iCloud.</p>
+</div>
+
+<div class="card">
+  <h3>Is it a subscription?</h3>
+  <p>No. The app is free to use, and the optional Daykeep Plus unlock is a one-off purchase. There is nothing to renew.</p>
+</div>
+
+<div class="card">
+  <h3>Can I get my writing out again?</h3>
+  <p>Always. You can back up a journal to a file at any time, and export a journal for printing or for Mosaic Collage Maker. Your words are yours.</p>
+</div>
+
+<div class="card">
+  <h3>Can I really turn a journal into a printed book?</h3>
+  <p>Yes — two ways. Print a clean book directly from Daykeep, or export the journal to <a href="../collage.html">Mosaic Collage Maker</a> for a designed photobook you can order from any print service.</p>
+</div>
+
+<h2>At a glance</h2>
+<div class="facts">
+  <div><b>Platforms</b>iPhone, iPad and Mac — one purchase</div>
+  <div><b>Price</b>Free, with an optional one-off Plus unlock</div>
+  <div><b>Sync</b>Private, through your own iCloud</div>
+  <div><b>Privacy</b>No account, no adverts, no tracking</div>
+  <div><b>Printing</b>Clean book from the app, or a photobook via Collage</div>
+  <div><b>Made by</b>One developer, who answers his own support email</div>
+</div>
+
+<nav class="links">
+  <a href="help.html">How it works</a>
+  <a href="blog.html">Blog</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="../index.html">Other apps</a>
+</nav>
+
+<footer>Made by Steven Muir. Questions and ideas are genuinely welcome — see <a href="support.html">Support</a>.</footer>
+
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Daykeep",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "iOS 17 or later, iPadOS 17 or later, macOS 14 or later",
+  "description": "A private journalling app for iPhone, iPad and Mac. Write entries that mix text and photos, keep multiple journals, sync through your own iCloud, and export a journal to print as a book. Free with an optional one-off Plus unlock.",
+  "url": "https://stevendevmosaic.github.io/daykeep/",
+  "image": "https://stevendevmosaic.github.io/daykeep/logo.png",
+  "author": { "@type": "Person", "name": "Steven Muir" },
+  "offers": { "@type": "Offer", "category": "free with in-app purchase" }
+}
+</script>
+</body>
+</html>

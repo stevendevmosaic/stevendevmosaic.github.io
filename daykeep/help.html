@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Daykeep works — guide</title>
+<meta name="description" content="A short guide to Daykeep: writing entries with photos, keeping multiple journals, tags and On This Day, sharing cards, printing a book, exporting to Mosaic Collage Maker, and backing up.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/daykeep/help.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Daykeep works — guide">
+<meta property="og:description" content="Writing entries with photos, multiple journals, tags, sharing, printing, export to Mosaic Collage Maker, and backup.">
+<meta property="og:url" content="https://stevendevmosaic.github.io/daykeep/help.html">
+<meta property="og:image" content="https://stevendevmosaic.github.io/daykeep/logo.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root {
+    --ink: #26332f; --muted: #7c7468; --accent: #2C8C86; --accent-deep: #14625C;
+    --terra: #B5563A; --border: #e7ddca; --bg: #f6efe1; --card: #fffdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .brandbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 5;
+    background: linear-gradient(90deg, #14625C 0 25%, #2C8C86 0 50%, #B5563A 0 75%, #EAD9BE 0 100%);
+  }
+  .topnav {
+    position: sticky; top: 4px; z-index: 4;
+    background: rgba(246,239,225,.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; padding: 9px 12px;
+  }
+  .topnav a { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 6px 13px; border-radius: 6px; }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 22px 70px; }
+  header { text-align: center; margin-bottom: 30px; }
+  .hero-logo { width: 72px; height: 72px; border-radius: 16px; display: block; margin: 0 auto 14px; box-shadow: 0 4px 16px rgba(20,60,55,.18); }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 30px; font-weight: 700; margin: 0 0 8px; }
+  .tagline { font-size: 16px; color: var(--muted); margin: 0 auto; max-width: 560px; }
+  h2 { font-family: Georgia, "Times New Roman", serif; font-size: 21px; font-weight: 700; margin: 40px 0 10px; scroll-margin-top: 60px; }
+  h3 { font-size: 16px; font-weight: 700; margin: 20px 0 4px; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 0 0 30px; }
+  .toc b { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 8px; }
+  .toc ul { columns: 2; column-gap: 24px; margin: 0; padding-left: 18px; font-size: 14.5px; }
+  .tip { background: #eef6f4; border: 1px solid #cfe6e0; border-radius: 10px; padding: 12px 16px; margin: 0 0 14px; font-size: 14.5px; }
+  .tip b { color: var(--accent-deep); }
+  nav.links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  nav.links a { display: inline-block; padding: 9px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 600; }
+  nav.links a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 42px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="../index.html">⌂ Apps</a>
+  <a href="index.html">Daykeep</a>
+  <a href="blog.html">Blog</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+<div class="wrap">
+
+<header>
+  <img class="hero-logo" src="logo.png" alt="Daykeep app icon">
+  <h1>How Daykeep works</h1>
+  <p class="tagline">A short tour of the app — everything here is optional, and nothing is locked in. You can always change or remove what you have written.</p>
+</header>
+
+<div class="toc">
+  <b>On this page</b>
+  <ul>
+    <li><a href="#start">Getting started</a></li>
+    <li><a href="#write">Writing an entry</a></li>
+    <li><a href="#photos">Adding photos</a></li>
+    <li><a href="#journals">Journals</a></li>
+    <li><a href="#organise">Finding things again</a></li>
+    <li><a href="#share">Sharing a card</a></li>
+    <li><a href="#print">Printing a book</a></li>
+    <li><a href="#collage">Export to Collage</a></li>
+    <li><a href="#backup">Backup &amp; restore</a></li>
+    <li><a href="#plus">Daykeep Plus</a></li>
+    <li><a href="#privacy">Your privacy</a></li>
+  </ul>
+</div>
+
+<h2 id="start">Getting started</h2>
+<p>Open Daykeep and you have a first journal ready to write in. If you are signed in to iCloud, your journals sync quietly between your iPhone, iPad and Mac — there is no Daykeep account to create. Tap the pen to begin a new entry.</p>
+
+<h2 id="write">Writing an entry</h2>
+<p>An entry is made of <strong>blocks</strong> — pieces of text and photos in the order you want them. Type a paragraph, add a photo, type some more; the writing keeps its place around the pictures.</p>
+<ul>
+  <li>Tap the gap between blocks to drop a new text block exactly there.</li>
+  <li>Give the entry a title if you like, or leave it and the date stands in.</li>
+  <li>Reorder blocks by dragging, or with the ⋯ menu on each one.</li>
+</ul>
+<div class="tip"><b>On a Mac or iPad,</b> you can drag a photo straight from Photos, Finder or Files onto the entry to add it.</div>
+
+<h2 id="photos">Adding photos</h2>
+<p>Add photos from your library or from files. Daykeep keeps a sensible, print-friendly copy so a long journal does not balloon in size, and it can read the date, place and (where available) the weather from a photo to fill in the entry for you.</p>
+<ul>
+  <li>Add as many photos to an entry as you like.</li>
+  <li>Give any photo a caption — it travels with the photo into books and exports.</li>
+  <li>Pick a key photo to represent the entry, or set a journal cover.</li>
+</ul>
+
+<h2 id="journals">Journals</h2>
+<p>Keep separate journals for separate things — a trip, the family, a private one. Each journal has its own name, colour and cover. Switch between them from the sidebar.</p>
+<div class="tip">The free app keeps up to two journals; <a href="#plus">Daykeep Plus</a> removes the limit.</div>
+
+<h2 id="organise">Finding things again</h2>
+<ul>
+  <li><strong>Tags</strong> — label entries and then browse everything with a given tag.</li>
+  <li><strong>On This Day</strong> — see what you wrote on this date in past years.</li>
+  <li><strong>Search</strong> — look back through everything you have written.</li>
+  <li><strong>By date</strong> — jump to a day or a range.</li>
+</ul>
+
+<h2 id="share">Sharing a card</h2>
+<p>Share a single entry as a designed card — the photo is the hero, with just a taste of your words — straight to Messages, Instagram, WhatsApp or wherever you like. You choose the photo, the style and the shape. The free app adds a small Daykeep mark; Plus removes it.</p>
+
+<h2 id="print">Printing a book</h2>
+<p>Turn a journal into a clean, readable book and print it or save it as a PDF, directly from Daykeep. This is the quick, do-it-yourself route. For a fully designed photobook, use the export below.</p>
+
+<h2 id="collage">Export to Mosaic Collage Maker</h2>
+<p>Daykeep can package a whole journal — photos, captions and writing — as a single file for <a href="../collage.html">Mosaic Collage Maker</a> on Mac or Windows. Open it there and it pours into an editable, print-ready photobook: pick a style, tidy anything you like, add a cover, and export a print-ready PDF to order from any service.</p>
+<ol>
+  <li>In Daykeep, choose <em>Export for Collage</em> on the journal and save the file (or AirDrop / email it to your computer).</li>
+  <li>In Mosaic Collage Maker, choose <em>Import from Daykeep</em> and pick the file.</li>
+  <li>Choose a journal style and layout, then edit and export as you wish.</li>
+</ol>
+<div class="tip">The export itself is free. You need Mosaic Collage Maker to lay the book out — that is the part you buy, once.</div>
+
+<h2 id="backup">Backup &amp; restore</h2>
+<p>Back up any journal to a file you keep yourself, and bring it back at any time. Your journal is never held hostage — restoring your own backup is always free.</p>
+
+<h2 id="plus">Daykeep Plus</h2>
+<p>Everything you need to keep a journal is free. <strong>Daykeep Plus</strong> is a single, one-off purchase that adds unlimited journals, clean un-marked printing, and the full split/merge tools when restoring a backup. No subscription, nothing to renew.</p>
+
+<h2 id="privacy">Your privacy</h2>
+<p>Your journal stays in your own iCloud and on your devices. There is no Daykeep account and no server of mine that stores or reads your entries. Full detail is in the <a href="privacy.html">privacy policy</a>.</p>
+
+<nav class="links">
+  <a href="index.html">Daykeep home</a>
+  <a href="blog.html">Blog</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy Policy</a>
+</nav>
+
+<footer>Made by Steven Muir. Something unclear or missing? <a href="support.html">Tell me</a> — I answer my own support email.</footer>
+
+</div>
+</body>
+</html>
