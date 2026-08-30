@@ -82,6 +82,18 @@
   .plus h3 { margin-top: 0; color: var(--accent-deep); }
   .plus .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-top: 8px; }
   .plus .cols b { display: block; margin-bottom: 4px; }
+  .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .tiers { grid-template-columns: 1fr; } }
+  .tier { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .tier.plus-tier { background: linear-gradient(180deg, #fbf6ec, var(--card)); border-color: #d9c9a8; }
+  .tier h3 { margin: 0 0 2px; font-size: 17px; }
+  .tier.plus-tier h3 { color: var(--accent-deep); }
+  .tier .tier-sub { font-size: 13.5px; color: var(--muted); margin: 0 0 12px; }
+  .oneoff { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #fff; background: var(--accent); border-radius: 20px; padding: 2px 8px; vertical-align: middle; margin-left: 6px; }
+  ul.ticks { list-style: none; padding-left: 0; margin: 0; }
+  ul.ticks li { position: relative; padding-left: 24px; margin-bottom: 8px; font-size: 14.5px; }
+  ul.ticks li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 700; }
+  ul.ticks .q { color: var(--muted); font-size: 13px; }
   .bridge {
     background: var(--card); border: 1px solid var(--border); border-radius: 14px;
     padding: 20px 22px; display: flex; gap: 16px; align-items: center;
@@ -141,7 +153,7 @@
   <li><strong>Photos are first-class.</strong> Add as many as you like, place them between the words, set a cover, and let the entry hold its own little gallery.</li>
   <li><strong>As many journals as you need.</strong> One for the family, one for a trip, one just for you.</li>
   <li><strong>Made for keeping, not scrolling.</strong> Browse by day, by tag, or with “On This Day”; search back through everything you have written.</li>
-  <li><strong>It goes on paper.</strong> Print a journal as a clean book straight from the app, or send it to Mosaic Collage Maker for a fully designed photobook.</li>
+  <li><strong>It goes on paper.</strong> Print a book straight from the app — watermark-free with Plus — or send a journal to Mosaic Collage Maker for a fully designed photobook.</li>
   <li><strong>One-off, not a subscription.</strong> The core app is free; a single Plus purchase unlocks the extras, for good.</li>
 </ul>
 
@@ -166,16 +178,35 @@
   </div>
 </div>
 
-<h2>Daykeep Plus</h2>
-<div class="plus">
-  <h3>Free forever — and a one-off unlock for the extras</h3>
-  <p>Everything you need to keep a journal is free: writing, unlimited photos, iCloud sync, backup, and restoring your own backups. <strong>Daykeep Plus</strong> is a single purchase — no subscription — that adds:</p>
-  <div class="cols">
-    <div><b>Unlimited journals</b>Keep more than two journals at once.</div>
-    <div><b>Clean printing</b>Print books and PDFs without the small Daykeep mark.</div>
-    <div><b>Full restore tools</b>Split or merge journals when you bring a backup back in.</div>
+<h2 id="free">What’s free, and what Plus adds</h2>
+<p>Everything you need to keep a journal is free, for good. <strong>Daykeep Plus</strong> is a single, one-off purchase — no subscription — that removes the printing watermark and lifts a few limits.</p>
+<div class="tiers">
+  <div class="tier">
+    <h3>Free</h3>
+    <p class="tier-sub">The whole journal, kept forever.</p>
+    <ul class="ticks">
+      <li>Unlimited entries and photos</li>
+      <li>Private iCloud sync across your devices</li>
+      <li>Up to two journals</li>
+      <li>Import your Day One journal</li>
+      <li>Back up and restore your own journals</li>
+      <li>Export a journal to Mosaic Collage Maker</li>
+      <li>Share an entry as a card <span class="q">— carries a small Daykeep mark</span></li>
+      <li>Print a book or PDF <span class="q">— carries a Daykeep watermark, so it’s ideal for previewing</span></li>
+    </ul>
+  </div>
+  <div class="tier plus-tier">
+    <h3>Daykeep Plus <span class="oneoff">One-off</span></h3>
+    <p class="tier-sub">A single purchase that adds:</p>
+    <ul class="ticks">
+      <li><strong>Watermark-free printing</strong> — clean books and PDFs, ready to keep or send to a printer</li>
+      <li>Share cards without the Daykeep mark</li>
+      <li>Unlimited journals</li>
+      <li>Full split &amp; merge tools when restoring a backup</li>
+    </ul>
   </div>
 </div>
+<p class="note">The watermark only affects Daykeep’s own printing. Exporting to <a href="../collage.html">Mosaic Collage Maker</a> is free and produces its own clean pages there.</p>
 
 <h2>Coming from Day One?</h2>
 <div class="switch">
@@ -193,7 +224,7 @@
     <tr><th scope="row">Your entries</th><td class="us">In your own iCloud — no account to create</td><td>An account, often kept on the maker's servers</td></tr>
     <tr><th scope="row">Switching in</th><td class="us">Import your Day One journal directly</td><td>Often no easy way to bring a journal in</td></tr>
     <tr><th scope="row">Getting out</th><td class="us">Back up to a file, print, or export a photobook</td><td>Export varies — some keep you in</td></tr>
-    <tr><th scope="row">On paper</th><td class="us">Print a clean book, or a designed photobook via Collage</td><td>Printing is limited or premium-only</td></tr>
+    <tr><th scope="row">On paper</th><td class="us">Print a book (watermark-free with Plus), or a designed photobook via Collage</td><td>Printing is limited or premium-only</td></tr>
     <tr><th scope="row">Devices</th><td class="us">iPhone, iPad &amp; Mac — one purchase</td><td>Per-platform, or gated behind the subscription</td></tr>
   </tbody>
 </table>
@@ -223,7 +254,7 @@
 
 <div class="card">
   <h3>Can I really turn a journal into a printed book?</h3>
-  <p>Yes — two ways. Print a clean book directly from Daykeep, or export the journal to <a href="../collage.html">Mosaic Collage Maker</a> for a designed photobook you can order from any print service.</p>
+  <p>Yes — two ways. Print a book directly from Daykeep (free prints carry a watermark for previewing; Plus prints them clean), or export the journal to <a href="../collage.html">Mosaic Collage Maker</a> for a designed photobook you can order from any print service.</p>
 </div>
 
 <div class="card">
@@ -237,7 +268,7 @@
   <div><b>Price</b>Free, with an optional one-off Plus unlock</div>
   <div><b>Sync</b>Private, through your own iCloud</div>
   <div><b>Privacy</b>No account, no adverts, no tracking</div>
-  <div><b>Printing</b>Clean book from the app, or a photobook via Collage</div>
+  <div><b>Printing</b>Book from the app (watermark-free with Plus), or a photobook via Collage</div>
   <div><b>Made by</b>One developer, who answers his own support email</div>
 </div>
 
