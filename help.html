@@ -176,6 +176,8 @@
     <a href="#start">Getting Started</a>
     <a href="#editing">Editing a Page</a>
     <a href="#text">Text Boxes</a>
+    <a href="#captions">Photo Captions</a>
+    <a href="#polaroid">Polaroid Frames</a>
     <a href="#pinning">Pinning &amp; Reshuffle</a>
     <a href="#setup">Page Setup</a>
     <a href="#saving">Saving Your Work</a>
@@ -267,7 +269,9 @@
       <ul>
         <li><strong>📷 Pick photo</strong> — choose a specific photo for this frame from your library</li>
         <li><strong>🔄 Rotate</strong> — rotates the photo 90° at a time (only shown once a frame has a photo)</li>
-        <li><strong>🔀 Swap</strong> — swap this frame's photo with another frame's</li>
+        <li><strong>🔀 Swap</strong> — swap this frame's photo with another frame's. Any <a href="#captions">caption</a> travels with the photo, so it always describes the picture it's attached to</li>
+        <li><strong>⬆ Bring to front / ⬇ Send to back</strong> — change which frame sits on top where frames overlap (see below)</li>
+        <li><strong>🗨 Caption</strong> — add or remove a handwritten caption on this photo (see <a href="#captions">Photo Captions</a>)</li>
         <li><strong>✕ Delete</strong> — removes the frame entirely</li>
       </ul>
       <h3>Moving and resizing frames</h3>
@@ -278,6 +282,9 @@
         <li><strong>Add a new frame</strong> — use the Add Frame button, then position and size it like any other</li>
       </ul>
       <div class="tip"><strong>Tip:</strong> frames snap to nearby edges and centres as you drag, for clean alignment — the snap distance is adjustable in settings if you want it looser or tighter.</div>
+
+      <h3>Stacking overlapping frames</h3>
+      <p>In a neat grid frames sit side by side and never overlap, so stacking order doesn't come up. But as soon as frames <em>do</em> overlap — a deliberately scattered arrangement, or the <a href="#polaroid">polaroid</a> layouts — it matters which one sits on top. The <strong>⬆ Bring to front</strong> and <strong>⬇ Send to back</strong> buttons in a frame's toolbar move it above or below the others where they cross. Bring a frame to the front and its photo (and, in a polaroid layout, its white card) covers its neighbours instead of being covered by them.</p>
     </section>
 
     <section id="text">
@@ -288,8 +295,38 @@
         <li><strong>Body</strong> — the main text underneath, which is genuinely vertically centred within whatever space is left below the title</li>
       </ul>
       <p>Style controls cover font, size, colour, alignment, line height, letter spacing, background, and drop shadow — all found in the side panel once a text box is selected.</p>
+      <h3>Fonts, including handwriting and script</h3>
+      <p>Alongside the usual print fonts, the picker includes flowing <strong>script</strong> faces (Dancing Script, Great Vibes, Pacifico) and relaxed <strong>handwriting</strong> ones (Caveat, Shadows Into Light, Patrick Hand) — ideal for a title on a keepsake page or a travel journal. These fonts are built into the app rather than borrowed from your system, so they look identical on Mac and Windows and work offline, and a page you build on one computer prints the same on another.</p>
       <h3>Borders</h3>
       <p>Frame Border (in settings) has two independent toggles — one for photos, one for text boxes — sharing a single thickness slider. Turn on just the one you want; they don't have to match.</p>
+    </section>
+
+    <section id="captions">
+      <h2>Photo Captions</h2>
+      <p>A caption is a short handwritten line that belongs to a single photo — a place, a date, a name — sitting in a soft band along the bottom of the picture. It's separate from a <a href="#text">text box</a>: a text box is a free-standing block of text you place anywhere, while a caption is attached to one photo and stays with it.</p>
+      <ul>
+        <li><strong>Add one</strong> — select a photo and click <strong>🗨</strong> in its toolbar. A caption strip appears; click it and type.</li>
+        <li><strong>Remove one</strong> — click <strong>🗨</strong> again.</li>
+        <li>The caption is written in a handwriting font and sits at a consistent height on every photo, so captions line up neatly across a page.</li>
+      </ul>
+      <p>Two things make captions behave the way you'd hope:</p>
+      <ul>
+        <li><strong>An empty caption prints nothing.</strong> Turning a caption on but leaving it blank costs you nothing — the band only appears in the finished page once there's something written in it. That's why some template packs switch captions on for you in advance: they're there ready to fill in, and invisible until you do.</li>
+        <li><strong>The caption follows its photo.</strong> If you <strong>🔀 Swap</strong> two photos, or <strong>Reshuffle</strong> the page, each caption travels with its picture rather than being left behind on the old spot — so it always describes the right image.</li>
+      </ul>
+      <div class="tip"><strong>Tip:</strong> captions are perfect for a <a href="#templates">travel journal or photobook</a>, where a line under each shot turns a page of pictures into a page of memories. The journal template packs come with captions ready to fill in.</div>
+    </section>
+
+    <section id="polaroid">
+      <h2>Polaroid Frames</h2>
+      <p>Polaroid frames dress each photo as a little instant-camera print — a white card with a wider strip along the bottom and a soft drop shadow — for a scattered, pinned-to-a-pinboard scrapbook look. The app <em>draws</em> the frames itself rather than baking them into a picture, which has a nice consequence: you can <a href="#setup">import your own background</a> (a linen, cork or paper texture, say) and the white frames stay crisp on top of it.</p>
+      <p>The polaroid look comes with the <strong>polaroid template packs</strong> — restore one of those and the design arrives complete, with the frames switched on and the photos already arranged at gentle, varied angles. The <strong>Polaroid photo frames</strong> switch in the Frame Border settings is enabled when a polaroid template is loaded, so the effect stays tied to layouts that are built for it (on an ordinary tightly-packed grid the cards would overlap awkwardly, so the switch is left off there).</p>
+      <p>Because polaroid photos are meant to overlap, two features from elsewhere in the app come into their own here:</p>
+      <ul>
+        <li><strong>Stacking</strong> — use <a href="#editing">⬆ Bring to front / ⬇ Send to back</a> to control which card sits on top where they overlap.</li>
+        <li><strong>Captions</strong> — a <a href="#captions">caption</a> on a polaroid photo is written on the white strip beneath it, just like the real thing.</li>
+      </ul>
+      <p><a href="#pinning">Reshuffle</a> works as always: with the arrangement free, each shuffle deals the photos out at fresh angles and positions, so you can keep going until the scatter feels right.</p>
     </section>
 
     <section id="pinning">
@@ -392,15 +429,17 @@
       <p><strong>Save as Template</strong> stores a layout with every photo reference deliberately stripped out — the design, the text, the pinned branding, but none of your pictures. Restore it later and you get that design back, empty and ready for a fresh set of photos.</p>
 
       <h3>From Template</h3>
-      <p><strong>🗂️⚡ From Template</strong> takes that further: it repeats the loaded template's design across as many pages as you ask for, pouring your photos into the frames as it goes.</p>
+      <p><strong>🗂️⚡ From Template</strong> takes that further: it lays the template's design down on page after page and pours your whole library into the frames, filling as many pages as it takes to place every photo.</p>
       <ul>
-        <li>The template's <strong>text and pinned items are preserved on every page</strong> — your fixed branding stays exactly where you put it</li>
-        <li>The <strong>image frames are reshuffled afresh on each page</strong>, so no two pages come out as identical copies</li>
-        <li>If your template contains more than one design page, they <strong>alternate</strong> (A/B/A/B…) through the run</li>
+        <li>Every page uses the <strong>same design</strong> — the same frame shapes and positions, and the same branding — so the run reads as one consistent book rather than a set of unrelated pages.</li>
+        <li>The app works out <strong>how many pages</strong> it needs from how many photos you've loaded and how many frames the design has, so nothing is left unplaced. The last page is simply left part-filled if your photos don't divide evenly.</li>
+        <li>The template's <strong>text and pinned items appear on every page</strong> — a title, a logo, fixed branding — exactly where you put them.</li>
       </ul>
-      <p>It's the quickest way to build a long, visually consistent run of pages — a travel book, a yearbook, a catalogue — where every page should share a family resemblance without being a carbon copy of the last.</p>
-      <div class="tip"><strong>Tip:</strong> build the template once with the branding exactly where you want it, <a href="#pinning">pin</a> anything that must not move, then let From Template do the repetitive work.</div>
-      <p>Ready-made <a href="templates.html">template packs</a> to restore and build from — including film-style contact sheets — are available to download.</p>
+      <p>It's the quickest way to turn a folder of photos into a long, consistent run of pages — a travel book, a yearbook, a catalogue — in a single step.</p>
+      <div class="tip"><strong>Tip:</strong> want variety between pages rather than a fixed grid? Leave some frames unpinned, then press <a href="#pinning">Reshuffle</a> on any page to re-tessellate those frames into a fresh mosaic around whatever you've pinned — the app's original no-fixed-grid behaviour, framed by your pinned design.</div>
+
+      <h3>Ready-made template packs</h3>
+      <p>You don't have to build a template from scratch. Ready-made <a href="templates.html">template packs</a> to restore and build from include film-style contact sheets, scattered <a href="#polaroid">polaroid</a> layouts, and <strong>travel-journal / instant-photobook</strong> designs — a large "hero" photo with a flowing script title and supporting shots, each with a <a href="#captions">caption</a> ready to fill in. Restore one, load a folder of photos, and From Template pours a finished multi-page book in seconds.</p>
     </section>
 
     <section id="restoring">
