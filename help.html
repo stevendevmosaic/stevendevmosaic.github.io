@@ -261,6 +261,10 @@
       </ul>
       <p>So, put simply: use <strong>Load Photos</strong> to start a project from a folder, <strong>Add Photos</strong> to fold in another folder later, and the two <strong>Files</strong> variants when you'd rather hand-pick individual images than point at a folder.</p>
       <div class="tip"><strong>Note for Windows users:</strong> the folder picker on Windows only lets you choose folders, not individual files (and won't list the files inside a folder while you browse — that's normal, not a fault). The <strong>Load Files…</strong> and <strong>Add Files…</strong> buttons are the way to select individual photos there. On Mac either style of button can pick files or a folder, so the Files buttons are just a convenience.</div>
+
+      <h3>Finding your way around</h3>
+      <p>The <strong>settings panel</strong> runs down the left, grouped into sections — Pages &amp; Photos, Photo Fit, Spacing, Margins &amp; Alignment, Background, Frame Border. Click any section heading to <strong>fold it away</strong> when you're not using it (the app remembers which you've collapsed), so you can keep just the controls you're working with on screen.</p>
+      <p>Your loaded <strong>photos</strong> and your <strong>page thumbnails</strong> sit in a bar along the <strong>bottom</strong>, with two tabs — <strong>Photos</strong> and <strong>Pages</strong>. Click a tab to switch, and use the <strong>▾</strong> button on the right to collapse the whole bar for maximum canvas space — handy on a laptop. The <strong>Pages</strong> tab is also what the <strong>Pages</strong> button in the toolbar opens.</p>
     </section>
 
     <section id="editing">
@@ -374,8 +378,22 @@
       <p>The page background isn't limited to black or white — choose <strong>any colour</strong> you like. Frame border contrast adjusts automatically, so borders stay visible against whatever background you pick.</p>
       <p>You can also <strong>import your own background image</strong>. It's scaled to cover the page and sits behind the mosaic, and it's baked into the exported JPEG — so what you see on screen is what you get in the file.</p>
 
-      <h3>Photo fit — fill the frame, or show the whole photo</h3>
-      <p><strong>Photo fit</strong> (in the Layout panel) decides how each photo sits in its frame. <strong>Fill frame</strong> — the default — crops the photo so it completely fills the frame: no gaps, but the edges may be trimmed. <strong>Fit whole photo</strong> shows the entire photo inside the frame with nothing cropped, letting the page background show around it wherever the photo's shape doesn't match the frame's. Fit is the one to reach for when the whole of every shot matters, or paired with a background colour or image for a deliberately airy look.</p>
+      <h3>Photo fit — fill the frame, show the whole photo, or jigsaw</h3>
+      <p><strong>Photo fit</strong> (in the Photo Fit panel) decides how each photo sits in its frame:</p>
+      <ul>
+        <li><strong>Fill frame</strong> — the default — crops each photo so it completely fills its frame: no gaps, but the edges may be trimmed.</li>
+        <li><strong>Fit whole photo</strong> — shows the entire photo inside the frame with nothing cropped, letting the page background show around it wherever the photo's shape doesn't match the frame's. Reach for it when the whole of every shot matters, or pair it with a background colour or image for a deliberately airy look.</li>
+        <li><strong>Jigsaw — whole photos, no gaps</strong> — sizes every frame to its photo's own shape, so your pictures fit together <em>whole</em>, edge to edge, filling the page with no gaps and nothing cropped. It's the one to reach for on a poster or a photo-packed page. It flows around any pinned titles or text, and Reshuffle re-flows the jigsaw into a fresh arrangement.</li>
+      </ul>
+
+      <h3>Cropping less in the mosaic</h3>
+      <p>When you're using <strong>Fill frame</strong>, three settings (in the Photo Fit panel) make the cropping far kinder to your photos:</p>
+      <ul>
+        <li><strong>Match photos to frame shapes</strong> — assigns each photo to the frame that best matches its shape, so landscapes land in wide frames and portraits in tall ones. This roughly halves how much is cropped, and prints come out sharper because photos are scaled up less. It applies when you Generate or Reshuffle.</li>
+        <li><strong>Keep the subject in view</strong> — when a photo is cropped to fill its frame, the crop is centred on the main subject (a face, the focal point) instead of the middle, so subjects aren't sliced off at an edge. It's analysed entirely on your own computer — no photo ever leaves the device.</li>
+        <li><strong>Maximum crop</strong> — a slider that caps how much Fill is allowed to crop. At 100% it fills as it always has; lower it and any photo that would be trimmed harder than the limit shows a little background instead of being over-cropped. At 0% nothing is cropped at all (the same as Fit whole photo).</li>
+      </ul>
+      <p>For zero cropping with no gaps either, use <strong>Jigsaw</strong> above; these three are for when you want to keep the classic mosaic look but treat your photos gently.</p>
 
       <h3>Coverage — let the background show</h3>
       <p>By default the mosaic fills the whole page. The <strong>Coverage</strong> slider lets you shrink it so more of the page background — a colour, or your imported image — shows through between the photos. At 100% it fills the page exactly as it always has; lower it for an airier, more spacious result. It pairs naturally with a background image or a bold background colour.</p>
@@ -455,6 +473,25 @@
       <h2>Export &amp; Print</h2>
       <p><strong>Export Page</strong> and <strong>Export All</strong> save your pages as JPEG images (a ZIP of JPEGs when exporting multiple pages).</p>
       <p><strong>Print</strong> (labelled <strong>Save for Printing</strong> in the app) prepares your page(s) as JPEG and asks where to save them — open the saved file(s) in your photo viewer (Preview on Mac, Photos on Windows) and print from there with Cmd+P (Mac) or Ctrl+P (Windows). This two-step approach is necessary because neither platform's native app framework allows an app like this one to open a live print dialog directly, but it gives you full control over paper size and scaling through your photo viewer's own print options.</p>
+
+      <h3>Save as PDF</h3>
+      <p>The <strong>⬇ PDF</strong> button saves all of your pages as a single, print-ready PDF — ideal for uploading to a photobook service (Blurb and similar) or handing to any printer. When you export, you're asked whether to add bleed:</p>
+      <ul>
+        <li><strong>With 3mm bleed</strong> — for a photobook service or professional printer. Coloured backgrounds and full-bleed photos are extended past the trim edge, so there are no white slivers after the pages are cut to size.</li>
+        <li><strong>No bleed</strong> — for printing at home, where the page is used exactly as laid out.</li>
+      </ul>
+      <p>The PDF is written straight to disk as each page is finished, so even a very large photobook — hundreds, or well over a thousand, pages — exports steadily without running the app out of memory.</p>
+
+      <h3>Transparent backgrounds</h3>
+      <p>Tick <strong>Transparent background on export</strong> before exporting to leave the page background empty instead of filled — useful for overlaying a page on something else, printing onto coloured or textured stock, or further design work.</p>
+      <ul>
+        <li><strong>Images</strong> export as <strong>PNG</strong> in this mode (rather than JPEG), because PNG can carry transparency and JPEG cannot.</li>
+        <li><strong>PDF</strong> keeps the page background transparent too.</li>
+      </ul>
+      <p>Leave the box unticked for normal opaque pages (JPEG images, and a solid background in the PDF).</p>
+
+      <h3>Rounded photo corners</h3>
+      <p>Set <strong>Photo corner radius (mm)</strong> to round the corners of your photos for a softer, more modern look. It's measured in millimetres, so it prints at a consistent physical size whatever your page size, and it applies both on screen and in every export — JPEG, PNG and PDF. Set it to 0 for square corners.</p>
     </section>
 
     <section id="large">
