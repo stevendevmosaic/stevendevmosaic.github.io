@@ -56,11 +56,12 @@
   ul { margin: 0 0 14px; padding-left: 20px; }
   li { margin-bottom: 6px; }
   .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; align-items: center; }
-  .comingsoon {
-    display: inline-block; padding: 11px 22px; border-radius: 9px;
+  .storebtn {
+    display: inline-block; padding: 12px 24px; border-radius: 9px;
     font-size: 15px; font-weight: 700; background: var(--accent); color: #fff;
-    opacity: .55; cursor: default;
+    text-decoration: none;
   }
+  .storebtn:hover { background: var(--accent-deep); }
   .note { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 4px; }
   .card {
     background: var(--card); border: 1px solid var(--border);
@@ -138,7 +139,7 @@
   <h1>Daykeep</h1>
   <p class="tagline">A calm, private journal for iPhone, iPad and Mac. Write with your photos, keep as many journals as you like, and turn any of them into a real printed book.</p>
   <div class="stores">
-    <span class="comingsoon">Coming soon to the App&nbsp;Store</span>
+    <a class="storebtn" href="https://apps.apple.com/gb/app/daykeep/id6805096496" aria-label="Get Daykeep on the App Store">Get Daykeep on the App&nbsp;Store</a>
   </div>
   <p class="note">Free to use, with an optional one-off Plus unlock — no subscription, no account, no adverts.</p>
 </header>
@@ -305,7 +306,9 @@
   "url": "https://stevendevmosaic.github.io/daykeep/",
   "image": "https://stevendevmosaic.github.io/daykeep/logo.png",
   "author": { "@type": "Person", "name": "Steven Muir" },
-  "offers": { "@type": "Offer", "category": "free with in-app purchase" }
+  "downloadUrl": "https://apps.apple.com/gb/app/daykeep/id6805096496",
+  "installUrl": "https://apps.apple.com/gb/app/daykeep/id6805096496",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP", "category": "free with in-app purchase" }
 }
 </script>
 </body>
