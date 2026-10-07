@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glance Bridge — an iPhone app for the Glance Clock</title>
+<meta name="description" content="Glance Bridge is a personal, unofficial iPhone app that brings the Glance Clock back to life now the original app has gone. Not on the App Store; test builds on request.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/glance-bridge/">
+<link rel="icon" type="image/png" href="../favicon.png">
+<style>
+  :root { --ink: #1c2430; --muted: #5b6675; --accent: #2f6fb0; --border: #e2e6eb; --bg: #f7f8fa; --card: #fff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.65; }
+  .brandbar { height: 4px; background: linear-gradient(90deg, #e8695f 0 16.66%, #f0932b 0 33.33%, #35c759 0 50%, #2ec4a0 0 66.66%, #3b93e0 0 83.33%, #14625C 0 100%); }
+  .topnav { background: rgba(247,248,250,.94); border-bottom: 1px solid var(--border); display: flex; justify-content: center; padding: 9px 12px; }
+  .topnav a { font-size: 14px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 6px 13px; border-radius: 6px; }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 46px 24px 80px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 10px; letter-spacing: -.015em; }
+  h2 { font-size: 21px; margin: 38px 0 12px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 18px; color: var(--muted); }
+  ul { padding-left: 22px; margin: 0 0 14px; } li { margin-bottom: 6px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 0 0 14px; }
+  .card h3 { margin: 0 0 6px; font-size: 16px; } .card p:last-child { margin-bottom: 0; }
+  .callout { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 12px; padding: 18px 22px; margin: 26px 0; }
+  .callout a.email { display: inline-block; margin-top: 6px; padding: 11px 22px; border-radius: 9px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .small { font-size: 13.5px; color: var(--muted); }
+  a { color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 44px; }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav"><a href="../index.html">⌂ Apps by Steven Muir</a></nav>
+<div class="wrap">
+
+<h1>Glance Bridge</h1>
+<p class="lede">An iPhone app for the Glance Clock, the Bluetooth wall clock from the 2016 crowdfunding campaign, whose original app is no longer available.</p>
+
+<div class="callout">
+  <strong>Not on the App Store.</strong> This is a personal project that I wrote for my own clock, and I don't plan to sell it. If you own a Glance Clock and would like to try a TestFlight version, contact the developer.<br>
+  <a class="email" href="mailto:stevendevmosaic@gmail.com?subject=Glance%20Bridge%20TestFlight">Request a test build</a>
+</div>
+
+<h2>What it does</h2>
+<ul>
+  <li><strong>Quick screen:</strong> one-tap weather update, timer presets, a message box and brightness, all on the first screen.</li>
+  <li><strong>Weather ring:</strong> the next 24 hours of temperatures drawn on the clock's LED ring, in °C or °F.</li>
+  <li><strong>Timer:</strong> counts down on the clock, and can silence the alarm after a few seconds so it doesn't ring until you reach it.</li>
+  <li><strong>Messages:</strong> scrolling text with your choice of colour, animation and sound.</li>
+  <li><strong>Clock settings:</strong> brightness (including auto), 12/24 hour, date format, night mode, do-not-disturb and mute.</li>
+  <li><strong>Ring graphics:</strong> a progress ring, moving bars, pulses, built-in animations, and snow, rain or fog effects.</li>
+  <li><strong>Shortcuts:</strong> actions for sending a message, updating the weather, starting a timer and showing progress, so Siri and automations can drive the clock.</li>
+  <li><strong>Stays connected:</strong> it reconnects to the clock by itself, and refreshes the weather when the clock reconnects if it is over an hour old.</li>
+</ul>
+
+<h2>What it can't do</h2>
+<div class="card"><h3>Read your phone's notifications</h3><p>iOS doesn't let one app see another app's notifications, so messages from WhatsApp or Messages can't appear on the clock automatically. Shortcuts can send your own text.</p></div>
+<div class="card"><h3>Alarms and calendar events</h3><p>The clock's alarm and calendar commands are only partly understood, so Glance Bridge doesn't use them yet.</p></div>
+<div class="card"><h3>Change the timer alarm's volume</h3><p>The clock has no volume setting, and its timer alarm ignores mute. Glance Bridge works around this by silencing the alarm for you a few seconds after it starts, while the app is open.</p></div>
+<div class="card"><h3>Work on every clock</h3><p>I have tested it on one clock. Other firmware versions may behave differently.</p></div>
+
+<h2>How it works</h2>
+<p>Glance Bridge talks to the clock directly over Bluetooth, with no server or account in between. The clock's Bluetooth protocol was worked out by the community, and I'm grateful to the author of the public <a href="https://github.com/Hypfer/glance-clock">glance-clock</a> documentation, which this app builds on. The clock sets its own time from your iPhone.</p>
+
+<h2>Privacy</h2>
+<p>There are no accounts and no analytics, and the app doesn't send anything to me. It uses your approximate location only to fetch the local forecast from a weather service, and remembers it on your phone so Shortcuts can update the weather later.</p>
+
+<h2>Unofficial</h2>
+<p class="small">Glance Bridge is an independent project. It is not made, endorsed or supported by the makers of the Glance Clock, and "Glance" belongs to its owners. It is provided as is, and it shouldn't be relied on for anything important, such as timing medication.</p>
+
+<footer>Made by Steven Muir, an independent developer. <a href="mailto:stevendevmosaic@gmail.com?subject=Glance%20Bridge">Contact</a>.</footer>
+</div>
+</body>
+</html>
