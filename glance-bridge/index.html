@@ -25,6 +25,12 @@
   .card h3 { margin: 0 0 6px; font-size: 16px; } .card p:last-child { margin-bottom: 0; }
   .callout { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 12px; padding: 18px 22px; margin: 26px 0; }
   .callout a.email { display: inline-block; margin-top: 6px; padding: 11px 22px; border-radius: 9px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .hero { margin: 26px 0 8px; }
+  .hero img, .media img, .media video { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 6px 22px rgba(28,36,48,.10); display: block; background: #111; }
+  .hero figcaption, .media figcaption { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 8px; }
+  .hero { max-width: 460px; margin-left: auto; margin-right: auto; }
+  .media { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 6px 0 14px; }
+  .media figure { margin: 0; }
   .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin: 6px 0 14px; }
   .shots figure { margin: 0; }
   .shots img { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 6px 22px rgba(28,36,48,.10); display: block; }
@@ -42,12 +48,20 @@
 <h1>Glance Bridge</h1>
 <p class="lede">An iPhone app for the Glance Clock, the Bluetooth wall clock from the 2016 crowdfunding campaign, whose original app is no longer available.</p>
 
+<figure class="hero"><img src="clock-weather.jpg" alt="A Glance Clock showing the next 24 hours of temperature as a ring, blue for cold and orange for warm, with 7 degrees in the centre" width="1000" height="1000" fetchpriority="high"><figcaption>The weather ring: the next 24 hours of temperature, blue for cold and orange for warm, with the current 7° in the centre.</figcaption></figure>
+
 <div class="callout">
   <strong>Not on the App Store.</strong> This is a personal project that I wrote for my own clock, and I don't plan to sell it. If you own a Glance Clock and would like to try a TestFlight version, contact the developer.<br>
   <a class="email" href="mailto:stevendevmosaic@gmail.com?subject=Glance%20Bridge%20TestFlight">Request a test build</a>
 </div>
 
-<h2>Screenshots</h2>
+<h2>On the clock</h2>
+<div class="media">
+  <figure><img src="clock-message.jpg" alt="A Glance Clock showing the word Coffee in the centre with a glowing amber ring around it" width="1000" height="1000" loading="lazy"><figcaption>A message from the app, with a pulsing ring.</figcaption></figure>
+  <figure><video controls preload="metadata" playsinline poster="timer-poster.jpg" width="720" height="720"><source src="timer.mp4" type="video/mp4">Your browser can't play this video.</video><figcaption>A 10-second timer: the green ring shrinks as it counts down, then the clock shows “Done”.</figcaption></figure>
+</div>
+
+<h2>In the app</h2>
 <div class="shots">
   <figure><img src="home.jpg" alt="The Glance Bridge quick screen with weather, timer presets, message box and brightness" width="640" height="1387"><figcaption>Quick screen</figcaption></figure>
   <figure><img src="settings.jpg" alt="Clock settings: brightness, time and date, night mode and do not disturb" width="640" height="1387"><figcaption>Clock settings</figcaption></figure>
