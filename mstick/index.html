@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M-Stick for iPhone — an app for the M-Stick light</title>
+<meta name="description" content="A personal, unofficial iPhone app that brings the M-Stick light back to life now the original iPhone app has gone. Not on the App Store; test builds on request.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/mstick/">
+<link rel="icon" type="image/png" href="../favicon.png">
+<style>
+  :root { --ink: #1c2430; --muted: #5b6675; --accent: #2f6fb0; --border: #e2e6eb; --bg: #f7f8fa; --card: #fff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.65; }
+  .brandbar { height: 4px; background: linear-gradient(90deg, #e8695f 0 16.66%, #f0932b 0 33.33%, #35c759 0 50%, #2ec4a0 0 66.66%, #3b93e0 0 83.33%, #14625C 0 100%); }
+  .topnav { background: rgba(247,248,250,.94); border-bottom: 1px solid var(--border); display: flex; justify-content: center; padding: 9px 12px; }
+  .topnav a { font-size: 14px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 6px 13px; border-radius: 6px; }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 46px 24px 80px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 10px; letter-spacing: -.015em; }
+  h2 { font-size: 21px; margin: 38px 0 12px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 18px; color: var(--muted); }
+  ul { padding-left: 22px; margin: 0 0 14px; } li { margin-bottom: 6px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 0 0 14px; }
+  .card h3 { margin: 0 0 6px; font-size: 16px; } .card p:last-child { margin-bottom: 0; }
+  .callout { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 12px; padding: 18px 22px; margin: 26px 0; }
+  .callout a.email { display: inline-block; margin-top: 6px; padding: 11px 22px; border-radius: 9px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .hero { margin: 26px 0 8px; }
+  .hero img, .media img, .media video { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 6px 22px rgba(28,36,48,.10); display: block; background: #111; }
+  .hero figcaption, .media figcaption { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 8px; }
+  .hero { max-width: 460px; margin-left: auto; margin-right: auto; }
+  .media { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 6px 0 14px; }
+  .media figure { margin: 0; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin: 6px 0 14px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 6px 22px rgba(28,36,48,.10); display: block; }
+  .shots figcaption { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 8px; }
+  .thanks { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 20px 16px; margin: -12px 0 26px; }
+  .thanks a.pay { display: inline-block; margin-top: 8px; padding: 9px 18px; border-radius: 9px; background: #fff; color: var(--accent); border: 1px solid var(--accent); text-decoration: none; font-weight: 600; font-size: 14.5px; }
+  .small { font-size: 13.5px; color: var(--muted); }
+  a { color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 44px; }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav"><a href="../index.html">⌂ Apps by Steven Muir</a></nav>
+<div class="wrap">
+
+<h1>M-Stick for iPhone</h1>
+<p class="lede">An iPhone app for the M-Stick, the 16-LED Bluetooth light from the crowdfunding campaign, whose original iPhone app has been discontinued.</p>
+
+<figure class="hero"><img src="quick.jpg" alt="The M-Stick app's quick screen: a grid of colour tiles and mood tiles that light the stick in one tap" width="640" height="1387" fetchpriority="high"><figcaption>The quick screen: one tap for a colour, or for a mood animation.</figcaption></figure>
+
+<div class="callout">
+  <strong>Not on the App Store.</strong> This is a personal project that I wrote for my own M-Stick, and I don't plan to sell it. If you own an M-Stick and would like to try a TestFlight version, contact the developer.<br>
+  <a class="email" href="mailto:stevendevmosaic@gmail.com?subject=M-Stick%20TestFlight">Request a test build</a>
+</div>
+
+<h2>In the app</h2>
+<div class="shots">
+  <figure><img src="light.jpg" alt="The Light screen: connection status with battery level, and colour, saturation and brightness sliders" width="640" height="1387" loading="lazy"><figcaption>Light: colour, saturation and brightness</figcaption></figure>
+  <figure><img src="moods.jpg" alt="A list of mood animations including Candle, Madagascar, Cinque Terre and Strokkur" width="640" height="1387" loading="lazy"><figcaption>Moods and selfie lights</figcaption></figure>
+  <figure><img src="bicycle.jpg" alt="The bicycle patterns: Police, Booster, Exit, Moon and Star and more" width="640" height="1387" loading="lazy"><figcaption>Bicycle patterns</figcaption></figure>
+  <figure><img src="sound.jpg" alt="Sound patterns that react to music, with a sensitivity slider" width="640" height="1387" loading="lazy"><figcaption>Sound patterns</figcaption></figure>
+  <figure><img src="timers.jpg" alt="The Timers screen with a countdown picker and preset buttons" width="640" height="1387" loading="lazy"><figcaption>Timers</figcaption></figure>
+</div>
+
+<h2>What it does</h2>
+<ul>
+  <li><strong>Quick screen:</strong> colour tiles (red through pink, plus warm white, white and off) and mood tiles, each painted in the colour it selects, with one brightness slider.</li>
+  <li><strong>Light:</strong> any colour, saturation and brightness, across all 16 LEDs, with the stick's battery level and charging state.</li>
+  <li><strong>Moods:</strong> ten animated lights (Candle, Madagascar, Cinque Terre, Strokkur, Hayman, Phang Nga, Moraine, Antelope, Uyuni and Feeding) and six selfie lights.</li>
+  <li><strong>Bicycle:</strong> nine patterns that react to how the stick moves, using its built-in motion sensor.</li>
+  <li><strong>Sound:</strong> nine patterns that dance to music picked up by your iPhone's microphone, with a sensitivity control.</li>
+  <li><strong>Camera remote:</strong> use the stick's buttons as a shutter and camera switch, and its LEDs as a flash or fill light. Photos are saved to your library.</li>
+  <li><strong>Timers:</strong> a countdown where the lights fill with red as time runs out, and an interval trainer with get-ready, work and rest rounds. Both flash when they finish.</li>
+  <li><strong>Air Display:</strong> sends the stick's 35 built-in designs, or a test pattern, ready to swing in the air.</li>
+  <li><strong>Stays connected:</strong> it remembers your stick and reconnects to it by itself.</li>
+</ul>
+
+<h2>Air Display designs</h2>
+<figure class="hero" style="max-width:100%"><img src="air-designs.jpg" alt="Eight of the built-in Air Display designs drawn as grids of LEDs: Love, Star, Help, Peace, I love Music, Fire, Ghost and Party" width="1244" height="597" loading="lazy"><figcaption>A few of the 35 built-in designs, drawn as the stick's LEDs would show them. (Preview colours are brightened.)</figcaption></figure>
+
+<h2>What it can't do</h2>
+<div class="card"><h3>Show a whole Air Display design (yet)</h3><p>The designs upload to the stick, but in my tests only a short stretch of the picture appears as you swing it. I haven't found a setting that changes this, so it may be fixed in the stick's own firmware.</p></div>
+<div class="card"><h3>Use your own pictures or text in Air Display</h3><p>Only the built-in designs can be sent for now.</p></div>
+<div class="card"><h3>Alarm clock and weather lights</h3><p>The original app had these. Alarms need the app to keep running in the background, which iOS doesn't allow, and weather would need an internet service, so I've left both out.</p></div>
+<div class="card"><h3>Update the stick's firmware</h3><p>The firmware file wasn't part of the original app, so there's nothing to install.</p></div>
+<div class="card"><h3>Work with every stick</h3><p>I have tested it with one stick. Other firmware versions may behave differently.</p></div>
+
+<h2>How it works</h2>
+<p>The app talks to the stick directly over Bluetooth, with no server or account in between. The stick uses a simple, standard Bluetooth serial connection with short text-like commands. I worked these out from the original Android app, for use with a stick I own, so it can keep working now the original iPhone app has gone.</p>
+
+<h2>Privacy</h2>
+<p>There are no accounts and no analytics, and the app never connects to the internet or sends anything to me. The microphone is used live to make the lights react to sound; the audio is analysed on your phone and never recorded or kept. The camera and photo library are used only to take pictures and save them to your library when you use the camera remote.</p>
+
+<h2>Unofficial</h2>
+<p class="small">This is an independent project. It is not made, endorsed or supported by the makers of the M-Stick, and "M-Stick" belongs to its owners. It is provided as is, and it shouldn't be relied on for anything important, such as a safety light when cycling.</p>
+
+<footer>Made by Steven Muir, an independent developer. <a href="mailto:stevendevmosaic@gmail.com?subject=M-Stick%20for%20iPhone">Contact</a>.</footer>
+</div>
+</body>
+</html>
