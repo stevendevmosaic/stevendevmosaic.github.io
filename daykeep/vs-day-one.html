@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daykeep vs Day One — a fair comparison</title>
+<meta name="description" content="Daykeep and Day One compared honestly: price model, what each can attach, sync, privacy, printing and switching. Daykeep is a one-off-purchase photo-and-text journal for iPhone, iPad and Mac.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/daykeep/vs-day-one.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Daykeep vs Day One — a fair comparison">
+<meta property="og:description" content="An honest look at Daykeep and Day One: subscription vs one-off purchase, what each does and doesn't do, and how to switch.">
+<meta property="og:url" content="https://stevendevmosaic.github.io/daykeep/vs-day-one.html">
+<meta property="og:image" content="https://stevendevmosaic.github.io/daykeep/logo.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root {
+    --ink: #26332f; --muted: #7c7468; --accent: #2C8C86; --accent-deep: #14625C;
+    --terra: #B5563A; --border: #e7ddca; --bg: #f6efe1; --card: #fffdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .brandbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 5;
+    background: linear-gradient(90deg,
+      #14625C 0 25%, #2C8C86 0 50%, #B5563A 0 75%, #EAD9BE 0 100%);
+  }
+  .topnav {
+    position: sticky; top: 4px; z-index: 4;
+    background: rgba(246,239,225,.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;
+    padding: 9px 12px;
+  }
+  .topnav a {
+    font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;
+    padding: 6px 13px; border-radius: 6px;
+  }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 22px 70px; }
+  header { text-align: center; margin-bottom: 44px; }
+  .hero-logo {
+    width: 92px; height: 92px; border-radius: 20px; display: block; margin: 0 auto 18px;
+    box-shadow: 0 4px 16px rgba(20,60,55,.18);
+  }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 34px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.01em; }
+  .tagline { font-size: 17px; color: var(--muted); margin: 0 auto 26px; max-width: 560px; }
+  h2 { font-family: Georgia, "Times New Roman", serif; font-size: 22px; font-weight: 700; margin: 44px 0 12px; letter-spacing: -.005em; }
+  h3 { font-size: 16px; font-weight: 700; margin: 22px 0 4px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; align-items: center; }
+  .storebtn {
+    display: inline-block; padding: 12px 24px; border-radius: 9px;
+    font-size: 15px; font-weight: 700; background: var(--accent); color: #fff;
+    text-decoration: none;
+  }
+  .storebtn:hover { background: var(--accent-deep); }
+  .note { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px; margin: 0 0 14px;
+  }
+  .card h3 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .facts div {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px; font-size: 14.5px;
+  }
+  .facts b { display: block; font-size: 13px; text-transform: uppercase;
+             letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; font-weight: 700; }
+  .plus {
+    background: linear-gradient(180deg, #fbf6ec, var(--card));
+    border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; margin: 8px 0 0;
+  }
+  .plus h3 { margin-top: 0; color: var(--accent-deep); }
+  .plus .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-top: 8px; }
+  .plus .cols b { display: block; margin-bottom: 4px; }
+  .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .tiers { grid-template-columns: 1fr; } }
+  .tier { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .tier.plus-tier { background: linear-gradient(180deg, #fbf6ec, var(--card)); border-color: #d9c9a8; }
+  .tier h3 { margin: 0 0 2px; font-size: 17px; }
+  .tier.plus-tier h3 { color: var(--accent-deep); }
+  .tier .tier-sub { font-size: 13.5px; color: var(--muted); margin: 0 0 12px; }
+  .oneoff { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #fff; background: var(--accent); border-radius: 20px; padding: 2px 8px; vertical-align: middle; margin-left: 6px; }
+  ul.ticks { list-style: none; padding-left: 0; margin: 0; }
+  ul.ticks li { position: relative; padding-left: 24px; margin-bottom: 8px; font-size: 14.5px; }
+  ul.ticks li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 700; }
+  ul.ticks .q { color: var(--muted); font-size: 13px; }
+  .bridge {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px 22px; display: flex; gap: 16px; align-items: center;
+  }
+  .bridge img { width: 54px; height: 54px; border-radius: 12px; flex: none; box-shadow: 0 2px 8px rgba(28,36,48,.12); }
+  .bridge .txt { font-size: 14.5px; }
+  .bridge b { display: block; margin-bottom: 2px; }
+  .switch { background: linear-gradient(180deg, #fbf6ec, var(--card)); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .switch h3 { margin-top: 0; color: var(--accent-deep); }
+  .switch p:last-child { margin-bottom: 0; }
+  .compare-scroll { overflow-x: auto; }
+  .compare { width: 100%; border-collapse: collapse; margin: 6px 0 8px; font-size: 14.5px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .compare th, .compare td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .compare thead th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 700; }
+  .compare tbody th { width: 24%; color: var(--muted); font-weight: 700; }
+  .compare td.us { background: #eef6f4; font-weight: 600; color: var(--ink); }
+  .compare tr:last-child td, .compare tr:last-child th { border-bottom: none; }
+  nav.links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  nav.links a {
+    display: inline-block; padding: 9px 18px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--ink);
+    text-decoration: none; font-size: 14px; font-weight: 600;
+  }
+  nav.links a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 42px; }
+  a { color: var(--accent); }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is there a journaling app like Day One without a subscription?","acceptedAnswer":{"@type":"Answer","text":"Daykeep is a journaling app for iPhone, iPad and Mac that is free to use, with an optional one-off Daykeep Plus purchase and no subscription. It handles text and photos with captions, syncs through your own iCloud and imports Day One journals. It does not support audio, video or PDF attachments."}},
+{"@type":"Question","name":"Can I import my Day One journal into Daykeep?","acceptedAnswer":{"@type":"Answer","text":"Yes. Export your Day One journal as JSON (a zip), then choose Import from Day One in Daykeep. Entries, photos, tags, dates, places and weather come across, and your original is left untouched."}},
+{"@type":"Question","name":"Can I go back to Day One from Daykeep?","acceptedAnswer":{"@type":"Answer","text":"Yes. Daykeep can export any journal in Day One format, free, as a zip that Day One can import."}},
+{"@type":"Question","name":"Does Daykeep support audio, video or PDF attachments?","acceptedAnswer":{"@type":"Answer","text":"No. Daykeep deliberately handles only text and photos. If you need audio, video or PDF attachments, Day One is the better choice."}}
+]}
+</script>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="../index.html">⌂ Apps</a>
+  <a href="index.html">Daykeep</a>
+  <a href="help.html">How it works</a>
+  <a href="blog.html">Blog</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+<div class="wrap">
+<header>
+  <img class="hero-logo" src="logo.png" alt="Daykeep app icon">
+  <h1>Daykeep vs Day One</h1>
+  <p class="tagline">An honest comparison from the person who made Daykeep — including where Day One is the better choice.</p>
+</header>
+
+<h2>The short version</h2>
+<p><strong>Day One</strong> is a mature, full-featured journal with a wide range of attachments, more platforms and a polished feature set, and it is sold as a subscription for its full features. <strong>Daykeep</strong> is a smaller, simpler journal for iPhone, iPad and Mac that does one thing: text and photos, with captions. It is free to use, with an optional one-off purchase and no subscription.</p>
+<p>If you want audio, video, PDFs or an Android or web app, choose Day One. If you mainly write and add photos, and you would rather pay once than every year, Daykeep is built for you.</p>
+
+<h2>Side by side</h2>
+<div class="compare-scroll">
+<table class="compare">
+  <thead><tr><th scope="col"></th><th scope="col">Daykeep</th><th scope="col">Day One</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Price model</th><td class="us">Free to use. Optional one-off “Daykeep Plus” purchase. No subscription.</td><td>Free tier with limits; full features through a subscription. Check Day One’s site for current pricing.</td></tr>
+    <tr><th scope="row">Content</th><td class="us">Text and photos, with captions</td><td>Text, photos, video, audio, drawings, PDFs and more</td></tr>
+    <tr><th scope="row">Platforms</th><td class="us">iPhone, iPad, Mac</td><td>Apple devices, plus other platforms (see Day One)</td></tr>
+    <tr><th scope="row">Sync</th><td class="us">Through your own iCloud — no account to create</td><td>Day One’s own sync service and account</td></tr>
+    <tr><th scope="row">Privacy</th><td class="us">No account, no analytics, no tracking. “Data Not Collected” on the App Store.</td><td>See Day One’s own privacy policy</td></tr>
+    <tr><th scope="row">Printing</th><td class="us">Make a book or PDF yourself (watermark-free with Plus), or send a journal to Mosaic Collage Maker for a designed photobook</td><td>See Day One’s site for its print options</td></tr>
+    <tr><th scope="row">Switching</th><td class="us">Imports a Day One export; exports back to Day One format, free</td><td>—</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note" style="text-align:left">Comparisons are general and apps change; check each app’s own page for current details.</p>
+
+<h2>Choose Daykeep if…</h2>
+<ul>
+  <li>Your journal is mostly words and photos.</li>
+  <li>You would rather pay once than keep paying every year for a habit you plan to keep for decades.</li>
+  <li>You want your entries in your own iCloud, with no extra account.</li>
+  <li>You want to be able to leave: export back to Day One format is free.</li>
+</ul>
+
+<h2>Choose Day One if…</h2>
+<ul>
+  <li>You record audio or video, or attach PDFs, to your entries.</li>
+  <li>You need an Android or web version, or other platform support.</li>
+  <li>You want its wider feature set and are happy with a subscription.</li>
+</ul>
+<p>Daykeep leaves audio, video and PDF attachments out on purpose, to stay small and simple.</p>
+
+<h2>How switching works</h2>
+<div class="switch">
+  <h3>Bring your journal across in a few taps</h3>
+  <p>In Day One, export a journal as <em>JSON</em>. In Daykeep, choose <em>Import from Day One</em> and pick the zip. Entries, photos, tags, dates, places and weather come across into a new journal, and your original is untouched. See the <a href="help.html#dayone">step-by-step guide</a>.</p>
+</div>
+
+<h2>Common questions</h2>
+<div class="card"><h3>Is there a journaling app like Day One without a subscription?</h3>
+<p>Daykeep is free to use with an optional one-off purchase and no subscription. It covers text and photos only.</p></div>
+<div class="card"><h3>What does Daykeep Plus unlock?</h3>
+<p>More than two journals, books and PDFs without the watermark, and splitting or combining journals. One purchase covers iPhone, iPad and Mac. Journaling, unlimited photos, iCloud sync, backup, restore and Day One import and export stay free.</p></div>
+<div class="card"><h3>Will I lose anything moving from Day One?</h3>
+<p>Text, photos, captions, tags, dates, places and weather come across. Audio, video and PDF attachments are not supported in Daykeep, so keep your Day One journal if those matter.</p></div>
+
+<div class="stores" style="margin-top:30px">
+  <a class="storebtn" href="https://apps.apple.com/gb/app/daykeep/id6805096496">Get Daykeep on the App&nbsp;Store</a>
+</div>
+<nav class="links">
+  <a href="index.html">About Daykeep</a>
+  <a href="help.html">How it works</a>
+  <a href="support.html">Support</a>
+</nav>
+<footer>Daykeep is made by Steven Muir, one developer who answers his own support email.</footer>
+</div>
+</body>
+</html>

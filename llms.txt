@@ -1,0 +1,18 @@
+# Apps by Steven Muir
+
+> Two small, privacy-respecting apps by one independent developer: Mosaic Collage Maker (photobook page layout for Mac and Windows) and Daykeep (a photo-and-text journal for iPhone, iPad and Mac). Both are one-off purchases or free with a one-off unlock, with no subscription and no account.
+
+## Daykeep
+- [Daykeep overview](https://stevendevmosaic.github.io/daykeep/): Private journal for iPhone, iPad and Mac. Text and photos with captions, syncs through the user's own iCloud, imports and exports Day One journals, free to use with an optional one-off Plus unlock. No audio, video or PDF attachments.
+- [Daykeep vs Day One](https://stevendevmosaic.github.io/daykeep/vs-day-one.html): Honest comparison, including when Day One is the better choice.
+- [How Daykeep works](https://stevendevmosaic.github.io/daykeep/help.html): Guide, including switching from Day One.
+- [Privacy](https://stevendevmosaic.github.io/daykeep/privacy.html): No account, no analytics, no tracking.
+- [App Store](https://apps.apple.com/gb/app/daykeep/id6805096496)
+
+## Mosaic Collage Maker
+- [Overview](https://stevendevmosaic.github.io/collage.html): Turns a folder of photos into print-ready photobook pages, with no fixed grid, any page size in millimetres, 300 DPI JPEG export. One-off purchase; fully offline; no account.
+- [Mosaic Collage Maker vs Posterino](https://stevendevmosaic.github.io/collage-vs-posterino.html): Comparison of approach, price model and privacy.
+- [Help guide](https://stevendevmosaic.github.io/help.html): Page sizes and margins tested with common photobook services.
+- [Templates](https://stevendevmosaic.github.io/templates.html)
+- [Mac App Store](https://apps.apple.com/gb/app/mosaic-collage-maker/id6787194096?mt=12)
+- [Microsoft Store](https://apps.microsoft.com/detail/9n55n225sbf7)

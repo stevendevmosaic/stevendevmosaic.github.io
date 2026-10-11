@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mosaic Collage Maker vs Posterino — photobook layout compared</title>
+<meta name="description" content="Mosaic Collage Maker compared with Posterino for laying out photobook pages: no fixed grid, millimetre page sizes, one-off price, fully offline with no account. Mac and Windows.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/collage-vs-posterino.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mosaic Collage Maker vs Posterino">
+<meta property="og:description" content="Which collage app suits photobook pages? A straightforward comparison of approach, price model and privacy.">
+<meta property="og:url" content="https://stevendevmosaic.github.io/collage-vs-posterino.html">
+<meta property="og:image" content="https://stevendevmosaic.github.io/logo.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root {
+    --ink: #1c2430; --muted: #5b6675; --accent: #2f6fb0;
+    --border: #e2e6eb; --bg: #fafbfc; --card: #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .brandbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 5;
+    background: linear-gradient(90deg,
+      #e8695f 0 16.66%, #f0932b 0 33.33%, #35c759 0 50%,
+      #2ec4a0 0 66.66%, #3b93e0 0 83.33%, #e74c3c 0 100%);
+  }
+  .topnav {
+    position: sticky; top: 4px; z-index: 4;
+    background: rgba(250,251,252,.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;
+    padding: 9px 12px;
+  }
+  .topnav a {
+    font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;
+    padding: 6px 13px; border-radius: 6px;
+  }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 22px 70px; }
+  header { text-align: center; margin-bottom: 46px; }
+  .hero-logo {
+    width: 88px; height: 88px; border-radius: 20px; display: block; margin: 0 auto 18px;
+    box-shadow: 0 3px 14px rgba(28,36,48,.16);
+  }
+  h1 { font-size: 30px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.015em; }
+  .tagline { font-size: 17px; color: var(--muted); margin: 0 auto 26px; max-width: 560px; }
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 12px; letter-spacing: -.01em; }
+  h3 { font-size: 16px; font-weight: 700; margin: 22px 0 4px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .stores a {
+    display: inline-block; padding: 11px 22px; border-radius: 8px; text-decoration: none;
+    font-size: 15px; font-weight: 600; background: var(--accent); color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .stores a.alt { background: var(--card); color: var(--ink); border-color: var(--border); }
+  .stores a:hover { opacity: .9; }
+  .note { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px; margin: 0 0 14px;
+  }
+  .card h3 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .facts div {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; font-size: 14.5px;
+  }
+  .facts b { display: block; font-size: 13px; text-transform: uppercase;
+             letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; font-weight: 700; }
+  .crosssell {
+    background: linear-gradient(180deg, #fbfaf6, #fff);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; margin: 40px 0 0; display: flex; gap: 16px; align-items: center;
+  }
+  .crosssell img { width: 54px; height: 54px; border-radius: 12px; flex: none; box-shadow: 0 2px 8px rgba(28,36,48,.12); }
+  .crosssell .txt { font-size: 14.5px; }
+  .crosssell b { display: block; margin-bottom: 2px; }
+  nav.links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  nav.links a {
+    display: inline-block; padding: 9px 18px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--ink);
+    text-decoration: none; font-size: 14px; font-weight: 600;
+  }
+  nav.links a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 42px; }
+  a { color: var(--accent); }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is an alternative to Posterino for photobook pages?","acceptedAnswer":{"@type":"Answer","text":"Mosaic Collage Maker is a one-off-purchase photo collage app for Mac and Windows that lays out whole photobook pages automatically, with no fixed grid, any page size in millimetres and 300 DPI JPEG export. It works fully offline with no account."}},
+{"@type":"Question","name":"Does Mosaic Collage Maker use fixed templates?","acceptedAnswer":{"@type":"Answer","text":"No. Each page is divided afresh, so frames differ in size and proportion and no two pages look alike. You can still save your own page designs as templates."}},
+{"@type":"Question","name":"Does Mosaic Collage Maker collect any data?","acceptedAnswer":{"@type":"Answer","text":"No. It has no account, no analytics and makes no network calls; photos are processed entirely on your own computer. Its App Store privacy label is Data Not Collected."}}
+]}
+</script>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="index.html">⌂ Apps</a>
+  <a href="collage.html">Mosaic Collage Maker</a>
+  <a href="help.html">Help Guide</a>
+  <a href="templates.html">Templates</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+<div class="wrap">
+<header>
+  <img class="hero-logo" src="logo.png" alt="Mosaic Collage Maker app icon">
+  <h1>Mosaic Collage Maker vs Posterino</h1>
+  <p class="tagline">Two Mac collage apps with different aims. Here is how they differ, and who each suits.</p>
+</header>
+
+<h2>The short version</h2>
+<p><strong>Posterino</strong> is a long-established Mac app for designing posters and collages from templates and layouts. <strong>Mosaic Collage Maker</strong> is built for one job: filling many photobook pages with photos automatically, at the exact page size your printer specifies, with no fixed grid.</p>
+<p>If you want to design a single poster from a template by hand, Posterino is a good fit. If you have hundreds of photos and a photobook service to fill, Mosaic Collage Maker is aimed at that.</p>
+
+<h2>Where they differ</h2>
+<div class="compare-scroll">
+<table class="compare">
+  <thead><tr><th scope="col"></th><th scope="col">Mosaic Collage Maker</th><th scope="col">Posterino</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Main purpose</th><td class="us">Whole photobook pages, many at once, from a folder of photos</td><td>Posters and collages designed from templates</td></tr>
+    <tr><th scope="row">Layout</th><td class="us">No fixed grid — each page is divided afresh; Reshuffle rebuilds one page</td><td>Template-based layouts</td></tr>
+    <tr><th scope="row">Page size</th><td class="us">Any size in millimetres at 300 DPI, saved as named presets</td><td>Preset and custom sizes</td></tr>
+    <tr><th scope="row">Multi-page</th><td class="us">Uses all your photos across as many pages as needed; per-page min/max</td><td>Single-composition focus</td></tr>
+    <tr><th scope="row">Price model</th><td class="us">One-off purchase, no subscription</td><td>See Posterino’s own store page</td></tr>
+    <tr><th scope="row">Privacy</th><td class="us">No account, no analytics, no network calls. “Data Not Collected” on the App Store.</td><td>See Posterino’s own privacy policy</td></tr>
+    <tr><th scope="row">Platforms</th><td class="us">Mac and Windows</td><td>Mac</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note" style="text-align:left">Comparisons are general and apps change; check each app’s own page for current details.</p>
+
+<h2>Choose Mosaic Collage Maker if…</h2>
+<ul>
+  <li>You are making a photobook and want every photo placed across many pages without dragging them in one at a time.</li>
+  <li>Your printer specifies an unusual page size in millimetres.</li>
+  <li>You would rather not have frames poured into a repeating template.</li>
+  <li>You want a one-off purchase that works offline with no account.</li>
+</ul>
+
+<h2>Choose something else if…</h2>
+<ul>
+  <li>You want to design a single poster from a library of designed templates.</li>
+  <li>You want a full drawing or desktop-publishing tool. Mosaic Collage Maker is deliberately focused.</li>
+</ul>
+
+<h2>Common questions</h2>
+<div class="card"><h3>What is an alternative to Posterino for photobook pages?</h3>
+<p>Mosaic Collage Maker, a one-off-purchase app for Mac and Windows that lays out whole photobook pages automatically.</p></div>
+<div class="card"><h3>Can I still use templates?</h3>
+<p>Yes. There are no built-in fixed grids, but you can save a page design as a template and generate a whole new book from it with a different set of photos.</p></div>
+<div class="card"><h3>Will it work with my photobook service?</h3>
+<p>Yes, if you know the page size they want. The <a href="help.html">help guide</a> lists sizes and margins tested with Photobox, Colorland, Printerpix and Mixbook. Always order a test print first.</p></div>
+
+<div class="stores" style="margin-top:30px">
+  <a href="https://apps.apple.com/gb/app/mosaic-collage-maker/id6787194096?mt=12">Mac App Store</a>
+  <a class="alt" href="https://apps.microsoft.com/detail/9n55n225sbf7">Microsoft Store</a>
+</div>
+<footer>Mosaic Collage Maker is made by Steven Muir, one developer who answers his own support email.</footer>
+</div>
+</body>
+</html>
