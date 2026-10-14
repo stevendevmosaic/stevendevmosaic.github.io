@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Home Timeline</title>
+<meta name="description" content="Help for Home Timeline: no response, missing automations, sunset times, widgets and the sample home.">
+<link rel="icon" type="image/png" href="../favicon.png">
+<style>
+  :root { --ink: #1d2433; --muted: #6b7385; --accent: #2f5fb3; --amber: #e8962a; --border: #dde2ec; --bg: #f3f5fa; --card: #ffffff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.65; }
+  .brandbar { height: 4px; background: linear-gradient(90deg, #12183a 0 40%, #e8962a 0 60%, #8fb2e8 0 100%); }
+  .topnav { position: sticky; top: 0; z-index: 4; background: rgba(243,245,250,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; gap: 4px; justify-content: center; padding: 8px 12px; flex-wrap: wrap; }
+  .topnav a { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 6px 13px; border-radius: 6px; }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 46px 24px 80px; }
+  h1 { font-size: 32px; font-weight: 700; margin: 0 0 6px; line-height: 1.2; }
+  h2 { font-size: 20px; font-weight: 700; margin: 32px 0 10px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .updated { font-size: 13.5px; color: var(--muted); margin: 0 0 24px; }
+  .lead { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; font-size: 15.5px; }
+  .sub { font-size: 18px; color: var(--muted); margin: 0 0 24px; }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 40px; }
+  a { color: var(--accent); }
+  dt { font-weight: 700; margin-top: 18px; }
+  dd { margin: 4px 0 0; }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="../index.html">&#8962; Apps</a>
+  <a href="index.html">Home Timeline</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="support.html">Support</a>
+</nav>
+<div class="wrap">
+
+<h1>Support</h1>
+<p class="updated">Home Timeline for iPhone, iPad and Mac</p>
+
+<dl>
+<dt>An accessory shows &ldquo;no response&rdquo;.</dt>
+<dd>That is what Apple Home reports too: the device is unplugged, switched off, out of range or not answering. Home Timeline can&#8217;t reach it either, so Run and Turn on will show a message instead. Check the device is powered, then try again.</dd>
+
+<dt>An automation is missing from the timeline.</dt>
+<dd>The timeline shows automations that run on a schedule (a time of day, or sunrise and sunset). Automations that start from a button, sensor or person arriving appear under <em>When something happens</em> and in the Devices tab, because they have no fixed time. Automations that are switched off in Home are not shown.</dd>
+
+<dt>A change says &ldquo;only if condition met&rdquo;.</dt>
+<dd>In Home you can tell an automation to run only if something is true, such as only when someone is home. Home Timeline shows the change but can&#8217;t tell whether the condition will be met, so it marks it as conditional.</dd>
+
+<dt>Sunset times are a minute or two different from Home.</dt>
+<dd>Home Timeline works out sunrise and sunset itself from your location. Home uses its own calculation, so they can differ slightly. Set your location in Settings (the sliders icon).</dd>
+
+<dt>I have more than one home.</dt>
+<dd>Open Settings and choose which home to show. The widgets follow the home you choose.</dd>
+
+<dt>The widget says to open the app.</dt>
+<dd>Open Home Timeline once so it can save your automations for the widget, then give the widget a moment to refresh. If it persists, remove the widget and add it again.</dd>
+
+<dt>Can I try it without any smart-home devices?</dt>
+<dd>Yes. Choose <em>Try a sample home</em> on the first screen, or in Settings. It uses made-up devices and never touches your own.</dd>
+
+<dt>The Run button does the opposite of what I expected.</dt>
+<dd>Run carries out the action shown on that row. If two automations on the same button ask for opposite things (for example, one turns the Hall light off and another turns it on), the Devices tab warns you. The fix is in Apple Home, where you can add a condition to one of them.</dd>
+</dl>
+
+<h2>Contact</h2>
+<p>Email <a href="mailto:stevendevmosaic@gmail.com?subject=Home%20Timeline%20support">stevendevmosaic@gmail.com</a> and say which device and iOS or macOS version you are using.</p>
+
+<footer>Made by Steven Muir.</footer>
+</div>
+</body>
+</html>
