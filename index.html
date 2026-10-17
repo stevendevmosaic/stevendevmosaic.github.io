@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="impact-site-verification" value="69263692-1453-4b48-80e3-5f7a46909bc7">
-<title>Apps by Steven Muir — Mosaic Collage Maker &amp; Daykeep</title>
-<meta name="description" content="Two small, private, one-off-purchase apps by an independent developer: Mosaic Collage Maker, for print-ready photobook pages, and Daykeep, a journal for iPhone, iPad and Mac.">
+<title>Apps by Steven Muir — Mosaic Collage Maker, Daykeep &amp; BarDeck</title>
+<meta name="description" content="Three small, private, one-off-purchase apps by an independent developer: Mosaic Collage Maker, for print-ready photobook pages; Daykeep, a journal for iPhone, iPad and Mac; and BarDeck, a floating button bar for the Mac.">
 <link rel="canonical" href="https://stevendevmosaic.github.io/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Apps by Steven Muir — Mosaic Collage Maker &amp; Daykeep">
-<meta property="og:description" content="Mosaic Collage Maker turns a folder of photos into print-ready photobook pages. Daykeep is a private journal for iPhone, iPad and Mac. Both offline-first, no subscriptions.">
+<meta property="og:title" content="Apps by Steven Muir — Mosaic Collage Maker, Daykeep &amp; BarDeck">
+<meta property="og:description" content="Mosaic Collage Maker turns a folder of photos into print-ready photobook pages. Daykeep is a private journal for iPhone, iPad and Mac. BarDeck is a floating button bar for the Mac. No subscriptions.">
 <meta property="og:url" content="https://stevendevmosaic.github.io/">
 <meta property="og:image" content="https://stevendevmosaic.github.io/logo.png">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -17,6 +17,7 @@
   :root {
     --ink: #1c2430; --muted: #5b6675; --border: #e2e6eb; --bg: #f7f8fa; --card: #fff;
     --collage: #2f6fb0; --daykeep: #2C8C86; --daykeep-deep: #14625C; --terra: #B5563A;
+    --bardeck: #b3600e; --bardeck-deep: #1b2347;
   }
   * { box-sizing: border-box; }
   body {
@@ -30,11 +31,13 @@
       #e8695f 0 16.66%, #f0932b 0 33.33%, #35c759 0 50%,
       #2ec4a0 0 66.66%, #3b93e0 0 83.33%, #14625C 0 100%);
   }
-  .wrap { max-width: 900px; margin: 0 auto; padding: 60px 22px 70px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 60px 22px 70px; }
   .masthead { text-align: center; margin-bottom: 42px; }
   .masthead h1 { font-size: 30px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.015em; }
   .masthead p { font-size: 17px; color: var(--muted); margin: 0 auto; max-width: 620px; }
-  .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .products { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 700px) { .products { grid-template-columns: repeat(2, 1fr); } .product.bardeck { grid-column: 1 / -1; } }
+  @media (min-width: 1000px) { .products { grid-template-columns: repeat(3, 1fr); } .product.bardeck { grid-column: auto; } }
   .product {
     background: var(--card); border: 1px solid var(--border); border-radius: 16px;
     padding: 26px 24px; display: flex; flex-direction: column;
@@ -46,6 +49,7 @@
   .product .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
   .product.collage .kicker { color: var(--collage); }
   .product.daykeep .kicker { color: var(--daykeep); }
+  .product.bardeck .kicker { color: var(--bardeck); }
   .product .lede { font-size: 15.5px; margin: 0 0 16px; }
   .product ul { margin: 0 0 20px; padding-left: 18px; font-size: 14.5px; }
   .product li { margin-bottom: 5px; }
@@ -57,6 +61,7 @@
   }
   .product.collage .cta a.primary { background: var(--collage); color: #fff; border: 1px solid var(--collage); }
   .product.daykeep .cta a.primary { background: var(--daykeep); color: #fff; border: 1px solid var(--daykeep); }
+  .product.bardeck .cta a.primary { background: var(--bardeck-deep); color: #fff; border: 1px solid var(--bardeck-deep); }
   .cta a.ghost { background: #fff; color: var(--ink); border: 1px solid var(--border); }
   .cta a:hover { opacity: .92; }
   .badge {
@@ -64,7 +69,7 @@
     background: #f0efe9; color: var(--daykeep-deep); margin-left: 8px; vertical-align: middle;
   }
   .bridge {
-    margin: 24px 0 0; background: linear-gradient(180deg, #fbfaf6, #fff);
+    margin: 24px auto 0; max-width: 900px; background: linear-gradient(180deg, #fbfaf6, #fff);
     border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px; text-align: center;
   }
   .bridge h3 { margin: 0 0 6px; font-size: 17px; }
@@ -80,8 +85,8 @@
 <div class="wrap">
 
 <div class="masthead">
-  <h1>Two small apps, made with care</h1>
-  <p>I build private, offline-first apps that do one thing well and ask for a one-off price — no subscriptions, no accounts, no adverts. Here are both of them.</p>
+  <h1>Three small apps, made with care</h1>
+  <p>I build private, offline-first apps that do one thing well and ask for a one-off price — no subscriptions, no accounts, no adverts. Here are all three.</p>
 </div>
 
 <div class="products">
@@ -132,6 +137,29 @@
     </div>
   </div>
 
+  <div class="product bardeck">
+    <div class="top">
+      <img src="bardeck/logo.png" alt="BarDeck app icon">
+      <div>
+        <div class="kicker">Mac</div>
+        <h2>BarDeck <span class="badge">14-day free trial</span></h2>
+      </div>
+    </div>
+    <p class="lede">A floating button bar for your Mac — folders, apps, Shortcuts and key presses one click away, with extra buttons for whichever app you are using.</p>
+    <ul>
+      <li>Stacks, folder browsing, and buttons that follow the app in front</li>
+      <li>Ready-made sets for Mail, Safari, Final Cut Pro and more</li>
+      <li>One-off £9.99 licence, covering every 1.x update</li>
+      <li>No account, no tracking — everything stays on your Mac</li>
+    </ul>
+    <div class="spacer"></div>
+    <div class="cta">
+      <a class="primary" href="bardeck/index.html">Learn more</a>
+      <a class="ghost" href="bardeck/BarDeck.dmg" title="Download the free 14-day trial">Free trial</a>
+      <a class="ghost" href="https://payhip.com/b/MsQ7H" title="Buy BarDeck">Buy £9.99</a>
+    </div>
+  </div>
+
 </div>
 
 <div class="bridge">
@@ -141,7 +169,7 @@
 </div>
 
 <footer>Made by Steven Muir, an independent developer who answers his own support email.
-Support: <a href="support.html">Mosaic Collage Maker</a> · <a href="daykeep/support.html">Daykeep</a>.<br>Hobby projects: <a href="glance-bridge/index.html">Glance Bridge</a>, an iPhone app for Glance Clock owners, and <a href="mstick/index.html">M-Stick for iPhone</a>, an app for M-Stick light owners.</footer>
+Support: <a href="support.html">Mosaic Collage Maker</a> · <a href="daykeep/support.html">Daykeep</a> · <a href="bardeck/support.html">BarDeck</a>.<br>Hobby projects: <a href="glance-bridge/index.html">Glance Bridge</a>, an iPhone app for Glance Clock owners, and <a href="mstick/index.html">M-Stick for iPhone</a>, an app for M-Stick light owners.</footer>
 
 </div>
 </body>

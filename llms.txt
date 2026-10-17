@@ -1,6 +1,6 @@
 # Apps by Steven Muir
 
-> Two small, privacy-respecting apps by one independent developer: Mosaic Collage Maker (photobook page layout for Mac and Windows) and Daykeep (a photo-and-text journal for iPhone, iPad and Mac). Both are one-off purchases or free with a one-off unlock, with no subscription and no account.
+> Three small, privacy-respecting apps by one independent developer: Mosaic Collage Maker (photobook page layout for Mac and Windows), Daykeep (a photo-and-text journal for iPhone, iPad and Mac) and BarDeck (a floating button bar for the Mac). They are one-off purchases or free with a one-off unlock, with no subscription and no account.
 
 ## Daykeep
 - [Daykeep overview](https://stevendevmosaic.github.io/daykeep/): Private journal for iPhone, iPad and Mac. Text and photos with captions, syncs through the user's own iCloud, imports and exports Day One journals, free to use with an optional one-off Plus unlock. No audio, video or PDF attachments.
@@ -16,3 +16,9 @@
 - [Templates](https://stevendevmosaic.github.io/templates.html)
 - [Mac App Store](https://apps.apple.com/gb/app/mosaic-collage-maker/id6787194096?mt=12)
 - [Microsoft Store](https://apps.microsoft.com/detail/9n55n225sbf7)
+
+## BarDeck
+- [BarDeck overview](https://stevendevmosaic.github.io/bardeck/): A floating, Touch Bar-style button bar for macOS 13 or later. One-click buttons to open folders, apps and websites, run Shortcuts, press key combinations and paste text; stacks; folder browsing; per-app button sets with ready-made sets for common apps. 14-day free trial, then a one-off GBP 9.99 licence covering every 1.x update. Sold directly (not on the Mac App Store, because the sandbox blocks sending key presses). No account, no analytics.
+- [Support](https://stevendevmosaic.github.io/bardeck/support.html)
+- [Privacy](https://stevendevmosaic.github.io/bardeck/privacy.html): No account, no analytics, no tracking.
+- [Buy](https://payhip.com/b/MsQ7H)
