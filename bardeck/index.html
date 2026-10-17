@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BarDeck</title>
+<meta name="description" content="A floating button bar for your Mac: one-click launchers, Shortcuts and app-specific controls, always on screen. Try it free for 14 days.">
+<link rel="icon" type="image/png" href="../favicon.png">
+<style>
+  :root { --ink: #1d2433; --muted: #6b7385; --accent: #2f5fb3; --amber: #e8962a; --border: #dde2ec; --bg: #f3f5fa; --card: #ffffff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.65; }
+  .brandbar { height: 4px; background: linear-gradient(90deg, #12183a 0 40%, #e8962a 0 60%, #8fb2e8 0 100%); }
+  .topnav { position: sticky; top: 0; z-index: 4; background: rgba(243,245,250,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; gap: 4px; justify-content: center; padding: 8px 12px; flex-wrap: wrap; }
+  .topnav a { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 6px 13px; border-radius: 6px; }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 46px 24px 80px; }
+  h1 { font-size: 32px; font-weight: 700; margin: 0 0 6px; line-height: 1.2; }
+  h2 { font-size: 20px; font-weight: 700; margin: 32px 0 10px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .updated { font-size: 13.5px; color: var(--muted); margin: 0 0 24px; }
+  .lead { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; font-size: 15.5px; }
+  .sub { font-size: 18px; color: var(--muted); margin: 0 0 24px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0 6px; }
+  .btn { display: inline-block; font-weight: 700; text-decoration: none; padding: 11px 20px; border-radius: 9px; border: 1px solid var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.secondary { background: #fff; color: var(--accent); }
+  .fine { font-size: 13.5px; color: var(--muted); }
+  .shot { margin: 20px 0; }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); }
+  .shot figcaption { font-size: 13.5px; color: var(--muted); margin-top: 7px; }
+  .shot.wide { width: min(960px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 40px; }
+  a { color: var(--accent); }
+  dt { font-weight: 700; margin-top: 18px; }
+  dd { margin: 4px 0 0; }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="../index.html">&#8962; Apps</a>
+  <a href="index.html">BarDeck</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="support.html">Support</a>
+</nav>
+<div class="wrap">
+
+
+<h1>BarDeck</h1>
+<p class="sub">A floating button bar for your Mac.</p>
+
+<div class="lead">
+  <p style="margin:0">BarDeck keeps the things you reach for most one click away, on a slim bar that floats above your other windows without taking focus. Open folders and apps, run Shortcuts, press key combinations, paste text, and see extra buttons that appear only for the app you are using. It is the Touch Bar idea, on any Mac.</p>
+</div>
+
+<figure class="shot">
+  <img src="img/1-the-bar.png" alt="The BarDeck button bar: Files, Apps, Projects, Focus, apple.com and Screenshot buttons in colour-coded groups" width="1360" height="265">
+</figure>
+
+<div class="cta">
+  <a class="btn primary" href="BarDeck.dmg">Download free trial</a>
+  <a class="btn secondary" href="https://payhip.com/b/MsQ7H">Buy for £9.99</a>
+</div>
+<p class="fine">macOS 13 or later &middot; Apple silicon and Intel &middot; 14 days to try everything, then a one-time licence key.</p>
+
+<h2>What it does</h2>
+<ul>
+  <li><strong>One-click buttons.</strong> Open a folder, file, app or website. Run any of your Shortcuts. Press a key combination or paste a piece of text. Run a shell command or an AppleScript.</li>
+  <li><strong>Stacks.</strong> Group buttons into a stack that flies out upwards (or downwards, if the bar is at the top of the screen).</li>
+  <li><strong>Folder buttons.</strong> Click a folder to browse what is inside it, right from the bar, and step into sub-folders.</li>
+  <li><strong>Buttons that follow the app you are using.</strong> Add a set of buttons for Mail, Safari, Final Cut Pro or anything else. They appear after a divider only while that app is in front.</li>
+  <li><strong>Ready-made sets.</strong> One click adds a set for Mail, Safari, Finder, Terminal, Messages, Photos, Excel, Word, Final Cut Pro or Music, and one click removes it again.</li>
+  <li><strong>Easy to arrange.</strong> Drag buttons to reorder them, drag them into and out of stacks, and drop an app, folder, file or web link on the bar to make a button. Drop a file on an app button to open it with that app.</li>
+  <li><strong>Stays out of the way.</strong> Auto-hide, a hotkey to show and hide it, a menu bar icon, and it remembers where you put it.</li>
+  <li><strong>Safe to experiment.</strong> Undo your last changes, lock buttons so they cannot be moved or removed, and automatic backups you can restore from.</li>
+</ul>
+
+<h2>See it</h2>
+
+<figure class="shot">
+  <img src="img/2-stack.png" alt="A stack opening above the bar to show Downloads, Documents, Desktop and New Folder" loading="lazy" width="1360" height="498">
+  <figcaption>A stack flies out above the bar (or below it, if you keep the bar at the top of the screen).</figcaption>
+</figure>
+
+<figure class="shot">
+  <img src="img/3-browse-folder.png" alt="A folder button showing the folders and files inside it, with their icons" loading="lazy" width="1360" height="823">
+  <figcaption>A folder button lets you browse inside it, step into sub-folders, or open the folder in Finder.</figcaption>
+</figure>
+
+<figure class="shot wide">
+  <img src="img/4-per-app-mail.png" alt="After a divider, a set of Mail buttons: New Message, Get Mail, Reply, Reply All, Forward, Archive, Junk and Flag" loading="lazy" width="1920" height="275">
+  <figcaption>Buttons that follow the app you are using. With Mail in front, its own set appears after the divider.</figcaption>
+</figure>
+
+<figure class="shot">
+  <img src="img/5-edit-button.png" alt="The edit window for a button, with its title, action, keys, icon and colour" loading="lazy" width="1360" height="586">
+  <figcaption>Every button is edited in one small window: what it does, its icon and its colour.</figcaption>
+</figure>
+
+<h2>Try before you buy</h2>
+<p>Download it and use everything for 14 days. After that the bar shows only a prompt to buy or enter a licence key; your buttons are kept exactly as you left them and come straight back when you activate. It is a one-time purchase: £9.99. Your licence key arrives by email straight after you buy, and it covers every 1.x update.</p>
+
+<h2>Permissions it may ask for</h2>
+<p>BarDeck asks only when you use a feature that needs it, and everything else works without them.</p>
+<ul>
+  <li><strong>Accessibility</strong>, for the <em>press keys</em> and <em>paste text</em> buttons, which work by sending keystrokes to the app in front.</li>
+  <li><strong>Automation</strong>, for the <em>New Folder</em> button, which asks Finder to create a folder in the window you have open.</li>
+</ul>
+
+<h2>Private by design</h2>
+<p>There is no account, no analytics and no tracking. Your buttons and settings stay on your Mac. <a href="privacy.html">Read the privacy policy.</a></p>
+
+<h2>Questions</h2>
+<dl>
+<dt>Why isn&#8217;t it on the Mac App Store?</dt>
+<dd>Apps in the Mac App Store have to run in a sandbox, and the sandbox does not allow an app to send keystrokes to other apps or to script Finder. Those are some of the most useful things a button can do, so BarDeck is sold directly instead.</dd>
+
+<dt>Does it replace the Dock?</dt>
+<dd>No. It sits alongside it. Think of it as a set of your own shortcuts that is always in reach, not a launcher for everything.</dd>
+
+<dt>What happens if I move to a new Mac?</dt>
+<dd>Install BarDeck there and enter the same licence key. Your buttons live in a small file you can copy across (the right-click menu has <em>Edit config file</em> and <em>Backups</em>).</dd>
+
+<dt>Do I have to pay for updates?</dt>
+<dd>No. Your licence covers every 1.x version, including new features as well as fixes. If a 2.0 ever arrives it may be a paid upgrade, and I would say so clearly before you were asked to pay anything. 1.x would keep working either way.</dd>
+
+<dt>Does it update itself?</dt>
+<dd>Yes. It checks for new versions in the background and asks before installing anything. You can also choose <em>Check for Updates&hellip;</em> from its menu.</dd>
+</dl>
+
+<h2>Help</h2>
+<p>See <a href="support.html">Support</a> for common questions.</p>
+
+<footer>Made by Steven Muir.</footer>
+</div>
+</body>
+</html>

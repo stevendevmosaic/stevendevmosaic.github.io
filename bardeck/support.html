@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BarDeck Support</title>
+<meta name="description" content="Help with BarDeck, the floating button bar for the Mac.">
+<link rel="icon" type="image/png" href="../favicon.png">
+<style>
+  :root { --ink: #1d2433; --muted: #6b7385; --accent: #2f5fb3; --amber: #e8962a; --border: #dde2ec; --bg: #f3f5fa; --card: #ffffff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.65; }
+  .brandbar { height: 4px; background: linear-gradient(90deg, #12183a 0 40%, #e8962a 0 60%, #8fb2e8 0 100%); }
+  .topnav { position: sticky; top: 0; z-index: 4; background: rgba(243,245,250,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; gap: 4px; justify-content: center; padding: 8px 12px; flex-wrap: wrap; }
+  .topnav a { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 6px 13px; border-radius: 6px; }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 46px 24px 80px; }
+  h1 { font-size: 32px; font-weight: 700; margin: 0 0 6px; line-height: 1.2; }
+  h2 { font-size: 20px; font-weight: 700; margin: 32px 0 10px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .updated { font-size: 13.5px; color: var(--muted); margin: 0 0 24px; }
+  .lead { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; font-size: 15.5px; }
+  .sub { font-size: 18px; color: var(--muted); margin: 0 0 24px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0 6px; }
+  .btn { display: inline-block; font-weight: 700; text-decoration: none; padding: 11px 20px; border-radius: 9px; border: 1px solid var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.secondary { background: #fff; color: var(--accent); }
+  .fine { font-size: 13.5px; color: var(--muted); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 40px; }
+  a { color: var(--accent); }
+  dt { font-weight: 700; margin-top: 18px; }
+  dd { margin: 4px 0 0; }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="../index.html">&#8962; Apps</a>
+  <a href="index.html">BarDeck</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="support.html">Support</a>
+</nav>
+<div class="wrap">
+
+<h1>Support</h1>
+<p class="updated">BarDeck for Mac</p>
+
+<dl>
+<dt>Key-press and paste buttons do nothing.</dt>
+<dd>These need the Accessibility permission. Open System Settings &rarr; Privacy &amp; Security &rarr; Accessibility, and turn BarDeck on. If it is already on and still does nothing, switch it off and on again, then restart BarDeck.</dd>
+
+<dt>The New Folder button does nothing.</dt>
+<dd>It asks Finder to create the folder, so macOS needs to allow that. Open System Settings &rarr; Privacy &amp; Security &rarr; Automation and allow BarDeck to control Finder. The folder is made in the front Finder window, or on the Desktop if no window is open.</dd>
+
+<dt>I can&#8217;t see the bar.</dt>
+<dd>It may be hidden. Click the BarDeck icon in the menu bar and choose <em>Show bar</em>, or press the show/hide hotkey (Control-Option-B). If you turned auto-hide on, rest the pointer where the bar was.</dd>
+
+<dt>How do I move the bar?</dt>
+<dd>Drag the dotted handle at its left end. The bar remembers where you leave it.</dd>
+
+<dt>How do I add, edit or remove a button?</dt>
+<dd>Right-click the bar. You can add a button or a stack, edit or remove any button, lock buttons so they cannot be moved, and undo recent changes. You can also drag an app, folder, file or web link onto the bar.</dd>
+
+<dt>I removed something by mistake.</dt>
+<dd>Right-click and choose <em>Undo last change</em>. Older layouts are in <em>Backups &rarr; Restore</em>; BarDeck saves one automatically whenever you make changes.</dd>
+
+<dt>Can I edit my buttons in a text file?</dt>
+<dd>Yes. Choose <em>Edit config file</em> from the right-click menu. Changes are picked up as soon as you save, and a file with a mistake in it is ignored rather than overwritten.</dd>
+
+<dt>My trial has ended.</dt>
+<dd>The bar shows <em>Trial ended &mdash; Buy BarDeck</em> and <em>Enter licence key</em>. Your buttons are kept. After you buy, paste the key into <em>Enter licence key</em> and everything returns.</dd>
+
+<dt>My licence key isn&#8217;t accepted.</dt>
+<dd>Copy the whole key from the email, including the BARDECK- at the start. It is long, so make sure none of it is cut off. If it still fails, email me and say which key you were sent.</dd>
+
+<dt>macOS says the app can&#8217;t be opened.</dt>
+<dd>Drag BarDeck from the downloaded disk image into your Applications folder first, then open it from there.</dd>
+</dl>
+
+<h2>Contact</h2>
+<p>Email <a href="mailto:stevendevmosaic@gmail.com?subject=BarDeck%20support">stevendevmosaic@gmail.com</a> and say which version of macOS you are using.</p>
+
+<footer>Made by Steven Muir.</footer>
+</div>
+</body>
+</html>

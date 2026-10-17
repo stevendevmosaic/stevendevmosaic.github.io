@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>BarDeck</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Sat, 17 Oct 2026 23:14:47 +0100</pubDate>
+            <sparkle:version>2</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck-1.0.0.dmg" length="2144727" type="application/octet-stream" sparkle:edSignature="X4w5zdeJhjV88R7mpXbu+m8mkqck1Z6iXc79MlJ00WKMs0kzCYBMmuTKk8F4/L2xt6vdZZHI66Qu6me4LyNJAg=="/>
+        </item>
+    </channel>
+</rss>
