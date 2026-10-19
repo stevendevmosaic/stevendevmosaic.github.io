@@ -18,7 +18,7 @@
 - [Microsoft Store](https://apps.microsoft.com/detail/9n55n225sbf7)
 
 ## BarDeck
-- [BarDeck overview](https://stevendevmosaic.github.io/bardeck/): A floating, Touch Bar-style button bar for macOS 13 or later. One-click buttons to open folders, apps and websites, run Shortcuts, press key combinations and paste text; stacks; folder browsing; per-app button sets with ready-made sets for common apps. 14-day free trial, then a one-off GBP 9.99 licence covering every 1.x update. Sold directly (not on the Mac App Store, because the sandbox blocks sending key presses). No account, no analytics.
+- [BarDeck overview](https://stevendevmosaic.github.io/bardeck/): A floating, Touch Bar-style button bar for macOS 13 or later. One-click buttons to open folders, apps and websites, run Shortcuts, press key combinations and paste text; stacks; folder browsing; per-app button sets with ready-made sets for common apps; volume and brightness sliders, media keys and an emoji picker; export and import of layouts. 14-day free trial, then a one-off GBP 9.99 licence covering every 1.x update. Sold directly (not on the Mac App Store, because the sandbox blocks sending key presses). No account, no analytics.
 - [Support](https://stevendevmosaic.github.io/bardeck/support.html)
 - [Privacy](https://stevendevmosaic.github.io/bardeck/privacy.html): No account, no analytics, no tracking.
 - [Buy](https://payhip.com/b/MsQ7H)

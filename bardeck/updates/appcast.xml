@@ -3,6 +3,31 @@
     <channel>
         <title>BarDeck</title>
         <item>
+            <title>1.1.0</title>
+            <pubDate>Mon, 19 Oct 2026 21:59:19 +0100</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h3>BarDeck 1.1</h3>
+<p><strong>New: controls</strong></p>
+<ul>
+  <li>Right-click the bar and choose <em>Add control</em> to add a <strong>volume slider</strong>, a <strong>brightness slider</strong>, play/pause, next and previous track, mute and an <strong>emoji picker</strong>.</li>
+  <li>Buttons that control <strong>Music</strong> and <strong>Spotify</strong> directly.</li>
+  <li>The brightness slider works with the built-in display and Apple's own displays.</li>
+</ul>
+<p><strong>New: share your setup</strong></p>
+<ul>
+  <li><em>Share layout</em> exports your whole layout, or just one stack or one app's set, and imports other people's. Your licence is never included.</li>
+  <li>You can remove personal details (paths, pasted text, commands) before sharing, and importing warns about buttons that run shell commands.</li>
+  <li>Importing merges instead of piling up copies.</li>
+</ul>
+]]></description>
+            <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck-1.1.0.dmg" length="2312273" type="application/octet-stream" sparkle:edSignature="z0DG6NdAbstQy04jCqBUGeWt3bbZfh0nEuaCBxp+PfxJtiogYuaAJVHNKgHUYzh1xcSVcQXqnj43z+4MquvMDw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck3-2.delta" sparkle:deltaFrom="2" length="269254" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="XhJgteNLClib4cUji0x7UJJarGMvKpcoP4e1lSu+bWfeys3109AkX+mO/fzeW4ChLh2gPWBmyWvJu20D9FefBA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.0</title>
             <pubDate>Sat, 17 Oct 2026 23:14:47 +0100</pubDate>
             <sparkle:version>2</sparkle:version>
