@@ -24,7 +24,10 @@
   .updated { font-size: 13.5px; color: var(--muted); margin: 0 0 24px; }
   .lead { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; font-size: 15.5px; }
   .sub { font-size: 18px; color: var(--muted); margin: 0 0 24px; }
-  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0 6px; }
+  .cta { display: flex; gap: 14px 22px; flex-wrap: wrap; margin: 22px 0 6px; align-items: flex-start; }
+  .cta-item { display: flex; flex-direction: column; gap: 7px; }
+  .assure { font-size: 13px; color: var(--muted); line-height: 1.4; max-width: 17em; }
+  .assure b { color: var(--ink); font-weight: 600; }
   .btn { display: inline-block; font-weight: 700; text-decoration: none; padding: 11px 20px; border-radius: 9px; border: 1px solid var(--accent); }
   .btn.primary { background: var(--accent); color: #fff; }
   .btn.secondary { background: #fff; color: var(--accent); }
@@ -62,10 +65,16 @@
 </figure>
 
 <div class="cta">
-  <a class="btn primary" href="BarDeck.dmg">Download free trial</a>
-  <a class="btn secondary" href="https://payhip.com/b/MsQ7H">Buy for £9.99</a>
+  <div class="cta-item">
+    <a class="btn primary" href="BarDeck.dmg">Download free trial</a>
+    <span class="assure"><b>Signed and notarised by Apple.</b> 14 days with everything unlocked.</span>
+  </div>
+  <div class="cta-item">
+    <a class="btn secondary" href="https://payhip.com/b/MsQ7H">Buy for £9.99</a>
+    <span class="assure">One-off, and covers every 1.x update.</span>
+  </div>
 </div>
-<p class="fine">macOS 13 or later &middot; Apple silicon and Intel &middot; 14 days to try everything, then a one-time licence key.</p>
+<p class="fine">macOS 13 or later &middot; Apple silicon and Intel &middot; no account and no tracking. <a href="privacy.html">Privacy policy</a></p>
 
 <h2>What it does</h2>
 <ul>
