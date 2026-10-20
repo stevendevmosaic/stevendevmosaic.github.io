@@ -3,6 +3,25 @@
     <channel>
         <title>BarDeck</title>
         <item>
+            <title>1.1.1</title>
+            <pubDate>Tue, 20 Oct 2026 14:44:41 +0100</pubDate>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h3>BarDeck 1.1.1</h3>
+<p><strong>New: Zoom and Teams</strong></p>
+<ul>
+  <li>Two new ready-made sets: <em>Zoom</em> (mic, camera, share screen, raise hand, chat, participants and a red Leave button) and <em>Teams</em> (mic, camera, share, raise hand and Leave).</li>
+  <li>Right-click the bar and choose <em>Add app preset</em>. The buttons appear while the call window is in front, and BarDeck never takes focus from it.</li>
+</ul>
+]]></description>
+            <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck-1.1.1.dmg" length="2313280" type="application/octet-stream" sparkle:edSignature="CNcpcqGZjjvBNrj37JoWbjPpCVKpfid+zzN6qZ4jtGPSb9fIfvZn4F250kLtyR8qui+cW8Aag6r9A2BmAF9YCQ=="/>
+            <sparkle:deltas>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck4-3.delta" sparkle:deltaFrom="3" length="56694" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="uwm7XogzSgwmyu0C+7fp4h5AF8HAFn4cImJVWpmIaHPiJdFoxYH/ekwTmIvQ5a8b9MjbN/LVLPFGxW68O/TnDQ=="/>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck4-2.delta" sparkle:deltaFrom="2" length="268174" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="CERvIGVl/zF/thsy6Xrc0jZ2nj5WfiF2kidZyMbHCKC3F9VpiSCqOQwVRhh6Bzg9Xor9nC4F+tQA69DhWLApDA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.1.0</title>
             <pubDate>Mon, 19 Oct 2026 21:59:19 +0100</pubDate>
             <sparkle:version>3</sparkle:version>
