@@ -107,6 +107,9 @@
     background: var(--accent); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .clear { clear: both; }
+  .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0 12px; }
+  .themes figure { margin: 0; }
+  @media (max-width: 640px) { .themes { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) { figure.side { float: none; width: 100%; max-width: 300px; margin: 14px auto; } .two { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">
@@ -171,7 +174,7 @@
       <li><strong>Style</strong> — <em>Keepsake book</em> (chat bubbles) or <em>Transcript</em> (numbered record).</li>
       <li><strong>Page shape</strong> — portrait, landscape or square, to match the photobook size you will order.</li>
       <li><strong>This is me</strong> — which person you are, so your messages are the green bubbles on the right.</li>
-      <li><strong>Theme</strong> — the colour look of the whole book. You can change it later, and <strong>Load Theme Pack…</strong> adds more.</li>
+      <li><strong>Theme</strong> — the colour look of the whole book. You can change it later, and <strong>Load Theme Pack…</strong> adds more (see <a href="#themes">chat themes</a> below).</li>
       <li><strong>Cover title, subtitle and photo</strong> — the subtitle defaults to the chat's date range; choose a hero photo for the front.</li>
       <li><strong>People</strong> — click a person's circle to give them a photo, which then appears beside their messages. You can also rename anyone here, for example turn a phone number into a real name. Anyone without a photo gets a coloured circle with their initial.</li>
       <li><strong>Optional pages</strong> — a “chat in numbers” stats page, a cast page, year divider pages, reactions under messages, and whether to hide “photo not included” placeholders.</li>
@@ -193,6 +196,21 @@
   <figure><img src="img/chat/chat-cast.jpg" alt="The cast page listing each person with their photo and message count" loading="lazy"><figcaption>The cast page</figcaption></figure>
 </div>
 <figure><img src="img/chat/chat-transcript.jpg" alt="Two pages of a numbered transcript with a photo shown as a figure" loading="lazy"><figcaption>The numbered transcript: every message numbered, photos shown as figures</figcaption></figure>
+
+<h2 id="themes">More looks: chat themes</h2>
+<p>The whole book takes on a colour theme — the bubbles, page, date markers, the stats page and each person's colour. <strong>Classic</strong> (WhatsApp green on cream) and <strong>Clean white</strong> are built in. Four more come as <strong>theme packs</strong>: <strong>Dark</strong>, <strong>Pastel</strong>, <strong>Editorial</strong> and <strong>Bright</strong>. A theme pack is one small file; in the Make a Book window click <strong>＋ Load Theme Pack…</strong> and choose it, and you can switch themes at any time with <strong>Restyle</strong> without losing your edits.</p>
+<div class="themes">
+  <figure><img src="img/chat/theme-classic.jpg" alt="Classic theme: green and white bubbles on a cream page" loading="lazy"><figcaption><strong>Classic</strong> · included</figcaption></figure>
+  <figure><img src="img/chat/theme-white.jpg" alt="Clean white theme" loading="lazy"><figcaption><strong>Clean white</strong> · included</figcaption></figure>
+  <figure><img src="img/chat/theme-dark.jpg" alt="Dark theme: light text on a deep navy page" loading="lazy"><figcaption><strong>Dark</strong> · theme pack</figcaption></figure>
+  <figure><img src="img/chat/theme-pastel.jpg" alt="Pastel theme: soft pink page with lavender bubbles" loading="lazy"><figcaption><strong>Pastel</strong> · theme pack</figcaption></figure>
+  <figure><img src="img/chat/theme-editorial.jpg" alt="Editorial theme: monochrome, black and cream" loading="lazy"><figcaption><strong>Editorial</strong> · theme pack</figcaption></figure>
+  <figure><img src="img/chat/theme-bright.jpg" alt="Bright theme: warm yellow page with lively colours" loading="lazy"><figcaption><strong>Bright</strong> · theme pack</figcaption></figure>
+</div>
+<div class="stores" style="margin:6px 0 4px">
+  <a href="https://payhip.com/MosaicCollageMaker">See the theme packs</a>
+</div>
+<p class="note">Theme packs work on both Mac and Windows and download instantly. The people in these pictures are made up.</p>
 
 <h2>Tips and fixes</h2>
 <ul>
