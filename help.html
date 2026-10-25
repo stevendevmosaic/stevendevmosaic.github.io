@@ -179,12 +179,16 @@
     <a href="#captions">Photo Captions</a>
     <a href="#polaroid">Polaroid Frames</a>
     <a href="#pinning">Pinning &amp; Reshuffle</a>
+    <a href="#zoom">Zoom Canvas</a>
     <a href="#setup">Page Setup</a>
     <a href="#saving">Saving Your Work</a>
     <a href="#templates">Templates</a>
     <a href="#chatbook">Chat Book</a>
+    <a href="#journals">Importing a Journal</a>
+    <a href="#designs">Designs &amp; Style Packs</a>
     <a href="#restoring">Restoring a Project</a>
     <a href="#export">Export &amp; Print</a>
+    <a href="#unlock">Free Preview &amp; Unlocking</a>
     <a href="#large">Large Photo Libraries</a>
     <a href="#troubleshooting">Troubleshooting</a>
   </nav>
@@ -346,6 +350,21 @@
       <p>That makes it easy to anchor a fixed element — a title, a logo, a caption panel, a favourite photo — and then keep reshuffling until the rest of the page falls into place around it.</p>
       <div class="tip"><strong>Tip:</strong> the more you pin, the less room the mosaic has left to play with. Pin enough that each remaining gap only fits a single photo and Reshuffle can still change <em>which</em> photo sits in each gap, but the frame sizes themselves are fixed by the space your pinned items leave behind. That's geometry rather than a fault — unpin something, or leave larger gaps, if you want more variety.</div>
       <p>Text boxes that came from a <a href="#templates">template</a> are pinned for you automatically, since a template's text is usually fixed branding you don't want photos landing on top of.</p>
+    </section>
+
+    <section id="zoom">
+      <h2>Zoom Canvas</h2>
+      <p>Get in close on a page for precise work without changing what you print. The zoom controls sit at the
+      <strong>bottom-left</strong> of the workspace: <strong>− Fit / N% +</strong>. Click the middle label to return
+      to <strong>Fit</strong>.</p>
+      <ul>
+        <li><strong>Keyboard:</strong> <strong>Cmd/Ctrl +</strong> and <strong>Cmd/Ctrl −</strong> to zoom, <strong>Cmd/Ctrl 0</strong> to return to Fit.</li>
+        <li><strong>Mouse or trackpad:</strong> hold <strong>Cmd</strong> (Mac) or <strong>Ctrl</strong> (Windows) and scroll to zoom towards the pointer; on a Mac trackpad you can also pinch.</li>
+        <li><strong>Moving around:</strong> drag the empty page background, hold <strong>Space</strong> and drag anywhere, or use the middle mouse button.</li>
+      </ul>
+      <p>This is separate from the small <strong>+ − ⟲</strong> buttons at the bottom-right of a frame, which zoom the
+      <em>photo inside</em> that frame. Zooming the workspace is for working only: your exported JPEGs and PDFs are
+      exactly the same at any zoom level.</p>
     </section>
 
     <section id="setup">
@@ -555,6 +574,58 @@
       comes across as a normal JPEG and imports without a hitch.</div>
     </section>
 
+    <section id="journals">
+      <h2>Importing a Journal (Day One &amp; Daykeep)</h2>
+      <p>Turn a whole journal — your writing, dates, places and photos — into a printed book. The journal is read
+      from the export file on your own computer; <strong>nothing is uploaded.</strong></p>
+
+      <h3>Step 1 — export your journal</h3>
+      <ul>
+        <li><strong>Day One:</strong> export the journal as <strong>JSON</strong>, including photos. You get a <code>.zip</code> containing the journal file and a photos folder. Keep it as a single zip — don't unzip it.</li>
+        <li><strong>Daykeep:</strong> use its export for Mosaic Collage Maker — see <a href="daykeep/help.html#collage">the Daykeep guide</a>.</li>
+      </ul>
+      <p>Very large exports are fine — journals of several gigabytes with thousands of photos have been imported. A
+      progress bar shows the file being read, so it is working even when it takes a while.</p>
+
+      <h3>Step 2 — import it</h3>
+      <p>Click <strong>Import from Day One…</strong> (or <strong>Import from Daykeep…</strong>) and choose the zip. When it has been
+      read, a dialog asks how you want the book built:</p>
+      <ul>
+        <li><strong>Book name</strong> and <strong>Sub-title</strong> — the name appears on the cover, back cover and in every page footer; the sub-title (by default the date range) appears on the cover and under each photobook page title. Both can be changed here once, rather than page by page.</li>
+        <li><strong>Style</strong> — <strong>Journal</strong> gives one designed page per entry with its heading, date, place and your writing; <strong>Photobook</strong> pours the photos across pages in fresh mosaic layouts, with captions.</li>
+        <li><strong>Page shape</strong> — landscape, portrait or square.</li>
+        <li><strong>Design</strong> — see <a href="#designs">Designs &amp; Style Packs</a>.</li>
+        <li><strong>Layout</strong> (Journal) — <strong>Interleaved</strong> keeps your writing between the photos where you wrote it; <strong>Writing first</strong> puts the heading and text first, then the photos.</li>
+        <li><strong>Writing between two photos belongs to</strong> (Interleaved) — a line of text sitting between two photos can describe either. Choose <strong>the photo below</strong>, <strong>the photo above</strong>, or <strong>leave as written</strong>. If a journal mixes both habits, pick the one you use most and fix the odd page with <strong>Move to page above/below</strong> (select the text box).</li>
+        <li><strong>Journal colour</strong> — the footer line, heading rules and the back cover. Pick a swatch or any colour.</li>
+      </ul>
+
+      <h3>What comes across, and what doesn't</h3>
+      <ul>
+        <li>Entry text, dates, places, weather and photos (with their captions) come across in order.</li>
+        <li>A short first line is used as the entry's <strong>title</strong>; otherwise the date is the heading.</li>
+        <li><strong>Videos, audio and PDF attachments are not included</strong> — only photos and writing. The dialog tells you how many were skipped, and entries that contain only those are left out.</li>
+      </ul>
+
+      <h3>After it's built</h3>
+      <p>Every page is ordinary and fully editable: move or resize photos, edit or re-caption text, change the design, then export or print.
+      Photos on a page by themselves expand to fill it, with a little room left for a line of text — and a
+      <strong>Move to page above / below</strong> button on a selected text box sends a note to the neighbouring page,
+      making room for it. To change the paper size afterwards use <strong>Resize pages to this size</strong> and choose
+      <strong>Keep my arrangement</strong> (Re-flow is designed for photo mosaics, not journal pages).</p>
+      <div class="tip"><strong>Tip:</strong> a journal of thousands of photos uses a lot of memory while it is built and exported. Close other large apps first; 16 GB or more is comfortable for the very biggest books.</div>
+    </section>
+
+    <section id="designs">
+      <h2>Designs &amp; Style Packs</h2>
+      <p>A <strong>design</strong> sets the look of a journal or photobook: page colour, title typeface and case, the rule or colour band under headings,
+      framed photos, and a footer with the book name and page number. <strong>Classic</strong> and <strong>Editorial</strong> are included.</p>
+      <p>More looks come as <strong>Style Packs</strong> — small files you load with <strong>Load Style Pack…</strong> in the import dialog.
+      One set of packs works for <strong>both journals and photobooks</strong>. Packs are available from the
+      <a href="https://payhip.com/MosaicCollageMaker">Mosaic Collage Maker shop</a>. The <strong>journal colour</strong> you pick at import is applied
+      on top of whichever design you choose.</p>
+    </section>
+
     <section id="restoring">
       <h2>Restoring a Project</h2>
       <p>Use <strong>Restore</strong> to reopen a saved session. If any referenced photos aren't currently loaded, the app asks you to select the folder containing them — and if your project drew photos from more than one folder, it keeps asking, letting you load folder after folder until everything's found (or you choose to continue with gaps).</p>
@@ -587,6 +658,20 @@
 
       <h3>Rounded photo corners</h3>
       <p>Set <strong>Photo corner radius (mm)</strong> to round the corners of your photos for a softer, more modern look. It's measured in millimetres, so it prints at a consistent physical size whatever your page size, and it applies both on screen and in every export — JPEG, PNG and PDF. Set it to 0 for square corners.</p>
+    </section>
+
+    <section id="unlock">
+      <h2>Free Preview &amp; Unlocking (Mac)</h2>
+      <p>From version 5.20 the Mac App Store version of Mosaic Collage Maker is <strong>free to download</strong>. You can build books, edit every page and save your
+      projects without paying. Until it is unlocked, exports (JPEG, PDF, print pages, transparent PNG) are <strong>watermarked and reduced in quality</strong>.
+      A single one-off purchase, <strong>Unlock Full Quality</strong>, removes that for good — no subscription, no account.</p>
+      <ul>
+        <li><strong>To unlock:</strong> click the orange <strong>Free preview</strong> button at the top right, then <strong>Unlock</strong>.</li>
+        <li><strong>Already bought the app?</strong> You don't need to pay again: if you bought it before 5.20 you are unlocked automatically. If you ever see the orange button and a watermark when you shouldn't, open the Unlock dialog and choose <strong>Restore purchase</strong>.</li>
+        <li><strong>New Mac or reinstalled?</strong> Sign in with the same Apple ID and choose <strong>Restore purchase</strong> if it isn't picked up automatically.</li>
+        <li><strong>Working offline?</strong> The app keeps working; if it can't reach the App Store it errs on the side of leaving your exports clean.</li>
+      </ul>
+      <p>The Microsoft Store version for Windows isn't changing at the moment.</p>
     </section>
 
     <section id="large">
