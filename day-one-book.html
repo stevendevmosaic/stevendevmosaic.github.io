@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turn your Day One journal into a printed book — Mosaic Collage Maker</title>
+<meta name="description" content="Step-by-step: export your Day One journal, import it into Mosaic Collage Maker, and build a journal book (one designed page per entry) or a photobook, with your own name, colour and design. Private — nothing is uploaded.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/day-one-book.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Turn your Day One journal into a printed book">
+<meta property="og:description" content="A journal book or a photobook, built on your own computer. A step-by-step guide.">
+<meta property="og:url" content="https://stevendevmosaic.github.io/day-one-book.html">
+<meta property="og:image" content="https://stevendevmosaic.github.io/img/dayone/dayone-pages.jpg">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root {
+    --ink: #1c2430; --muted: #5b6675; --accent: #2f6fb0;
+    --border: #e2e6eb; --bg: #fafbfc; --card: #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .brandbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 5;
+    background: linear-gradient(90deg,
+      #e8695f 0 16.66%, #f0932b 0 33.33%, #35c759 0 50%,
+      #2ec4a0 0 66.66%, #3b93e0 0 83.33%, #e74c3c 0 100%);
+  }
+  .topnav {
+    position: sticky; top: 4px; z-index: 4;
+    background: rgba(250,251,252,.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;
+    padding: 9px 12px;
+  }
+  .topnav a {
+    font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;
+    padding: 6px 13px; border-radius: 6px;
+  }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 22px 70px; }
+  header { text-align: center; margin-bottom: 46px; }
+  .hero-logo {
+    width: 88px; height: 88px; border-radius: 20px; display: block; margin: 0 auto 18px;
+    box-shadow: 0 3px 14px rgba(28,36,48,.16);
+  }
+  h1 { font-size: 30px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.015em; }
+  .tagline { font-size: 17px; color: var(--muted); margin: 0 auto 26px; max-width: 560px; }
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 12px; letter-spacing: -.01em; }
+  h3 { font-size: 16px; font-weight: 700; margin: 22px 0 4px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .stores a {
+    display: inline-block; padding: 11px 22px; border-radius: 8px; text-decoration: none;
+    font-size: 15px; font-weight: 600; background: var(--accent); color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .stores a.alt { background: var(--card); color: var(--ink); border-color: var(--border); }
+  .stores a:hover { opacity: .9; }
+  .note { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px; margin: 0 0 14px;
+  }
+  .card h3 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .facts div {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; font-size: 14.5px;
+  }
+  .facts b { display: block; font-size: 13px; text-transform: uppercase;
+             letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; font-weight: 700; }
+  .crosssell {
+    background: linear-gradient(180deg, #fbfaf6, #fff);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; margin: 40px 0 0; display: flex; gap: 16px; align-items: center;
+  }
+  .crosssell img { width: 54px; height: 54px; border-radius: 12px; flex: none; box-shadow: 0 2px 8px rgba(28,36,48,.12); }
+  .crosssell .txt { font-size: 14.5px; }
+  .crosssell b { display: block; margin-bottom: 2px; }
+  nav.links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  nav.links a {
+    display: inline-block; padding: 9px 18px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--ink);
+    text-decoration: none; font-size: 14px; font-weight: 600;
+  }
+  nav.links a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 42px; }
+  a { color: var(--accent); }
+
+  figure { margin: 18px 0 22px; }
+  figure img { display: block; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 3px 14px rgba(28,36,48,.10); }
+  figcaption { font-size: 13.5px; color: var(--muted); margin-top: 8px; text-align: center; }
+  figure.side { float: right; width: 270px; margin: 4px 0 14px 22px; }
+  figure.side img { width: 100%; }
+  .steps { counter-reset: s; list-style: none; padding: 0; }
+  .steps > li { counter-increment: s; position: relative; padding-left: 44px; margin-bottom: 14px; }
+  .steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .clear { clear: both; }
+  .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0 12px; }
+  .themes figure { margin: 0; }
+  @media (max-width: 640px) { .themes { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { figure.side { float: none; width: 100%; max-width: 300px; margin: 14px auto; } .two { grid-template-columns: 1fr; } }
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my journal uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Mosaic Collage Maker reads the export file on your own computer and builds the book there. There is no account and nothing is sent to a server."}}, {"@type": "Question", "name": "How do I get my journal out of Day One?", "acceptedAnswer": {"@type": "Answer", "text": "Use Day One's export and choose JSON with photos included. You get one zip file containing the journal and a photos folder. Import that zip as it is — do not unzip it. Day One's menu names vary between versions, so check Day One's own help if you can't find the option."}}, {"@type": "Question", "name": "Can I use a Daykeep journal?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Daykeep can export a journal for Mosaic Collage Maker, and the same Import button reads it, keeping your writing, captions and photos in order."}}, {"@type": "Question", "name": "Are videos, audio and PDFs included?", "acceptedAnswer": {"@type": "Answer", "text": "No. Only photos and writing come into the book. The import window tells you how many attachments were left out, and an entry that contained only those is skipped."}}, {"@type": "Question", "name": "My journal is huge. Will it work?", "acceptedAnswer": {"@type": "Answer", "text": "Journals of several gigabytes and thousands of photos have been imported. A progress bar shows the file being read. Large journals need plenty of memory while the book is built and exported, so close other large apps first."}}, {"@type": "Question", "name": "A note ended up beside the wrong photo.", "acceptedAnswer": {"@type": "Answer", "text": "A line of writing between two photos can describe either. At import choose whether it belongs to the photo above or below. To fix a single page afterwards, select the text box and use Move to page above or Move to page below — the photos make room for it."}}, {"@type": "Question", "name": "I changed the paper size and the pages look wrong.", "acceptedAnswer": {"@type": "Answer", "text": "Use Resize pages to this size and choose Keep my arrangement. The other option, Re-flow, rebuilds photo mosaics and is not suited to journal pages with writing on them."}}, {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "On the Mac the app is free to try: everything works, and exports carry a preview watermark until you unlock the full app with a one-off purchase. Customers who bought the app earlier are unlocked automatically. The Windows version is sold as a one-off purchase."}}]}
+</script>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="index.html">⌂ Apps</a>
+  <a href="collage.html">Mosaic Collage Maker</a>
+  <a href="help.html">Help Guide</a>
+  <a href="templates.html">Templates</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+<div class="wrap">
+<header>
+  <img class="hero-logo" src="logo.png" alt="Mosaic Collage Maker app icon">
+  <h1>Turn your Day One journal into a printed book</h1>
+  <p class="tagline">Years of entries, photos and places — as a book you can hold. Export your journal, open it in Mosaic Collage Maker, and it lays out every page for you. Built on your own computer; nothing is uploaded.</p>
+  <div class="stores">
+    <a href="https://apps.apple.com/gb/app/mosaic-collage-maker/id6787194096?mt=12">Mac App Store</a>
+    <a class="alt" href="https://apps.microsoft.com/detail/9n55n225sbf7">Microsoft Store</a>
+  </div>
+</header>
+
+<figure>
+  <img src="img/dayone/dayone-pages.jpg" alt="Two journal pages: an entry with a heading, date, place and writing above a photo, and a full-width photo page with a caption" width="1400" height="753">
+  <figcaption>One designed page per journal entry. (The sample journal is a holiday trip.)</figcaption>
+</figure>
+
+<h2>Two kinds of book</h2>
+<div class="two">
+  <div class="card"><h3>Journal</h3>
+  <p>One designed page per entry, with its heading, date, place and your writing, and the photos fitted to the page — keeping your writing between the photos where you wrote it. Entries that run on continue across pages.</p></div>
+  <div class="card"><h3>Photobook</h3>
+  <p>Your photos poured across pages in fresh mosaic layouts, with their captions. Best when you want a picture-led book and the writing matters less.</p></div>
+</div>
+
+<h2>What you need</h2>
+<ul>
+  <li><strong>Mosaic Collage Maker</strong> on a Mac or Windows PC.</li>
+  <li><strong>Your journal exported from Day One</strong> as a zip file (step 1 below).</li>
+  <li><strong>About ten minutes</strong> to choose how the book should look. A big journal then takes a while to read — a progress bar shows it working.</li>
+</ul>
+
+<h2>Step by step</h2>
+<ol class="steps">
+  <li><h3>Export your journal from Day One</h3>
+    <p>In Day One, export the journal as <strong>JSON</strong> with <strong>photos included</strong>. You get a single <code>.zip</code> file containing the journal and a photos folder. <strong>Keep it as one zip — don't unzip it.</strong> (Day One's menu wording differs between versions; its own help shows where the export option is.)</p>
+    <p>Using <strong>Daykeep</strong> instead? Export the journal from Daykeep for Mosaic Collage Maker — the same Import button reads it.</p>
+  </li>
+  <li><h3>Click “Import from Day One…”</h3>
+    <p>In Mosaic Collage Maker click <strong>Import from Day One…</strong> in the toolbar and choose the zip. A progress panel shows the file being opened, the journal read, and the photos loading, so you can see it is working even with thousands of photos.</p>
+    <figure><img src="img/dayone/dayone-progress.jpg" alt="The Importing journal progress panel: Loading photos, 38 of 69" loading="lazy" width="700" height="207"><figcaption>The progress panel while a journal is read</figcaption></figure>
+  </li>
+  <li><h3>Choose how the book should look</h3>
+    <figure class="side"><img src="img/dayone/dayone-dialog.jpg" alt="The Make a Book from Day One window with book name, sub-title, style, page shape, design, layout, text pairing and colour options" loading="lazy"><figcaption>The Make a Book window</figcaption></figure>
+    <p>When the journal has been read, a window asks how to build the book:</p>
+    <ul>
+      <li><strong>Book name</strong> — shown on the cover, back cover and in every page footer. Change it once here instead of on every page.</li>
+      <li><strong>Sub-title</strong> — by default the date range of the journal; shown on the cover and back cover (and under each page title in a photobook). Type anything, or clear it.</li>
+      <li><strong>Style</strong> — <em>Journal</em> or <em>Photobook</em> (see above).</li>
+      <li><strong>Page shape</strong> — landscape, portrait or square. Portrait suits writing-heavy journals; landscape suits photo-led ones.</li>
+      <li><strong>Design</strong> — Classic or Editorial are included; <strong>Load Style Pack…</strong> adds more. The same designs work for journals and photobooks.</li>
+      <li><strong>Layout</strong> (Journal) — <em>Interleaved</em> keeps writing between photos as you wrote it; <em>Writing first</em> puts each entry's heading and text first, then its photos.</li>
+      <li><strong>Writing between two photos belongs to</strong> (Interleaved) — a line of text between two photos can describe either one. Choose <em>the photo below</em>, <em>the photo above</em>, or <em>leave as written</em>.</li>
+      <li><strong>Journal colour</strong> — the footer line, heading rules and back cover. Pick a swatch or any colour.</li>
+      <li><strong>Photos per page</strong> (Photobook) — roomy, balanced or packed.</li>
+    </ul>
+    <p class="clear" style="margin:0"></p>
+  </li>
+  <li><h3>Press “Create Journal” (or “Create Photobook”)</h3>
+    <p>The book is built on screen in moments. Every page is an ordinary page in the app: move or resize a photo, edit or re-caption text, change the design, reshuffle a photobook page.</p>
+  </li>
+  <li><h3>Tidy up if you like</h3>
+    <ul>
+      <li><strong>A note beside the wrong photo?</strong> Click the text box and use <strong>Move to page above</strong> or <strong>Move to page below</strong>; the photos make room for it.</li>
+      <li><strong>Photos on a page by themselves</strong> expand to fill it, with room left for a line of text and clear space above the footer.</li>
+      <li><strong>Different paper size?</strong> Use <strong>Resize pages to this size</strong> and choose <strong>Keep my arrangement</strong>.</li>
+    </ul>
+  </li>
+  <li><h3>Export and print</h3>
+    <p>Export the whole book as a single print-ready PDF (or as JPEGs) and take it to any printer or photobook service. You own the file, so you can reprint it whenever you like. See <a href="help.html#setup">Page Setup</a> for the page sizes printers ask for.</p>
+  </li>
+</ol>
+
+<h2>What it looks like</h2>
+<figure><img src="img/dayone/dayone-book.jpg" alt="A journal cover, a journal page and the back cover" loading="lazy" width="1400" height="753"><figcaption>A cover, your pages, a closing page</figcaption></figure>
+<figure><img src="img/dayone/dayone-portrait.jpg" alt="A portrait journal: cover and two entry pages" loading="lazy" width="1400" height="753"><figcaption>The same journal in portrait</figcaption></figure>
+<figure><img src="img/dayone/dayone-photobook.jpg" alt="Two photobook pages in the Classic and Editorial designs" loading="lazy" width="1400" height="753"><figcaption>As a photobook, in two designs — the same designs work for journals</figcaption></figure>
+
+<h2>Make it yours: colour and design</h2>
+<p>The journal colour you pick is used for the footer line, heading rules and back cover, so one choice changes the whole feel of the book. The <strong>design</strong> sets the page colour, the title typeface, and whether photos get a frame. Classic and Editorial are included; more come as <a href="https://payhip.com/MosaicCollageMaker">Style Packs</a>, and one pack works for both journals and photobooks.</p>
+<figure><img src="img/dayone/dayone-colours.jpg" alt="The same journal page in four colours: navy, burgundy, green and amber" loading="lazy" width="1400" height="753"><figcaption>One page, four journal colours</figcaption></figure>
+
+<h2>What comes across, and what doesn't</h2>
+<ul>
+  <li><strong>Included:</strong> entry text, dates, places, weather and photos with their captions, in order.</li>
+  <li><strong>Titles:</strong> a short first line of an entry is used as its title; otherwise the date is the heading.</li>
+  <li><strong>Not included:</strong> videos, audio and PDF attachments. The import window says how many were left out, and entries that held only those are skipped.</li>
+</ul>
+
+<h2>Tips and fixes</h2>
+<ul>
+  <li><strong>A very large journal.</strong> Thousands of photos work, and a progress bar shows it is busy. It needs plenty of memory while the book is built and exported, so close other big apps first and allow extra time.</li>
+  <li><strong>Which paper size?</strong> Choose the shape at import (landscape, portrait or square). Change it later with <strong>Resize pages to this size</strong> → <strong>Keep my arrangement</strong>.</li>
+  <li><strong>Notes in the wrong place.</strong> Set <em>Writing between two photos belongs to</em> at import to match how you wrote, then use <strong>Move to page above/below</strong> for the odd one.</li>
+</ul>
+
+<h2>Private by design</h2>
+<p>The export file is read on your own computer and the book is built there. There is no account, no upload and no tracking. Your journal never leaves your machine. The <a href="privacy.html">privacy page</a> has the details.</p>
+
+<h2>Common questions</h2>
+<div class="card"><h3>Is my journal uploaded anywhere?</h3>
+<p>No. Mosaic Collage Maker reads the export file on your own computer and builds the book there. There is no account and nothing is sent to a server.</p></div>
+<div class="card"><h3>How do I get my journal out of Day One?</h3>
+<p>Use Day One's export and choose JSON with photos included. You get one zip file containing the journal and a photos folder. Import that zip as it is — do not unzip it. Day One's menu names vary between versions, so check Day One's own help if you can't find the option.</p></div>
+<div class="card"><h3>Can I use a Daykeep journal?</h3>
+<p>Yes. Daykeep can export a journal for Mosaic Collage Maker, and the same Import button reads it, keeping your writing, captions and photos in order.</p></div>
+<div class="card"><h3>Are videos, audio and PDFs included?</h3>
+<p>No. Only photos and writing come into the book. The import window tells you how many attachments were left out, and an entry that contained only those is skipped.</p></div>
+<div class="card"><h3>My journal is huge. Will it work?</h3>
+<p>Journals of several gigabytes and thousands of photos have been imported. A progress bar shows the file being read. Large journals need plenty of memory while the book is built and exported, so close other large apps first.</p></div>
+<div class="card"><h3>A note ended up beside the wrong photo.</h3>
+<p>A line of writing between two photos can describe either. At import choose whether it belongs to the photo above or below. To fix a single page afterwards, select the text box and use Move to page above or Move to page below — the photos make room for it.</p></div>
+<div class="card"><h3>I changed the paper size and the pages look wrong.</h3>
+<p>Use Resize pages to this size and choose Keep my arrangement. The other option, Re-flow, rebuilds photo mosaics and is not suited to journal pages with writing on them.</p></div>
+<div class="card"><h3>Is it free?</h3>
+<p>On the Mac the app is free to try: everything works, and exports carry a preview watermark until you unlock the full app with a one-off purchase. Customers who bought the app earlier are unlocked automatically. The Windows version is sold as a one-off purchase.</p></div>
+
+<nav class="links">
+  <a href="help.html#journals">Full help for importing a journal</a>
+  <a href="chat-book.html">Make a chat book</a>
+  <a href="support.html">Support</a>
+</nav>
+<footer>Mosaic Collage Maker is made by Steven Muir, one developer who answers his own support email.</footer>
+</div>
+</body>
+</html>
