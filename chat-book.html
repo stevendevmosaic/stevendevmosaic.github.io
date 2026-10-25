@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turn a WhatsApp or iMessage chat into a printed book — Mosaic Collage Maker</title>
+<meta name="description" content="Step-by-step: export a WhatsApp or iMessage chat, import it into Mosaic Collage Maker, and make a keepsake book or a numbered transcript, with each person's photo beside their messages. Private — nothing is uploaded.">
+<link rel="canonical" href="https://stevendevmosaic.github.io/chat-book.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Turn a WhatsApp or iMessage chat into a printed book">
+<meta property="og:description" content="Keepsake book or numbered transcript, built on your own computer. A step-by-step guide.">
+<meta property="og:url" content="https://stevendevmosaic.github.io/chat-book.html">
+<meta property="og:image" content="https://stevendevmosaic.github.io/img/chat/chat-faces.jpg">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root {
+    --ink: #1c2430; --muted: #5b6675; --accent: #2f6fb0;
+    --border: #e2e6eb; --bg: #fafbfc; --card: #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .brandbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 5;
+    background: linear-gradient(90deg,
+      #e8695f 0 16.66%, #f0932b 0 33.33%, #35c759 0 50%,
+      #2ec4a0 0 66.66%, #3b93e0 0 83.33%, #e74c3c 0 100%);
+  }
+  .topnav {
+    position: sticky; top: 4px; z-index: 4;
+    background: rgba(250,251,252,.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;
+    padding: 9px 12px;
+  }
+  .topnav a {
+    font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;
+    padding: 6px 13px; border-radius: 6px;
+  }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 22px 70px; }
+  header { text-align: center; margin-bottom: 46px; }
+  .hero-logo {
+    width: 88px; height: 88px; border-radius: 20px; display: block; margin: 0 auto 18px;
+    box-shadow: 0 3px 14px rgba(28,36,48,.16);
+  }
+  h1 { font-size: 30px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.015em; }
+  .tagline { font-size: 17px; color: var(--muted); margin: 0 auto 26px; max-width: 560px; }
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 12px; letter-spacing: -.01em; }
+  h3 { font-size: 16px; font-weight: 700; margin: 22px 0 4px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .stores a {
+    display: inline-block; padding: 11px 22px; border-radius: 8px; text-decoration: none;
+    font-size: 15px; font-weight: 600; background: var(--accent); color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .stores a.alt { background: var(--card); color: var(--ink); border-color: var(--border); }
+  .stores a:hover { opacity: .9; }
+  .note { font-size: 13.5px; color: var(--muted); text-align: center; margin-top: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px; margin: 0 0 14px;
+  }
+  .card h3 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .facts div {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; font-size: 14.5px;
+  }
+  .facts b { display: block; font-size: 13px; text-transform: uppercase;
+             letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; font-weight: 700; }
+  .crosssell {
+    background: linear-gradient(180deg, #fbfaf6, #fff);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; margin: 40px 0 0; display: flex; gap: 16px; align-items: center;
+  }
+  .crosssell img { width: 54px; height: 54px; border-radius: 12px; flex: none; box-shadow: 0 2px 8px rgba(28,36,48,.12); }
+  .crosssell .txt { font-size: 14.5px; }
+  .crosssell b { display: block; margin-bottom: 2px; }
+  nav.links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  nav.links a {
+    display: inline-block; padding: 9px 18px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--ink);
+    text-decoration: none; font-size: 14px; font-weight: 600;
+  }
+  nav.links a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 42px; }
+  a { color: var(--accent); }
+
+  figure { margin: 18px 0 22px; }
+  figure img { display: block; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 3px 14px rgba(28,36,48,.10); }
+  figcaption { font-size: 13.5px; color: var(--muted); margin-top: 8px; text-align: center; }
+  figure.side { float: right; width: 270px; margin: 4px 0 14px 22px; }
+  figure.side img { width: 100%; }
+  .steps { counter-reset: s; list-style: none; padding: 0; }
+  .steps > li { counter-increment: s; position: relative; padding-left: 44px; margin-bottom: 14px; }
+  .steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .clear { clear: both; }
+  @media (max-width: 640px) { figure.side { float: none; width: 100%; max-width: 300px; margin: 14px auto; } .two { grid-template-columns: 1fr; } }
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my chat uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Mosaic Collage Maker reads the export file on your own computer and builds the book there. There is no account and nothing is sent to a server."}}, {"@type": "Question", "name": "Can I make a book from iMessage?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Apple's Messages app has no export, so export the conversation with iMazing (as Text, keeping the photos folder beside the text file) and import that file with the Chat Book button."}}, {"@type": "Question", "name": "Why are some photos missing from my WhatsApp book?", "acceptedAnswer": {"@type": "Answer", "text": "WhatsApp's own export only includes roughly the most recent few hundred photos and videos, so older ones are left out. iMazing's export includes the whole conversation with all its photos. Where a photo is missing, the book can show a 'photo not included' marker, which you can hide."}}, {"@type": "Question", "name": "Why do some people show as phone numbers?", "acceptedAnswer": {"@type": "Answer", "text": "The export only has the name your phone knew. Type the right name into the person's box in the Make a Book window; if the same person appears twice, give both exactly the same name and they merge."}}, {"@type": "Question", "name": "What is the difference between a keepsake book and a transcript?", "acceptedAnswer": {"@type": "Answer", "text": "A keepsake book looks like the chat on your phone, with bubbles, names, photos and a designed cover. A transcript is a formal numbered record of every message, with photos and PDFs shown as figures, suited to keeping a record."}}, {"@type": "Question", "name": "Do my iMessage photos work on Windows?", "acceptedAnswer": {"@type": "Answer", "text": "iMessage photos are usually in Apple's HEIC format, which the Windows version cannot read. In iMazing, turn on 'Convert HEIC to JPEG' when exporting and they import as normal photos. On a Mac they work as they are."}}]}
+</script>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="index.html">⌂ Apps</a>
+  <a href="collage.html">Mosaic Collage Maker</a>
+  <a href="help.html">Help Guide</a>
+  <a href="templates.html">Templates</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+<div class="wrap">
+<header>
+  <img class="hero-logo" src="logo.png" alt="Mosaic Collage Maker app icon">
+  <h1>Turn a WhatsApp or iMessage chat into a printed book</h1>
+  <p class="tagline">The family group chat, the trip everyone still talks about, the conversation you never want to lose — as a book you own. Built on your own computer; nothing is uploaded.</p>
+  <div class="stores">
+    <a href="https://apps.apple.com/gb/app/mosaic-collage-maker/id6787194096?mt=12">Mac App Store</a>
+    <a class="alt" href="https://apps.microsoft.com/detail/9n55n225sbf7">Microsoft Store</a>
+  </div>
+</header>
+
+<figure>
+  <img src="img/chat/chat-faces.jpg" alt="A keepsake chat book page: message bubbles with each person's photo beside their messages" width="1400" height="753">
+  <figcaption>Every message sits beside its sender's photo. (Sample chat with made-up people.)</figcaption>
+</figure>
+
+<h2>Two kinds of book</h2>
+<div class="two">
+  <div class="card"><h3>Keepsake book</h3>
+  <p>The chat laid out as it looks on your phone: rounded bubbles, names, date headers and your photos inline, with a designed cover, a cast page and an optional “chat in numbers” page. Long chats can be split into one book per year. This is the one for a gift or a memento.</p></div>
+  <div class="card"><h3>Numbered transcript</h3>
+  <p>A clean, formal, paginated record of the whole conversation, every message numbered, with photos and PDFs shown as figures. Use it when you need the chat as a tidy document.</p></div>
+</div>
+
+<h2>What you need</h2>
+<ul>
+  <li><strong>Mosaic Collage Maker</strong> on a Mac or Windows PC.</li>
+  <li><strong>An export of the chat</strong> — from WhatsApp itself, or from iMazing (for iMessage, or for a complete WhatsApp export). Step 1 below shows how.</li>
+  <li><strong>Ten to twenty minutes</strong> for a first book. Most of that is choosing how it should look.</li>
+</ul>
+
+<h2>Step by step</h2>
+<ol class="steps">
+  <li><h3>Export the chat</h3>
+    <p><strong>From WhatsApp:</strong> on your phone open the chat. On an <strong>iPhone</strong> tap the contact or group name at the top, scroll down and tap <strong>Export Chat</strong>. On <strong>Android</strong> tap the ⋮ menu, then <strong>More</strong>, then <strong>Export chat</strong>. Choose <strong>Attach Media</strong> so your photos come too, then send the file to your computer (AirDrop, email, or save to Files). You get a <code>.zip</code> or a <code>_chat.txt</code> — either works.</p>
+    <p><strong>From iMazing</strong> (for iMessage, and for the whole of a long WhatsApp chat): open the conversation in iMazing and export it as <strong>Text</strong>. It saves a <code>.txt</code> file and a folder of the chat's photos beside it — keep them together.</p>
+    <div class="card"><p><strong>Which should I use?</strong> WhatsApp's own export is quick and free, but it only includes roughly the most recent few hundred photos and videos, so in a chat that goes back years the older pictures are left out. iMazing reads the chat and its media from your device's backup, so it can give you the whole conversation with all its photos — and it is the only practical way to export iMessage.</p></div>
+  </li>
+  <li><h3>Click “Chat Book…”</h3>
+    <p>In Mosaic Collage Maker click the <strong>💬 Chat Book…</strong> button in the toolbar and choose the file you saved (the WhatsApp <code>.zip</code> or <code>_chat.txt</code>, or the iMazing <code>.txt</code>). For an iMazing export the app then asks you to pick the folder of attachments it saved next to the text file, and matches every photo to its message automatically.</p>
+  </li>
+  <li><h3>Choose how the book should look</h3>
+    <figure class="side"><img src="img/chat/chat-dialog.jpg" alt="The Make a Book from WhatsApp window with style, page shape, theme, cover and people options" loading="lazy"><figcaption>The Make a Book window</figcaption></figure>
+    <p>A window opens with the options for the book:</p>
+    <ul>
+      <li><strong>Style</strong> — <em>Keepsake book</em> (chat bubbles) or <em>Transcript</em> (numbered record).</li>
+      <li><strong>Page shape</strong> — portrait, landscape or square, to match the photobook size you will order.</li>
+      <li><strong>This is me</strong> — which person you are, so your messages are the green bubbles on the right.</li>
+      <li><strong>Theme</strong> — the colour look of the whole book. You can change it later, and <strong>Load Theme Pack…</strong> adds more.</li>
+      <li><strong>Cover title, subtitle and photo</strong> — the subtitle defaults to the chat's date range; choose a hero photo for the front.</li>
+      <li><strong>People</strong> — click a person's circle to give them a photo, which then appears beside their messages. You can also rename anyone here, for example turn a phone number into a real name. Anyone without a photo gets a coloured circle with their initial.</li>
+      <li><strong>Optional pages</strong> — a “chat in numbers” stats page, a cast page, year divider pages, reactions under messages, and whether to hide “photo not included” placeholders.</li>
+    </ul>
+    <p>If the chat spans several years you can also build <strong>one book per year</strong> — a lovely matching set.</p>
+    <p class="clear" style="margin:0"></p>
+  </li>
+  <li><h3>Press “Create Chat Book”</h3>
+    <p>The pages are built on screen in a moment. Every page is an ordinary page in the app, so you can move photos, edit text, or change the theme (the <strong>Restyle</strong> button swaps the whole book's look in one step without touching your edits).</p>
+  </li>
+  <li><h3>Export and print</h3>
+    <p>Export the whole book as a single print-ready PDF (or as JPEGs) and take it to any printer or photobook service. You own the file, so you can reprint or restyle it whenever you like. If you are unsure of the page size your printer wants, see <a href="help.html#setup">Page Setup</a> in the help guide.</p>
+  </li>
+</ol>
+
+<h2>What it looks like</h2>
+<div class="two">
+  <figure><img src="img/chat/chat-cover.jpg" alt="A chat book cover with the title, date range and a circle photo for each person" loading="lazy"><figcaption>A designed cover, with everyone's photo</figcaption></figure>
+  <figure><img src="img/chat/chat-cast.jpg" alt="The cast page listing each person with their photo and message count" loading="lazy"><figcaption>The cast page</figcaption></figure>
+</div>
+<figure><img src="img/chat/chat-transcript.jpg" alt="Two pages of a numbered transcript with a photo shown as a figure" loading="lazy"><figcaption>The numbered transcript: every message numbered, photos shown as figures</figcaption></figure>
+
+<h2>Tips and fixes</h2>
+<ul>
+  <li><strong>A phone number instead of a name.</strong> Type the real name into that person's box in the Make a Book window. If the same person appears twice — once as a number, once under their saved name — give both exactly the same name and they merge, with their messages and counts combined.</li>
+  <li><strong>@mentions showing a number.</strong> In some newer WhatsApp group chats the export only has a numeric ID in an @mention. The app lists these under <strong>Name these @mentions</strong> so you can name each one.</li>
+  <li><strong>Missing photos.</strong> This is nearly always WhatsApp's limit on how much media it exports, not something the app can undo. Use iMazing for the complete set. If the export has the names of the missing files, the app offers to find them in a copy of your WhatsApp media folder.</li>
+  <li><strong>iMessage photos on Windows.</strong> They are usually HEIC, which Windows cannot read. In iMazing turn on <strong>Convert HEIC to JPEG</strong> when exporting.</li>
+  <li><strong>A very long chat.</strong> Thousands of messages and photos are fine; the book is simply many pages. Splitting into one book per year keeps each one a manageable size.</li>
+</ul>
+
+<h2>Private by design</h2>
+<p>The export file is read on your own computer and the book is built there. There is no account, no upload and no tracking. Your conversation never leaves your machine. The <a href="privacy.html">privacy page</a> has the details.</p>
+
+<h2>Common questions</h2>
+<div class="card"><h3>Is my chat uploaded anywhere?</h3>
+<p>No. Mosaic Collage Maker reads the export file on your own computer and builds the book there. There is no account and nothing is sent to a server.</p></div>
+<div class="card"><h3>Can I make a book from iMessage?</h3>
+<p>Yes. Apple's Messages app has no export, so export the conversation with iMazing (as Text, keeping the photos folder beside the text file) and import that file with the Chat Book button.</p></div>
+<div class="card"><h3>Why are some photos missing from my WhatsApp book?</h3>
+<p>WhatsApp's own export only includes roughly the most recent few hundred photos and videos, so older ones are left out. iMazing's export includes the whole conversation with all its photos. Where a photo is missing, the book can show a 'photo not included' marker, which you can hide.</p></div>
+<div class="card"><h3>Why do some people show as phone numbers?</h3>
+<p>The export only has the name your phone knew. Type the right name into the person's box in the Make a Book window; if the same person appears twice, give both exactly the same name and they merge.</p></div>
+<div class="card"><h3>What is the difference between a keepsake book and a transcript?</h3>
+<p>A keepsake book looks like the chat on your phone, with bubbles, names, photos and a designed cover. A transcript is a formal numbered record of every message, with photos and PDFs shown as figures, suited to keeping a record.</p></div>
+<div class="card"><h3>Do my iMessage photos work on Windows?</h3>
+<p>iMessage photos are usually in Apple's HEIC format, which the Windows version cannot read. In iMazing, turn on 'Convert HEIC to JPEG' when exporting and they import as normal photos. On a Mac they work as they are.</p></div>
+
+<nav class="links">
+  <a href="help.html#chatbook">Full Chat Book help</a>
+  <a href="support.html">Support</a>
+  <a href="collage.html">About Mosaic Collage Maker</a>
+</nav>
+<footer>Mosaic Collage Maker is made by Steven Muir, one developer who answers his own support email.</footer>
+</div>
+</body>
+</html>
