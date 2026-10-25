@@ -12,6 +12,7 @@
 ## Mosaic Collage Maker
 - [Overview](https://stevendevmosaic.github.io/collage.html): Turns a folder of photos into print-ready photobook pages, with no fixed grid, any page size in millimetres, 300 DPI JPEG export. One-off purchase; fully offline; no account.
 - [Make a Day One journal book](https://stevendevmosaic.github.io/day-one-book.html): Step-by-step guide to turning a Day One journal export into a printed journal book or photobook, privately on your own computer.
+- [Make a chat book](https://stevendevmosaic.github.io/chat-book.html): Step-by-step guide to turning a WhatsApp or iMessage chat into a printed keepsake book or numbered transcript, privately on your own computer.
 - [Mosaic Collage Maker vs Posterino](https://stevendevmosaic.github.io/collage-vs-posterino.html): Comparison of approach, price model and privacy.
 - [Help guide](https://stevendevmosaic.github.io/help.html): Page sizes and margins tested with common photobook services.
 - [Templates](https://stevendevmosaic.github.io/templates.html)
