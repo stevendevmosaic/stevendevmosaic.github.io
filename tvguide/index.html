@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TV Guide">
+<meta name="theme-color" content="#12151b">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<title>UK TV Guide</title>
+<style>
+:root{--chw:200px;--ppm:5.4;--evbg:#151a22;--bg:#12151b;--panel:#1b2029;--line:#2a313d;--text:#e8ecf2;--dim:#8d97a8;--acc:#4da3ff;--now:#ff5a5f;--on:#1f3b5c;--w:4.2;--rowh:68px;--x:0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;height:100vh;display:flex;flex-direction:column}
+header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 14px;background:var(--panel);border-bottom:1px solid var(--line)}
+h1{font-size:16px;margin:0 8px 0 0}
+button,input,select{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font:inherit}
+button{cursor:pointer}button:hover{border-color:var(--acc)}
+button.on{background:var(--acc);color:#00172e;border-color:var(--acc)}
+#status{color:var(--dim);margin-left:auto;font-size:12px}
+#wrap{flex:1;overflow:auto;position:relative}
+#grid{position:relative;width:max-content;min-width:100%}
+.timebar{position:sticky;top:0;z-index:5;display:flex;height:28px;background:var(--panel);border-bottom:1px solid var(--line)}
+.corner{position:sticky;left:0;z-index:6;width:var(--chw);flex:none;background:var(--panel);border-right:1px solid var(--line)}
+.ticks{position:relative;flex:none}
+.tick.mid{color:var(--acc);font-weight:600;border-left:2px solid var(--acc)}.tick{position:absolute;top:0;height:100%;border-left:1px solid var(--line);padding:6px 6px;color:var(--dim);font-size:12px}
+.row{display:flex;height:var(--rowh);border-bottom:1px solid var(--line);background:var(--bg)}
+.row:nth-child(even){background:#171b23}
+.row:hover .evs{background-color:#ffffff05}
+.ch{position:sticky;left:0;z-index:3;width:var(--chw);flex:none;background:var(--panel);border-right:1px solid var(--line);padding:6px 8px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.logo{width:34px;height:34px;object-fit:contain;flex:none;background:#fff1;border-radius:5px;padding:2px}.chi{display:flex;gap:8px;align-items:center;min-width:0}.chi div{min-width:0;display:flex;flex-direction:column}.ch b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch span{color:var(--dim);font-size:11px}
+.star{cursor:pointer;color:var(--dim);margin-left:auto;font-size:13px}.star.on{color:#ffc54d}
+.evs{position:relative;flex:none;background-image:repeating-linear-gradient(90deg,#ffffff0d 0 1px,transparent 1px calc(60px * var(--ppm)))}
+.ev{position:absolute;top:7px;bottom:7px;background:var(--evbg);border-radius:8px;border-left:5px solid var(--gc,#5b6678);border-top:1px solid var(--gc,#5b6678);border-bottom:1px solid var(--gc,#5b6678);padding:5px 10px;overflow:clip;white-space:nowrap;cursor:pointer;transition:background .15s,transform .1s}
+.ev:hover{background:#222c3b;transform:translateY(-1px)}
+.lbl{display:block;position:sticky;left:calc(var(--chw) + 14px);width:max-content;max-width:min(100%,380px);overflow:hidden;text-overflow:ellipsis}
+.lbl b{display:block;font-weight:600;font-size:14.5px;overflow:hidden;text-overflow:ellipsis}
+.det{display:none}
+body.detailed{--rowh:132px}
+body.detailed .cs{display:none}
+body.detailed .det{display:block}
+body.detailed .ev{white-space:normal;padding:6px 10px}
+body.detailed .lbl{max-width:min(100%,420px)}
+.lbl .meta{display:block;color:var(--dim);font-size:12px;margin-top:2px}
+.lbl .tags{display:block;font-size:11px;color:#9fb4cf;margin-top:2px}
+.lbl .syn{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;font-size:12px;line-height:1.35;color:#aeb8c7;margin-top:4px}
+body.detailed .ev.live .meta,body.detailed .ev.live .syn{color:#cfe2f7}
+.lbl small{display:block;color:var(--dim);font-size:12px;margin-top:2px}
+.ev.past{opacity:.5}
+.ev.live{background:linear-gradient(90deg,#2c5d94 var(--pct),#1f3b5c var(--pct));box-shadow:0 0 0 1px var(--acc)}
+.ev.live .lbl small{color:#bcd8f5}
+.g3{--gc:#4da3ff}.g5{--gc:#35c4b0}.g6{--gc:#b07cff}.g7{--gc:#5fd068}.g4,.g8{--gc:#ffa24d}.g9{--gc:#ff6fa8}.g1{--gc:#6b7384}
+.nowline{position:absolute;top:0;bottom:0;width:2px;background:var(--now);opacity:.8;z-index:4;pointer-events:none}
+#detail{position:fixed;right:14px;bottom:14px;width:min(420px,calc(100vw - 28px));background:var(--panel);border:1px solid var(--acc);border-radius:10px;padding:14px;z-index:20;display:none;box-shadow:0 8px 30px #0008}
+#detail h2{margin:0 0 4px;font-size:16px}#detail p{margin:8px 0 0;color:#cfd6e2}
+#detail .meta{color:var(--dim);font-size:12px}#detail .x{float:right;cursor:pointer;color:var(--dim)}
+.empty{color:var(--dim);padding:6px 10px;font-size:12px}
+body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+#wrap{-webkit-overflow-scrolling:touch}
+@media(pointer:coarse){button,select,input{min-height:40px;font-size:16px}.star{font-size:22px;padding:6px}.ev:hover{transform:none}}
+@media(max-width:600px){:root{--chw:96px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>UK TV Guide</h1>
+  <button id="prev">‹</button><select id="day"></select><button id="next">›</button>
+  <button id="nowbtn">Now</button>
+  <select id="region"><option value="scotland">Central Scotland</option><option value="london">London / England</option></select>
+  <input id="q" type="search" placeholder="Search channels or programmes…" size="26">
+  <button id="favs">★ Favourites</button>
+  <select id="group"></select>
+  <select id="view" title="Programme detail"><option value="compact">Compact view</option><option value="detailed">Detailed view</option></select>
+  <span id="status">Loading…</span>
+</header>
+<div id="wrap"><div id="grid"></div></div>
+<div id="detail"></div>
+<script src="logos.js"></script>
+<script>
+// Data: Sky's public EPG JSON (unofficial, undocumented). Region 4101/1 = London.
+const API = 'https://awk.epgsky.com/hawk/linear';
+// Sky region feeds (bouquet/sub-bouquet): Scotland 4098/35 carries BBC One Scotland + STV
+const REGIONS = {scotland: '4098/35', london: '4101/1'};
+const RENAME = {'BBC One Lon': 'BBC One London', 'BBC One Scot': 'BBC One Scotland', 'BBC One Wal': 'BBC One Wales', 'BBC One NI': 'BBC One N. Ireland'};
+const HOURS_AFTER = 12;         // keep the timeline going this many hours past midnight
+const PX = 5.4;                 // pixels per minute
+const GROUPS = [
+  ['Main channels', c => c <= 110 || (c >= 120 && c <= 135)],
+  ['Entertainment & Docs', c => c >= 110 && c < 200],
+  ['Movies', c => c >= 300 && c < 400],
+  ['Sport', c => c >= 400 && c < 500],
+  ['News', c => c >= 500 && c < 600],
+  ['Kids', c => c >= 600 && c < 700],
+  ['Music & Radio', c => c >= 700 && c < 1000],
+  ['All channels', () => true]
+];
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+let channels = [], sched = {}, loaded = new Set(), dayStart, favs = new Set();
+try { favs = new Set(JSON.parse(localStorage.getItem('uktv-favs') || '[]')); } catch (e) {}
+
+const ymd = d => d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+const hm = t => new Date(t * 1000).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
+const midnight = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
+
+async function loadChannels() {
+  const r = await fetch(`${API}/services/${REGIONS[$('region').value]}`);
+  const list = (await r.json()).services;
+  const seen = new Map();
+  for (const s of list) {
+    const c = parseInt(s.c, 10);
+    if (s.adult || !c || c >= 1000) continue;
+    // prefer HD, de-dupe on channel number
+    if (!seen.has(c) || (s.sf === 'HD' && seen.get(c).sf !== 'HD')) seen.set(c, s);
+  }
+  channels = [...seen.entries()].sort((a, b) => a[0] - b[0]).map(([c, s]) => ({sid: s.sid, num: c, name: (n => RENAME[n] || n)(s.t.replace(/\s*HD$/, '').trim())}));
+}
+
+async function loadDay(sids, date) {
+  const key = ymd(date), need = sids.filter(s => !loaded.has(key + ':' + s));
+  const chunks = [];
+  for (let i = 0; i < need.length; i += 10) chunks.push(need.slice(i, i + 10));  // API rejects >~10 ids
+  $('status').textContent = `Loading ${key}…`;
+  await Promise.all(chunks.map(async chunk => {
+    try {
+      const r = await fetch(`${API}/schedule/${key}/${chunk.join(',')}`);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      for (const s of (await r.json()).schedule) {
+        const m = sched[s.sid] ||= new Map();
+        for (const e of s.events) m.set(e.eid, e);
+        loaded.add(key + ':' + s.sid);
+      }
+    } catch (e) { $('status').textContent = 'Load failed: ' + e.message; }
+  }));
+}
+
+function visible() {
+  const g = GROUPS[$('group').value], q = $('q').value.trim().toLowerCase();
+  let list = channels.filter(ch => g[1](ch.num));
+  if ($('favs').classList.contains('on')) list = channels.filter(ch => favs.has(ch.sid));
+  if (q) list = channels.filter(ch => ch.name.toLowerCase().includes(q) ||
+      [...(sched[ch.sid]?.values() || [])].some(e => (e.t || '').toLowerCase().includes(q)));
+  return list;
+}
+
+async function render() {
+  const list = visible(), date = dayStart;
+  const prev = new Date(date); prev.setDate(prev.getDate() - 1);
+  const next = new Date(date); next.setDate(next.getDate() + 1);
+  const sids = list.map(c => c.sid);
+  await Promise.all([loadDay(sids, date), loadDay(sids, prev), loadDay(sids, next)]);
+  const t0 = date.getTime() / 1000, nextMid = new Date(date); nextMid.setDate(nextMid.getDate() + 1);
+  const t1 = nextMid.getTime() / 1000 + HOURS_AFTER * 3600, width = (t1 - t0) / 60 * PX, now = Date.now() / 1000;
+  const q = $('q').value.trim().toLowerCase();
+  let h = '<div class="timebar"><div class="corner"></div><div class="ticks" style="width:' + width + 'px">';
+  for (let t = t0; t < t1; t += 1800) { const d = new Date(t * 1000), mid = d.getHours() === 0 && d.getMinutes() === 0;
+      h += `<div class="tick${mid ? ' mid' : ''}" style="left:${(t - t0) / 60 * PX}px">${mid ? d.toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric', month: 'short'}) : hm(t)}</div>`; }
+  h += '</div></div>';
+  for (const ch of list) {
+    const lg = (typeof LOGOS !== 'undefined' && LOGOS[ch.sid]) ? `<img class="logo" loading="lazy" src="logos/${LOGOS[ch.sid]}" alt="">` : '';
+    h += `<div class="row"><div class="ch"><div class="chi">${lg}<div><b>${esc(ch.name)}</b><span>${ch.num}</span></div><span class="star ${favs.has(ch.sid) ? 'on' : ''}" data-sid="${ch.sid}">★</span></div></div><div class="evs" style="width:${width}px">`;
+    const evs = [...(sched[ch.sid]?.values() || [])].filter(e => e.st < t1 && e.st + e.d > t0).sort((a, b) => a.st - b.st);
+    if (!evs.length) h += '<div class="empty">No listings</div>';
+    for (const e of evs) {
+      const l = Math.max(0, (e.st - t0) / 60 * PX), r = Math.min(width, (e.st + e.d - t0) / 60 * PX);
+      const live = e.st <= now && now < e.st + e.d, past = e.st + e.d <= now, hit = q && (e.t || '').toLowerCase().includes(q);
+      const pct = live ? Math.round((now - e.st) / e.d * 100) : 0;
+      h += `<div class="ev g${e.eg || 0} ${live ? 'live' : ''} ${past ? 'past' : ''}" style="left:${l + 3}px;width:${Math.max(4, r - l - 6)}px;--pct:${pct}%;${hit ? 'outline:2px solid #ffc54d' : ''}" data-sid="${ch.sid}" data-eid="${e.eid}" title="${esc(e.t)}"><span class="lbl"><b>${esc(e.t)}</b><small class="cs">${hm(e.st)}${e.new ? ' · NEW' : ''}</small><span class="det"><span class="meta">${hm(e.st)}–${hm(e.st + e.d)} · ${Math.round(e.d / 60)} min</span>${(e.new || e.hd || e.s || e.ad || e.signed) ? `<span class="tags">${[e.new && 'NEW', e.hd && 'HD', e.s && 'Subtitles', e.ad && 'Audio described', e.signed && 'Signed'].filter(Boolean).join(' · ')}</span>` : ''}${e.sy ? `<span class="syn">${esc(e.sy)}</span>` : ''}</span></span></div>`;
+    }
+    h += '</div></div>';
+  }
+  if (now >= t0 && now < t1) h += `<div class="nowline" id="nowline" style="left:calc(var(--chw) + ${(now - t0) / 60 * PX}px)"></div>`;
+  $('grid').innerHTML = h;
+  $('status').textContent = `${list.length} channels · ${date.toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'})}`;
+}
+
+function scrollNow() {
+  const now = Date.now() / 1000, t0 = dayStart.getTime() / 1000;
+  $('wrap').scrollLeft = Math.max(0, (now - t0) / 60 * PX - 120);
+}
+
+function setDay(offset) {
+  const d = midnight(new Date()); d.setDate(d.getDate() + offset);
+  dayStart = d; $('day').value = offset;
+  render().then(() => { if (offset === 0) scrollNow(); else $('wrap').scrollLeft = 8 * 60 * PX; });
+}
+
+$('grid').addEventListener('click', e => {
+  const star = e.target.closest('.star');
+  if (star) {
+    const s = star.dataset.sid; favs.has(s) ? favs.delete(s) : favs.add(s);
+    try { localStorage.setItem('uktv-favs', JSON.stringify([...favs])); } catch (e) {}
+    star.classList.toggle('on'); return;
+  }
+  const ev = e.target.closest('.ev'); if (!ev) return;
+  const x = sched[ev.dataset.sid].get(ev.dataset.eid), ch = channels.find(c => c.sid === ev.dataset.sid);
+  const d = $('detail'), key = ev.dataset.sid + ':' + ev.dataset.eid;
+  if (d.style.display === 'block' && d.dataset.key === key) { d.style.display = 'none'; return; }
+  d.dataset.key = key;
+  d.innerHTML = `<span class="x" onclick="this.parentNode.style.display='none'">✕</span><h2>${esc(x.t)}</h2>
+    <div class="meta">${esc(ch.name)} · ${hm(x.st)}–${hm(x.st + x.d)} (${Math.round(x.d / 60)} min)${x.new ? ' · New' : ''}${x.hd ? ' · HD' : ''}${x.ad ? ' · AD' : ''}${x.s ? ' · Subtitles' : ''}</div>
+    <p>${esc(x.sy || 'No description.')}</p>`;
+  d.style.display = 'block';
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('detail').style.display = 'none'; });
+(async () => {
+  const dsel = $('day');
+  for (let i = -1; i <= 7; i++) {
+    const d = new Date(); d.setDate(d.getDate() + i);
+    dsel.add(new Option(i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : i === -1 ? 'Yesterday' : d.toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric', month: 'short'}), i));
+  }
+  GROUPS.forEach((g, i) => $('group').add(new Option(g[0], i)));
+  try { $('region').value = localStorage.getItem('uktv-region') || 'scotland'; } catch (e) {}
+  const setView = v => { document.body.classList.toggle('detailed', v === 'detailed'); $('view').value = v; try { localStorage.setItem('uktv-view', v); } catch (e) {} };
+  try { setView(localStorage.getItem('uktv-view') || 'compact'); } catch (e) {}
+  $('view').onchange = () => setView($('view').value);
+  $('region').onchange = async () => {
+    try { localStorage.setItem('uktv-region', $('region').value); } catch (e) {}
+    $('status').textContent = 'Loading region…';
+    try { await loadChannels(); } catch (e) { $('status').textContent = 'Could not load channel list: ' + e.message; return; }
+    render();
+  };
+  dsel.onchange = () => setDay(+dsel.value);
+  $('prev').onclick = () => { if (+dsel.value > -1) setDay(+dsel.value - 1); };
+  $('next').onclick = () => { if (+dsel.value < 7) setDay(+dsel.value + 1); };
+  $('nowbtn').onclick = () => { if (+dsel.value !== 0) setDay(0); else scrollNow(); };
+  $('group').onchange = () => { $('favs').classList.remove('on'); render(); };
+  $('favs').onclick = e => { e.target.classList.toggle('on'); render(); };
+  let timer; $('q').oninput = () => { clearTimeout(timer); timer = setTimeout(render, 300); };
+  try { await loadChannels(); } catch (e) { $('status').textContent = 'Could not load channel list: ' + e.message; return; }
+  dsel.value = 0; setDay(0);
+  setInterval(() => { if (+dsel.value === 0) render(); }, 5 * 60 * 1000);
+})();
+</script>
+</body>
+</html>
