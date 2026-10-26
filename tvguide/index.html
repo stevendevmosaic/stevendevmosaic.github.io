@@ -63,6 +63,46 @@ body.detailed .ev.live .meta,body.detailed .ev.live .syn{color:#cfe2f7}
 body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 html{background:var(--bg);-webkit-text-size-adjust:100%}
 #wrap{-webkit-overflow-scrolling:touch}
+/* My list: picked programmes, shown as a panel and printed as a clean list */
+.ev.picked::after{content:'★';position:absolute;right:7px;top:3px;color:#ffc54d;font-size:14px;text-shadow:0 0 4px #000}
+body.detailed .ev.picked::after{top:5px}
+#mybtn b{background:#ffc54d;color:#1a1300;border-radius:9px;padding:0 6px;font-size:12px;margin-left:4px}
+.pickbtn{margin-top:10px;width:100%}.pickbtn.on{background:#ffc54d;color:#1a1300;border-color:#ffc54d}
+#mylist{position:fixed;top:56px;right:14px;bottom:14px;width:min(640px,calc(100vw - 28px));background:var(--panel);border:1px solid var(--acc);border-radius:12px;padding:14px;z-index:30;display:none;flex-direction:column;box-shadow:0 8px 30px #000a}
+body.listopen #mylist{display:flex}
+.mlhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.mlhead h2{margin:0 auto 0 0;font-size:17px}
+.seg{display:flex}.seg button{border-radius:0}.seg button:first-child{border-radius:6px 0 0 6px}.seg button:last-child{border-radius:0 6px 6px 0}
+#mlmsg{font-size:13px;color:#cfe2f7;margin:4px 0 8px}
+#mlmsg input,#mlimpbox textarea{width:100%;margin-top:6px;font-size:12px}
+#mlimpbox{margin-bottom:8px}#mlimpbox textarea{height:64px}
+#mlbody{overflow:auto;flex:1}
+#mlprinthead{display:none}
+.mlday{font-weight:700;font-size:14px;color:var(--acc);margin:14px 0 6px;border-bottom:1px solid var(--line);padding-bottom:3px}
+.it{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #ffffff10}
+.it .tm{width:58px;flex:none;font-weight:700;font-variant-numeric:tabular-nums}.it .tm small{display:block;font-weight:400;color:var(--dim)}
+.it .bd{flex:1;min-width:0}.it .bd b{font-size:15px}
+.it .chn{display:flex;align-items:center;gap:6px;color:var(--dim);font-size:12px;margin-top:1px}.it .chn img{width:20px;height:20px;object-fit:contain;background:#fff1;border-radius:4px}
+.it .sy{font-size:12px;color:#aeb8c7;margin-top:3px}
+.it .clash{display:inline-block;margin-top:3px;font-size:12px;color:#ffb74d}
+.it .rm{align-self:flex-start;padding:2px 8px}
+.empty-list{color:var(--dim);padding:18px 4px}
+@media print{
+  body.listopen{background:#fff!important;color:#000!important;height:auto!important;display:block!important;padding:0!important}
+  html{background:#fff!important}
+  body.listopen header,body.listopen #wrap,body.listopen #detail,body.listopen .noprint{display:none!important}
+  body.listopen #mylist{position:static!important;display:block!important;width:auto!important;border:0!important;box-shadow:none!important;background:#fff!important;color:#000!important;padding:0!important}
+  body.listopen #mlbody{overflow:visible!important}
+  body.listopen #mlprinthead{display:block!important;margin-bottom:10px}
+  body.listopen #mlprinthead h1{font-size:20px;margin:0;color:#000}body.listopen #mlprinthead div{color:#555;font-size:12px}
+  body.listopen .mlday{color:#000!important;border-bottom:1.5px solid #000!important;margin-top:16px}
+  body.listopen .it{border-bottom:1px solid #ccc!important;break-inside:avoid}
+  body.listopen .it .tm small,body.listopen .it .chn,body.listopen .it .sy{color:#444!important}
+  body.listopen .it .chn img{background:#1b2029!important;padding:1px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body.listopen .it .clash{color:#b45f00!important}
+  body.listopen .it .rm{display:none!important}
+  body.nativeprint.listopen #mylist{zoom:1.35}   /* the Mac app's native print lays out at window width, so scale up */
+}
 @media(pointer:coarse){button,select,input{min-height:40px;font-size:16px}.star{font-size:22px;padding:6px}.ev:hover{transform:none}}
 @media(max-width:600px){:root{--chw:96px}}
 </style>
@@ -75,12 +115,28 @@ html{background:var(--bg);-webkit-text-size-adjust:100%}
   <select id="region"><option value="scotland">Central Scotland</option><option value="london">London / England</option></select>
   <input id="q" type="search" placeholder="Search channels or programmes…" size="26">
   <button id="favs">★ Favourites</button>
+  <button id="mybtn" title="Programmes you have picked">My list <b id="mycount">0</b></button>
   <select id="group"></select>
   <select id="view" title="Programme detail"><option value="compact">Compact view</option><option value="detailed">Detailed view</option></select>
   <span id="status">Loading…</span>
 </header>
 <div id="wrap"><div id="grid"></div></div>
 <div id="detail"></div>
+<div id="mylist" role="dialog" aria-label="My list">
+  <div class="mlhead noprint">
+    <h2>My list</h2>
+    <div class="seg"><button data-r="today">Today</button><button data-r="week">Week</button><button data-r="all">All</button></div>
+    <button id="mlcopy" title="Copy a link that loads these picks on another device">Copy link</button>
+    <button id="mlprint">Print / PDF</button>
+    <button id="mlimport">Import…</button>
+    <button id="mlclear">Clear</button>
+    <button id="mlclose">✕</button>
+  </div>
+  <div id="mlmsg" class="noprint"></div>
+  <div id="mlimpbox" class="noprint" hidden><textarea id="mlimptext" placeholder="Paste a My list link here"></textarea><button id="mlimpgo">Add these picks</button></div>
+  <div id="mlprinthead"></div>
+  <div id="mlbody"></div>
+</div>
 <script src="logos.js"></script>
 <script>
 // Data: Sky's public EPG JSON (unofficial, undocumented). Region 4101/1 = London.
@@ -104,6 +160,111 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 let channels = [], sched = {}, loaded = new Set(), dayStart, favs = new Set();
 try { favs = new Set(JSON.parse(localStorage.getItem('uktv-favs') || '[]')); } catch (e) {}
+
+// ---- My list (picked programmes) ----
+const PUBLIC_URL = 'https://stevendevmosaic.github.io/tvguide/';   // used for share links from the Mac app (file://)
+let picks = {}, listRange = 'week', pendingImport = null;
+const pkey = (sid, eid) => sid + ':' + eid;
+function loadPicks() {
+  try { picks = JSON.parse(localStorage.getItem('uktv-picks') || '{}'); } catch (e) { picks = {}; }
+  const cut = Date.now() / 1000 - 7200;                 // forget programmes that finished over 2 hours ago
+  for (const k in picks) if (picks[k].st + picks[k].d < cut) delete picks[k];
+}
+function savePicks() { try { localStorage.setItem('uktv-picks', JSON.stringify(picks)); } catch (e) {} $('mycount').textContent = Object.keys(picks).length; }
+function chanName(sid) { const c = channels.find(c => c.sid === sid); return c ? c.name : sid; }
+function togglePick(sid, eid) {
+  const k = pkey(sid, eid);
+  if (picks[k]) delete picks[k];
+  else { const e = sched[sid] && sched[sid].get(eid); if (!e) return; picks[k] = {sid, eid, t: e.t, st: e.st, d: e.d, sy: e.sy || '', eg: e.eg || 0, nw: !!e.new, cn: chanName(sid)}; }
+  savePicks();
+  document.querySelectorAll('.ev').forEach(el => { if (el.dataset.sid === sid && el.dataset.eid === eid) el.classList.toggle('picked', !!picks[k]); });
+  if (document.body.classList.contains('listopen')) renderList();
+  return !!picks[k];
+}
+function listItems() {
+  const now = Date.now() / 1000;
+  let items = Object.values(picks).filter(p => p.st + p.d > now);
+  if (listRange !== 'all') {
+    const end = midnight(new Date()); end.setDate(end.getDate() + (listRange === 'today' ? 1 : 7));
+    items = items.filter(p => p.st < end.getTime() / 1000);
+  }
+  return items.sort((a, b) => a.st - b.st);
+}
+function renderList() {
+  const items = listItems(), rl = {today: 'Today', week: 'Next 7 days', all: 'All picks'}[listRange];
+  document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('on', b.dataset.r === listRange));
+  $('mlprinthead').innerHTML = `<h1>My TV list</h1><div>${rl} · ${$('region').selectedOptions[0].textContent} · printed ${new Date().toLocaleString('en-GB', {weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'})}</div>`;
+  if (!items.length) { $('mlbody').innerHTML = `<div class="empty-list">Nothing picked${listRange === 'all' ? '' : ' for this range'} yet. Click a programme, then <b>Add to my list</b>.</div>`; return; }
+  let h = '', lastDay = '';
+  for (const p of items) {
+    const day = new Date(p.st * 1000).toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'});
+    if (day !== lastDay) { h += `<div class="mlday">${day}</div>`; lastDay = day; }
+    const clash = items.filter(o => o !== p && o.sid !== p.sid && o.st < p.st + p.d && p.st < o.st + o.d);
+    const lg = (typeof LOGOS !== 'undefined' && LOGOS[p.sid]) ? `<img src="logos/${LOGOS[p.sid]}" alt="">` : '';
+    h += `<div class="it"><div class="tm">${hm(p.st)}<small>–${hm(p.st + p.d)}</small></div><div class="bd"><b>${esc(p.t)}</b>${p.nw ? ' <small>NEW</small>' : ''}
+      <div class="chn">${lg}${esc(p.cn || chanName(p.sid))} · ${Math.round(p.d / 60)} min</div>
+      ${clash.length ? `<div class="clash">⚠ Clashes with ${clash.map(o => esc(o.t) + ' (' + esc(o.cn || chanName(o.sid)) + ')').join(', ')}</div>` : ''}
+      ${p.sy ? `<div class="sy">${esc(p.sy)}</div>` : ''}</div><button class="rm noprint" data-sid="${p.sid}" data-eid="${p.eid}" title="Remove">✕</button></div>`;
+  }
+  $('mlbody').innerHTML = h;
+}
+function openList() { document.body.classList.add('listopen'); renderList(); }
+function closeList() { document.body.classList.remove('listopen'); }
+function doPrint() {
+  openList();
+  setTimeout(() => {
+    const n = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.uktvPrint;   // the Mac app prints natively
+    if (n) n.postMessage('print'); else window.print();
+  }, 150);
+}
+
+// Share link: only [channel id, programme id, start] per pick; the receiving device re-reads the details from the guide.
+const b64u = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const unb64u = s => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
+function shareLink() {
+  const base = location.protocol === 'file:' ? PUBLIC_URL : location.origin + location.pathname;
+  return base + '#picks=' + b64u(JSON.stringify(Object.values(picks).map(p => [p.sid, p.eid, p.st])));
+}
+function parseLink(text) {
+  const m = String(text).match(/picks=([A-Za-z0-9_-]+)/);
+  if (!m) return null;
+  try { const a = JSON.parse(unb64u(m[1])); return Array.isArray(a) ? a.filter(x => Array.isArray(x) && x.length >= 3) : null; } catch (e) { return null; }
+}
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true; } catch (e) {}
+  const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+  ta.remove(); return ok;
+}
+async function importPicks(triples) {
+  const want = new Map(triples.map(([sid, eid, st]) => [sid + '|' + eid, st])), byDay = {};
+  for (const [sid, , st] of triples) (byDay[ymd(new Date(st * 1000))] ||= new Set()).add(sid);
+  let added = 0;
+  for (const [day, sids] of Object.entries(byDay)) {
+    const ids = [...sids];
+    for (let i = 0; i < ids.length; i += 10) {
+      try {
+        const r = await fetch(`${API}/schedule/${day}/${ids.slice(i, i + 10).join(',')}`);
+        if (!r.ok) continue;
+        for (const s of (await r.json()).schedule) for (const e of s.events) {
+          if (!want.has(s.sid + '|' + e.eid)) continue;
+          const k = pkey(s.sid, e.eid);
+          if (!picks[k]) added++;
+          picks[k] = {sid: s.sid, eid: e.eid, t: e.t, st: e.st, d: e.d, sy: e.sy || '', eg: e.eg || 0, nw: !!e.new, cn: chanName(s.sid)};
+          want.delete(s.sid + '|' + e.eid);
+        }
+      } catch (e) { /* skip this chunk */ }
+    }
+  }
+  savePicks();
+  document.querySelectorAll('.ev').forEach(el => el.classList.toggle('picked', !!picks[pkey(el.dataset.sid, el.dataset.eid)]));
+  return {added, missing: want.size};
+}
+function showImportPrompt(triples) {
+  pendingImport = triples;
+  $('mlmsg').innerHTML = `A shared list with <b>${triples.length}</b> programme${triples.length === 1 ? '' : 's'}. <button id="mlpendadd">Add to my list</button> <button id="mlpendno">Ignore</button>`;
+}
 
 const ymd = d => d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
 const hm = t => new Date(t * 1000).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
@@ -171,7 +332,7 @@ async function render() {
       const l = Math.max(0, (e.st - t0) / 60 * PX), r = Math.min(width, (e.st + e.d - t0) / 60 * PX);
       const live = e.st <= now && now < e.st + e.d, past = e.st + e.d <= now, hit = q && (e.t || '').toLowerCase().includes(q);
       const pct = live ? Math.round((now - e.st) / e.d * 100) : 0;
-      h += `<div class="ev g${e.eg || 0} ${live ? 'live' : ''} ${past ? 'past' : ''}" style="left:${l + 3}px;width:${Math.max(4, r - l - 6)}px;--pct:${pct}%;${hit ? 'outline:2px solid #ffc54d' : ''}" data-sid="${ch.sid}" data-eid="${e.eid}" title="${esc(e.t)}"><span class="lbl"><b>${esc(e.t)}</b><small class="cs">${hm(e.st)}${e.new ? ' · NEW' : ''}</small><span class="det"><span class="meta">${hm(e.st)}–${hm(e.st + e.d)} · ${Math.round(e.d / 60)} min</span>${(e.new || e.hd || e.s || e.ad || e.signed) ? `<span class="tags">${[e.new && 'NEW', e.hd && 'HD', e.s && 'Subtitles', e.ad && 'Audio described', e.signed && 'Signed'].filter(Boolean).join(' · ')}</span>` : ''}${e.sy ? `<span class="syn">${esc(e.sy)}</span>` : ''}</span></span></div>`;
+      h += `<div class="ev g${e.eg || 0} ${live ? 'live' : ''} ${past ? 'past' : ''}${picks[pkey(ch.sid, e.eid)] ? ' picked' : ''}" style="left:${l + 3}px;width:${Math.max(4, r - l - 6)}px;--pct:${pct}%;${hit ? 'outline:2px solid #ffc54d' : ''}" data-sid="${ch.sid}" data-eid="${e.eid}" title="${esc(e.t)}"><span class="lbl"><b>${esc(e.t)}</b><small class="cs">${hm(e.st)}${e.new ? ' · NEW' : ''}</small><span class="det"><span class="meta">${hm(e.st)}–${hm(e.st + e.d)} · ${Math.round(e.d / 60)} min</span>${(e.new || e.hd || e.s || e.ad || e.signed) ? `<span class="tags">${[e.new && 'NEW', e.hd && 'HD', e.s && 'Subtitles', e.ad && 'Audio described', e.signed && 'Signed'].filter(Boolean).join(' · ')}</span>` : ''}${e.sy ? `<span class="syn">${esc(e.sy)}</span>` : ''}</span></span></div>`;
     }
     h += '</div></div>';
   }
@@ -205,11 +366,55 @@ $('grid').addEventListener('click', e => {
   d.dataset.key = key;
   d.innerHTML = `<span class="x" onclick="this.parentNode.style.display='none'">✕</span><h2>${esc(x.t)}</h2>
     <div class="meta">${esc(ch.name)} · ${hm(x.st)}–${hm(x.st + x.d)} (${Math.round(x.d / 60)} min)${x.new ? ' · New' : ''}${x.hd ? ' · HD' : ''}${x.ad ? ' · AD' : ''}${x.s ? ' · Subtitles' : ''}</div>
-    <p>${esc(x.sy || 'No description.')}</p>`;
+    <p>${esc(x.sy || 'No description.')}</p>
+    <button class="pickbtn${picks[key] ? ' on' : ''}" data-sid="${ev.dataset.sid}" data-eid="${ev.dataset.eid}">${picks[key] ? '★ In my list (click to remove)' : '☆ Add to my list'}</button>`;
   d.style.display = 'block';
 });
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') $('detail').style.display = 'none'; });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { $('detail').style.display = 'none'; closeList(); }
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'p') { e.preventDefault(); doPrint(); }
+});
+$('detail').addEventListener('click', e => {
+  const b = e.target.closest('.pickbtn'); if (!b) return;
+  const on = togglePick(b.dataset.sid, b.dataset.eid);
+  b.classList.toggle('on', !!on); b.textContent = on ? '★ In my list (click to remove)' : '☆ Add to my list';
+});
+$('mybtn').onclick = () => document.body.classList.contains('listopen') ? closeList() : openList();
+$('mlclose').onclick = closeList;
+document.querySelectorAll('.seg button').forEach(b => b.onclick = () => { listRange = b.dataset.r; renderList(); });
+$('mlbody').addEventListener('click', e => { const b = e.target.closest('.rm'); if (b) togglePick(b.dataset.sid, b.dataset.eid); });
+$('mlprint').onclick = doPrint;
+$('mlcopy').onclick = async () => {
+  if (!Object.keys(picks).length) { $('mlmsg').textContent = 'Nothing picked yet, so there is no link to copy.'; return; }
+  const link = shareLink(), ok = await copyText(link);
+  $('mlmsg').innerHTML = (ok ? 'Link copied. Open it on your other device to load these picks.' : 'Select and copy this link, then open it on your other device:') + `<input readonly value="${link}" onfocus="this.select()">`;
+};
+$('mlimport').onclick = () => { $('mlimpbox').hidden = !$('mlimpbox').hidden; };
+$('mlimpgo').onclick = async () => {
+  const t = parseLink($('mlimptext').value);
+  if (!t) { $('mlmsg').textContent = 'That does not look like a My list link.'; return; }
+  $('mlmsg').textContent = 'Adding…';
+  const r = await importPicks(t);
+  $('mlmsg').textContent = `Added ${r.added} programme${r.added === 1 ? '' : 's'}${r.missing ? `; ${r.missing} no longer in the listings` : ''}.`;
+  $('mlimptext').value = ''; $('mlimpbox').hidden = true; renderList();
+};
+$('mlclear').onclick = () => {
+  if ($('mlclear').dataset.sure) { picks = {}; savePicks(); delete $('mlclear').dataset.sure; $('mlclear').textContent = 'Clear'; $('mlmsg').textContent = 'List cleared.';
+    document.querySelectorAll('.ev.picked').forEach(el => el.classList.remove('picked')); renderList(); }
+  else { $('mlclear').dataset.sure = 1; $('mlclear').textContent = 'Really clear?'; setTimeout(() => { delete $('mlclear').dataset.sure; $('mlclear').textContent = 'Clear'; }, 3000); }
+};
+$('mlmsg').addEventListener('click', async e => {
+  if (e.target.id === 'mlpendno') { pendingImport = null; $('mlmsg').textContent = ''; history.replaceState(null, '', location.pathname + location.search); }
+  if (e.target.id === 'mlpendadd' && pendingImport) {
+    $('mlmsg').textContent = 'Adding…';
+    const r = await importPicks(pendingImport); pendingImport = null;
+    history.replaceState(null, '', location.pathname + location.search);
+    $('mlmsg').textContent = `Added ${r.added} programme${r.added === 1 ? '' : 's'}${r.missing ? `; ${r.missing} no longer in the listings` : ''}.`; renderList();
+  }
+});
+loadPicks(); savePicks();
+if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.uktvPrint) document.body.classList.add('nativeprint');
 (async () => {
   const dsel = $('day');
   for (let i = -1; i <= 7; i++) {
@@ -236,6 +441,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') $('detail').
   let timer; $('q').oninput = () => { clearTimeout(timer); timer = setTimeout(render, 300); };
   try { await loadChannels(); } catch (e) { $('status').textContent = 'Could not load channel list: ' + e.message; return; }
   dsel.value = 0; setDay(0);
+  const shared = parseLink(location.hash);
+  if (shared && shared.length) { openList(); showImportPrompt(shared); }
   setInterval(() => { if (+dsel.value === 0) render(); }, 5 * 60 * 1000);
 })();
 </script>
