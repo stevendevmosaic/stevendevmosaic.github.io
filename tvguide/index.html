@@ -125,6 +125,7 @@ body.listopen #mylist{display:flex}
 <div id="mylist" role="dialog" aria-label="My list">
   <div class="mlhead noprint">
     <h2>My list</h2>
+    <div class="seg"><button data-s="time">By time</button><button data-s="chan">By channel</button></div>
     <div class="seg"><button data-r="today">Today</button><button data-r="week">Week</button><button data-r="all">All</button></div>
     <button id="mlcopy" title="Copy a link that loads these picks on another device">Copy link</button>
     <button id="mlprint">Print / PDF</button>
@@ -163,14 +164,19 @@ try { favs = new Set(JSON.parse(localStorage.getItem('uktv-favs') || '[]')); } c
 
 // ---- My list (picked programmes) ----
 const PUBLIC_URL = 'https://stevendevmosaic.github.io/tvguide/';   // used for share links from the Mac app (file://)
-let picks = {}, listRange = 'week', pendingImport = null;
+let picks = {}, listRange = 'week', listSort = 'time', pendingImport = null;
+try { listSort = localStorage.getItem('uktv-sort') === 'chan' ? 'chan' : 'time'; } catch (e) {}
 const pkey = (sid, eid) => sid + ':' + eid;
 function loadPicks() {
   try { picks = JSON.parse(localStorage.getItem('uktv-picks') || '{}'); } catch (e) { picks = {}; }
   const cut = Date.now() / 1000 - 7200;                 // forget programmes that finished over 2 hours ago
   for (const k in picks) if (picks[k].st + picks[k].d < cut) delete picks[k];
 }
-function savePicks() { try { localStorage.setItem('uktv-picks', JSON.stringify(picks)); } catch (e) {} $('mycount').textContent = Object.keys(picks).length; }
+function syncNative() {   // the Mac app mirrors upcoming picks to a file so the Flexbar / BarDeck can show the next one
+  const n = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.uktvPicks;
+  if (n) n.postMessage(JSON.stringify(Object.values(picks).map(p => ({sid: p.sid, t: p.t, st: p.st, d: p.d, cn: p.cn || chanName(p.sid)}))));
+}
+function savePicks() { try { localStorage.setItem('uktv-picks', JSON.stringify(picks)); } catch (e) {} syncNative(); $('mycount').textContent = Object.keys(picks).length; }
 function chanName(sid) { const c = channels.find(c => c.sid === sid); return c ? c.name : sid; }
 function togglePick(sid, eid) {
   const k = pkey(sid, eid);
@@ -188,20 +194,23 @@ function listItems() {
     const end = midnight(new Date()); end.setDate(end.getDate() + (listRange === 'today' ? 1 : 7));
     items = items.filter(p => p.st < end.getTime() / 1000);
   }
-  return items.sort((a, b) => a.st - b.st);
+  return listSort === 'chan'
+    ? items.sort((a, b) => (a.cn || '').localeCompare(b.cn || '') || a.st - b.st)
+    : items.sort((a, b) => a.st - b.st);
 }
 function renderList() {
   const items = listItems(), rl = {today: 'Today', week: 'Next 7 days', all: 'All picks'}[listRange];
-  document.querySelectorAll('.seg button').forEach(b => b.classList.toggle('on', b.dataset.r === listRange));
+  document.querySelectorAll('.seg button[data-r]').forEach(b => b.classList.toggle('on', b.dataset.r === listRange));
+  document.querySelectorAll('.seg button[data-s]').forEach(b => b.classList.toggle('on', b.dataset.s === listSort));
   $('mlprinthead').innerHTML = `<h1>My TV list</h1><div>${rl} · ${$('region').selectedOptions[0].textContent} · printed ${new Date().toLocaleString('en-GB', {weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'})}</div>`;
   if (!items.length) { $('mlbody').innerHTML = `<div class="empty-list">Nothing picked${listRange === 'all' ? '' : ' for this range'} yet. Click a programme, then <b>Add to my list</b>.</div>`; return; }
   let h = '', lastDay = '';
   for (const p of items) {
-    const day = new Date(p.st * 1000).toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'});
+    const day = listSort === 'chan' ? (p.cn || chanName(p.sid)) : new Date(p.st * 1000).toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'});
     if (day !== lastDay) { h += `<div class="mlday">${day}</div>`; lastDay = day; }
     const clash = items.filter(o => o !== p && o.sid !== p.sid && o.st < p.st + p.d && p.st < o.st + o.d);
     const lg = (typeof LOGOS !== 'undefined' && LOGOS[p.sid]) ? `<img src="logos/${LOGOS[p.sid]}" alt="">` : '';
-    h += `<div class="it"><div class="tm">${hm(p.st)}<small>–${hm(p.st + p.d)}</small></div><div class="bd"><b>${esc(p.t)}</b>${p.nw ? ' <small>NEW</small>' : ''}
+    h += `<div class="it"><div class="tm">${listSort === 'chan' ? new Date(p.st * 1000).toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric'}) + '<br>' : ''}${hm(p.st)}<small>–${hm(p.st + p.d)}</small></div><div class="bd"><b>${esc(p.t)}</b>${p.nw ? ' <small>NEW</small>' : ''}
       <div class="chn">${lg}${esc(p.cn || chanName(p.sid))} · ${Math.round(p.d / 60)} min</div>
       ${clash.length ? `<div class="clash">⚠ Clashes with ${clash.map(o => esc(o.t) + ' (' + esc(o.cn || chanName(o.sid)) + ')').join(', ')}</div>` : ''}
       ${p.sy ? `<div class="sy">${esc(p.sy)}</div>` : ''}</div><button class="rm noprint" data-sid="${p.sid}" data-eid="${p.eid}" title="Remove">✕</button></div>`;
@@ -382,7 +391,8 @@ $('detail').addEventListener('click', e => {
 });
 $('mybtn').onclick = () => document.body.classList.contains('listopen') ? closeList() : openList();
 $('mlclose').onclick = closeList;
-document.querySelectorAll('.seg button').forEach(b => b.onclick = () => { listRange = b.dataset.r; renderList(); });
+document.querySelectorAll('.seg button[data-r]').forEach(b => b.onclick = () => { listRange = b.dataset.r; renderList(); });
+document.querySelectorAll('.seg button[data-s]').forEach(b => b.onclick = () => { listSort = b.dataset.s; try { localStorage.setItem('uktv-sort', listSort); } catch (e) {} renderList(); });
 $('mlbody').addEventListener('click', e => { const b = e.target.closest('.rm'); if (b) togglePick(b.dataset.sid, b.dataset.eid); });
 $('mlprint').onclick = doPrint;
 $('mlcopy').onclick = async () => {
