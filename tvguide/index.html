@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TV Guide">
+<meta name="theme-color" content="#12151b">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<title>UK TV Guide</title>
+<style>
+:root{--chw:200px;--ppm:5.4;--evbg:#151a22;--bg:#12151b;--panel:#1b2029;--line:#2a313d;--text:#e8ecf2;--dim:#8d97a8;--acc:#4da3ff;--now:#ff5a5f;--on:#1f3b5c;--w:4.2;--rowh:68px;--x:0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;height:100vh;display:flex;flex-direction:column}
+header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 14px;background:var(--panel);border-bottom:1px solid var(--line)}
+h1{font-size:16px;margin:0 8px 0 0}
+button,input,select{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font:inherit}
+button{cursor:pointer}button:hover{border-color:var(--acc)}
+button.on{background:var(--acc);color:#00172e;border-color:var(--acc)}
+#status{color:var(--dim);margin-left:auto;font-size:12px}
+#wrap{flex:1;overflow:auto;position:relative}
+#grid{position:relative;width:max-content;min-width:100%}
+.timebar{position:sticky;top:0;z-index:5;display:flex;height:28px;background:var(--panel);border-bottom:1px solid var(--line)}
+.corner{position:sticky;left:0;z-index:6;width:var(--chw);flex:none;background:var(--panel);border-right:1px solid var(--line)}
+.ticks{position:relative;flex:none}
+.tick.mid{color:var(--acc);font-weight:600;border-left:2px solid var(--acc)}.tick{position:absolute;top:0;height:100%;border-left:1px solid var(--line);padding:6px 6px;color:var(--dim);font-size:12px}
+.row{display:flex;height:var(--rowh);border-bottom:1px solid var(--line);background:var(--bg)}
+.row:nth-child(even){background:#171b23}
+.row:hover .evs{background-color:#ffffff05}
+.ch{position:sticky;left:0;z-index:3;width:var(--chw);flex:none;background:var(--panel);border-right:1px solid var(--line);padding:6px 8px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.logo{width:34px;height:34px;object-fit:contain;flex:none;background:#fff1;border-radius:5px;padding:2px}.chi{display:flex;gap:8px;align-items:center;min-width:0}.chi div{min-width:0;display:flex;flex-direction:column}.ch b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch span{color:var(--dim);font-size:11px}
+.star{cursor:pointer;color:var(--dim);margin-left:auto;font-size:13px}.star.on{color:#ffc54d}
+.evs{position:relative;flex:none;background-image:repeating-linear-gradient(90deg,#ffffff0d 0 1px,transparent 1px calc(60px * var(--ppm)))}
+.ev{position:absolute;top:7px;bottom:7px;background:var(--evbg);border-radius:8px;border-left:5px solid var(--gc,#5b6678);border-top:1px solid var(--gc,#5b6678);border-bottom:1px solid var(--gc,#5b6678);padding:5px 10px;overflow:clip;white-space:nowrap;cursor:pointer;transition:background .15s,transform .1s}
+.ev:hover{background:#222c3b;transform:translateY(-1px)}
+.lbl{display:block;position:sticky;left:calc(var(--chw) + 14px);width:max-content;max-width:min(100%,380px);overflow:hidden;text-overflow:ellipsis}
+.lbl b{display:block;font-weight:600;font-size:14.5px;overflow:hidden;text-overflow:ellipsis}
+.det{display:none}
+body.detailed{--rowh:132px}
+body.detailed .cs{display:none}
+body.detailed .det{display:block}
+body.detailed .ev{white-space:normal;padding:6px 10px}
+body.detailed .lbl{max-width:min(100%,420px)}
+.lbl .meta{display:block;color:var(--dim);font-size:12px;margin-top:2px}
+.lbl .tags{display:block;font-size:11px;color:#9fb4cf;margin-top:2px}
+.lbl .syn{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;font-size:12px;line-height:1.35;color:#aeb8c7;margin-top:4px}
+body.detailed .ev.live .meta,body.detailed .ev.live .syn{color:#cfe2f7}
+.lbl small{display:block;color:var(--dim);font-size:12px;margin-top:2px}
+.ev.past{opacity:.5}
+.ev.live{background:linear-gradient(90deg,#2c5d94 var(--pct),#1f3b5c var(--pct));box-shadow:0 0 0 1px var(--acc)}
+.ev.live .lbl small{color:#bcd8f5}
+.g3{--gc:#4da3ff}.g5{--gc:#35c4b0}.g6{--gc:#b07cff}.g7{--gc:#5fd068}.g4,.g8{--gc:#ffa24d}.g9{--gc:#ff6fa8}.g1{--gc:#6b7384}
+.nowline{position:absolute;top:0;bottom:0;width:2px;background:var(--now);opacity:.8;z-index:4;pointer-events:none}
+#detail{position:fixed;right:14px;bottom:14px;width:min(420px,calc(100vw - 28px));background:var(--panel);border:1px solid var(--acc);border-radius:10px;padding:14px;z-index:20;display:none;box-shadow:0 8px 30px #0008}
+#detail h2{margin:0 0 4px;font-size:16px}#detail p{margin:8px 0 0;color:#cfd6e2}
+#detail .meta{color:var(--dim);font-size:12px}#detail .x{float:right;cursor:pointer;color:var(--dim)}
+.empty{color:var(--dim);padding:6px 10px;font-size:12px}
+body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+#wrap{-webkit-overflow-scrolling:touch}
+/* My list: picked programmes, shown as a panel and printed as a clean list */
+.ev.picked::after{content:'★';position:absolute;right:7px;top:3px;color:#ffc54d;font-size:14px;text-shadow:0 0 4px #000}
+body.detailed .ev.picked::after{top:5px}
+#mybtn b{background:#ffc54d;color:#1a1300;border-radius:9px;padding:0 6px;font-size:12px;margin-left:4px}
+.pickbtn{margin-top:10px;width:100%}.pickbtn.on{background:#ffc54d;color:#1a1300;border-color:#ffc54d}
+#mylist{position:fixed;top:56px;right:14px;bottom:14px;width:min(640px,calc(100vw - 28px));background:var(--panel);border:1px solid var(--acc);border-radius:12px;padding:14px;z-index:30;display:none;flex-direction:column;box-shadow:0 8px 30px #000a}
+body.listopen #mylist{display:flex}
+.mlhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.mlhead h2{margin:0 auto 0 0;font-size:17px}
+.seg{display:flex}.seg button{border-radius:0}.seg button:first-child{border-radius:6px 0 0 6px}.seg button:last-child{border-radius:0 6px 6px 0}
+#mlmsg{font-size:13px;color:#cfe2f7;margin:4px 0 8px}
+#mlmsg input,#mlimpbox textarea{width:100%;margin-top:6px;font-size:12px}
+#mlimpbox{margin-bottom:8px}#mlimpbox textarea{height:64px}
+#mlbody{overflow:auto;flex:1}
+#mlprinthead{display:none}
+.mlday{font-weight:700;font-size:14px;color:var(--acc);margin:14px 0 6px;border-bottom:1px solid var(--line);padding-bottom:3px}
+.it{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #ffffff10}
+.it .tm{width:58px;flex:none;font-weight:700;font-variant-numeric:tabular-nums}.it .tm small{display:block;font-weight:400;color:var(--dim)}
+.it .bd{flex:1;min-width:0}.it .bd b{font-size:15px}
+.it .chn{display:flex;align-items:center;gap:6px;color:var(--dim);font-size:12px;margin-top:1px}.it .chn img{width:20px;height:20px;object-fit:contain;background:#fff1;border-radius:4px}
+.it .sy{font-size:12px;color:#aeb8c7;margin-top:3px}
+.it .clash{display:inline-block;margin-top:3px;font-size:12px;color:#ffb74d}
+.it .rm{align-self:flex-start;padding:2px 8px}
+.empty-list{color:var(--dim);padding:18px 4px}
+@media print{
+  body.listopen{background:#fff!important;color:#000!important;height:auto!important;display:block!important;padding:0!important}
+  html{background:#fff!important}
+  body.listopen header,body.listopen #wrap,body.listopen #detail,body.listopen .noprint{display:none!important}
+  body.listopen #mylist{position:static!important;display:block!important;width:auto!important;border:0!important;box-shadow:none!important;background:#fff!important;color:#000!important;padding:0!important}
+  body.listopen #mlbody{overflow:visible!important}
+  body.listopen #mlprinthead{display:block!important;margin-bottom:10px}
+  body.listopen #mlprinthead h1{font-size:20px;margin:0;color:#000}body.listopen #mlprinthead div{color:#555;font-size:12px}
+  body.listopen .mlday{color:#000!important;border-bottom:1.5px solid #000!important;margin-top:16px}
+  body.listopen .it{border-bottom:1px solid #ccc!important;break-inside:avoid}
+  body.listopen .it .tm small,body.listopen .it .chn,body.listopen .it .sy{color:#444!important}
+  body.listopen .it .chn img{background:#1b2029!important;padding:1px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body.listopen .it .clash{color:#b45f00!important}
+  body.listopen .it .rm{display:none!important}
+  body.nativeprint.listopen #mylist{zoom:1.35}   /* the Mac app's native print lays out at window width, so scale up */
+}
+@media(pointer:coarse){button,select,input{min-height:40px;font-size:16px}.star{font-size:22px;padding:6px}.ev:hover{transform:none}}
+@media(max-width:600px){:root{--chw:96px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>UK TV Guide</h1>
+  <button id="prev">‹</button><select id="day"></select><button id="next">›</button>
+  <button id="nowbtn">Now</button>
+  <select id="region"><option value="scotland">Central Scotland</option><option value="london">London / England</option></select>
+  <input id="q" type="search" placeholder="Search channels or programmes…" size="26">
+  <button id="favs">★ Favourites</button>
+  <button id="mybtn" title="Programmes you have picked">My list <b id="mycount">0</b></button>
+  <select id="group"></select>
+  <select id="view" title="Programme detail"><option value="compact">Compact view</option><option value="detailed">Detailed view</option></select>
+  <span id="status">Loading…</span>
+</header>
+<div id="wrap"><div id="grid"></div></div>
+<div id="detail"></div>
+<div id="mylist" role="dialog" aria-label="My list">
+  <div class="mlhead noprint">
+    <h2>My list</h2>
+    <div class="seg"><button data-s="time">By time</button><button data-s="chan">By channel</button></div>
+    <div class="seg"><button data-r="today">Today</button><button data-r="week">Week</button><button data-r="all">All</button></div>
+    <button id="mlcopy" title="Copy a link that loads these picks on another device">Copy link</button>
+    <button id="mlprint">Print / PDF</button>
+    <button id="mlimport">Import…</button>
+    <button id="mlclear">Clear</button>
+    <button id="mlclose">✕</button>
+  </div>
+  <div id="mlmsg" class="noprint"></div>
+  <div id="mlimpbox" class="noprint" hidden><textarea id="mlimptext" placeholder="Paste a My list link here"></textarea><button id="mlimpgo">Add these picks</button></div>
+  <div id="mlprinthead"></div>
+  <div id="mlbody"></div>
+</div>
+<script src="logos.js"></script>
+<script>
+// Data: Sky's public EPG JSON (unofficial, undocumented). Region 4101/1 = London.
+const API = 'https://awk.epgsky.com/hawk/linear';
+// Sky region feeds (bouquet/sub-bouquet): Scotland 4098/35 carries BBC One Scotland + STV
+const REGIONS = {scotland: '4098/35', london: '4101/1'};
+const RENAME = {'BBC One Lon': 'BBC One London', 'BBC One Scot': 'BBC One Scotland', 'BBC One Wal': 'BBC One Wales', 'BBC One NI': 'BBC One N. Ireland'};
+const HOURS_AFTER = 12;         // keep the timeline going this many hours past midnight
+const PX = 5.4;                 // pixels per minute
+const GROUPS = [
+  ['Main channels', c => c <= 110 || (c >= 120 && c <= 135)],
+  ['Entertainment & Docs', c => c >= 110 && c < 200],
+  ['Movies', c => c >= 300 && c < 400],
+  ['Sport', c => c >= 400 && c < 500],
+  ['News', c => c >= 500 && c < 600],
+  ['Kids', c => c >= 600 && c < 700],
+  ['Music & Radio', c => c >= 700 && c < 1000],
+  ['All channels', () => true]
+];
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+let channels = [], sched = {}, loaded = new Set(), dayStart, favs = new Set();
+try { favs = new Set(JSON.parse(localStorage.getItem('uktv-favs') || '[]')); } catch (e) {}
+
+// ---- My list (picked programmes) ----
+const PUBLIC_URL = 'https://stevendevmosaic.github.io/tvguide/';   // used for share links from the Mac app (file://)
+let picks = {}, listRange = 'week', listSort = 'time', pendingImport = null;
+try { listSort = localStorage.getItem('uktv-sort') === 'chan' ? 'chan' : 'time'; } catch (e) {}
+const pkey = (sid, eid) => sid + ':' + eid;
+function loadPicks() {
+  try { picks = JSON.parse(localStorage.getItem('uktv-picks') || '{}'); } catch (e) { picks = {}; }
+  const cut = Date.now() / 1000 - 7200;                 // forget programmes that finished over 2 hours ago
+  for (const k in picks) if (picks[k].st + picks[k].d < cut) delete picks[k];
+}
+function syncNative() {   // the Mac app mirrors upcoming picks to a file so the Flexbar / BarDeck can show the next one
+  const n = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.uktvPicks;
+  if (n) n.postMessage(JSON.stringify(Object.values(picks).map(p => ({sid: p.sid, t: p.t, st: p.st, d: p.d, cn: p.cn || chanName(p.sid)}))));
+}
+function savePicks() { try { localStorage.setItem('uktv-picks', JSON.stringify(picks)); } catch (e) {} syncNative(); $('mycount').textContent = Object.keys(picks).length; }
+function chanName(sid) { const c = channels.find(c => c.sid === sid); return c ? c.name : sid; }
+function togglePick(sid, eid) {
+  const k = pkey(sid, eid);
+  if (picks[k]) delete picks[k];
+  else { const e = sched[sid] && sched[sid].get(eid); if (!e) return; picks[k] = {sid, eid, t: e.t, st: e.st, d: e.d, sy: e.sy || '', eg: e.eg || 0, nw: !!e.new, cn: chanName(sid)}; }
+  savePicks();
+  document.querySelectorAll('.ev').forEach(el => { if (el.dataset.sid === sid && el.dataset.eid === eid) el.classList.toggle('picked', !!picks[k]); });
+  if (document.body.classList.contains('listopen')) renderList();
+  return !!picks[k];
+}
+function listItems() {
+  const now = Date.now() / 1000;
+  let items = Object.values(picks).filter(p => p.st + p.d > now);
+  if (listRange !== 'all') {
+    const end = midnight(new Date()); end.setDate(end.getDate() + (listRange === 'today' ? 1 : 7));
+    items = items.filter(p => p.st < end.getTime() / 1000);
+  }
+  return listSort === 'chan'
+    ? items.sort((a, b) => (a.cn || '').localeCompare(b.cn || '') || a.st - b.st)
+    : items.sort((a, b) => a.st - b.st);
+}
+function renderList() {
+  const items = listItems(), rl = {today: 'Today', week: 'Next 7 days', all: 'All picks'}[listRange];
+  document.querySelectorAll('.seg button[data-r]').forEach(b => b.classList.toggle('on', b.dataset.r === listRange));
+  document.querySelectorAll('.seg button[data-s]').forEach(b => b.classList.toggle('on', b.dataset.s === listSort));
+  $('mlprinthead').innerHTML = `<h1>My TV list</h1><div>${rl} · ${$('region').selectedOptions[0].textContent} · printed ${new Date().toLocaleString('en-GB', {weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'})}</div>`;
+  if (!items.length) { $('mlbody').innerHTML = `<div class="empty-list">Nothing picked${listRange === 'all' ? '' : ' for this range'} yet. Click a programme, then <b>Add to my list</b>.</div>`; return; }
+  let h = '', lastDay = '';
+  for (const p of items) {
+    const day = listSort === 'chan' ? (p.cn || chanName(p.sid)) : new Date(p.st * 1000).toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'});
+    if (day !== lastDay) { h += `<div class="mlday">${day}</div>`; lastDay = day; }
+    const clash = items.filter(o => o !== p && o.sid !== p.sid && o.st < p.st + p.d && p.st < o.st + o.d);
+    const lg = (typeof LOGOS !== 'undefined' && LOGOS[p.sid]) ? `<img src="logos/${LOGOS[p.sid]}" alt="">` : '';
+    h += `<div class="it"><div class="tm">${listSort === 'chan' ? new Date(p.st * 1000).toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric'}) + '<br>' : ''}${hm(p.st)}<small>–${hm(p.st + p.d)}</small></div><div class="bd"><b>${esc(p.t)}</b>${p.nw ? ' <small>NEW</small>' : ''}
+      <div class="chn">${lg}${esc(p.cn || chanName(p.sid))} · ${Math.round(p.d / 60)} min</div>
+      ${clash.length ? `<div class="clash">⚠ Clashes with ${clash.map(o => esc(o.t) + ' (' + esc(o.cn || chanName(o.sid)) + ')').join(', ')}</div>` : ''}
+      ${p.sy ? `<div class="sy">${esc(p.sy)}</div>` : ''}</div><button class="rm noprint" data-sid="${p.sid}" data-eid="${p.eid}" title="Remove">✕</button></div>`;
+  }
+  $('mlbody').innerHTML = h;
+}
+function openList() { document.body.classList.add('listopen'); renderList(); }
+function closeList() { document.body.classList.remove('listopen'); }
+function doPrint() {
+  openList();
+  setTimeout(() => {
+    const n = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.uktvPrint;   // the Mac app prints natively
+    if (n) n.postMessage('print'); else window.print();
+  }, 150);
+}
+
+// Share link: only [channel id, programme id, start] per pick; the receiving device re-reads the details from the guide.
+const b64u = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const unb64u = s => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
+function shareLink() {
+  const base = location.protocol === 'file:' ? PUBLIC_URL : location.origin + location.pathname;
+  return base + '#picks=' + b64u(JSON.stringify(Object.values(picks).map(p => [p.sid, p.eid, p.st])));
+}
+function parseLink(text) {
+  const m = String(text).match(/picks=([A-Za-z0-9_-]+)/);
+  if (!m) return null;
+  try { const a = JSON.parse(unb64u(m[1])); return Array.isArray(a) ? a.filter(x => Array.isArray(x) && x.length >= 3) : null; } catch (e) { return null; }
+}
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true; } catch (e) {}
+  const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+  ta.remove(); return ok;
+}
+async function importPicks(triples) {
+  const want = new Map(triples.map(([sid, eid, st]) => [sid + '|' + eid, st])), byDay = {};
+  for (const [sid, , st] of triples) (byDay[ymd(new Date(st * 1000))] ||= new Set()).add(sid);
+  let added = 0;
+  for (const [day, sids] of Object.entries(byDay)) {
+    const ids = [...sids];
+    for (let i = 0; i < ids.length; i += 10) {
+      try {
+        const r = await fetch(`${API}/schedule/${day}/${ids.slice(i, i + 10).join(',')}`);
+        if (!r.ok) continue;
+        for (const s of (await r.json()).schedule) for (const e of s.events) {
+          if (!want.has(s.sid + '|' + e.eid)) continue;
+          const k = pkey(s.sid, e.eid);
+          if (!picks[k]) added++;
+          picks[k] = {sid: s.sid, eid: e.eid, t: e.t, st: e.st, d: e.d, sy: e.sy || '', eg: e.eg || 0, nw: !!e.new, cn: chanName(s.sid)};
+          want.delete(s.sid + '|' + e.eid);
+        }
+      } catch (e) { /* skip this chunk */ }
+    }
+  }
+  savePicks();
+  document.querySelectorAll('.ev').forEach(el => el.classList.toggle('picked', !!picks[pkey(el.dataset.sid, el.dataset.eid)]));
+  return {added, missing: want.size};
+}
+function showImportPrompt(triples) {
+  pendingImport = triples;
+  $('mlmsg').innerHTML = `A shared list with <b>${triples.length}</b> programme${triples.length === 1 ? '' : 's'}. <button id="mlpendadd">Add to my list</button> <button id="mlpendno">Ignore</button>`;
+}
+
+const ymd = d => d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+const hm = t => new Date(t * 1000).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
+const midnight = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
+
+async function loadChannels() {
+  const r = await fetch(`${API}/services/${REGIONS[$('region').value]}`);
+  const list = (await r.json()).services;
+  const seen = new Map();
+  for (const s of list) {
+    const c = parseInt(s.c, 10);
+    if (s.adult || !c || c >= 1000) continue;
+    // prefer HD, de-dupe on channel number
+    if (!seen.has(c) || (s.sf === 'HD' && seen.get(c).sf !== 'HD')) seen.set(c, s);
+  }
+  channels = [...seen.entries()].sort((a, b) => a[0] - b[0]).map(([c, s]) => ({sid: s.sid, num: c, name: (n => RENAME[n] || n)(s.t.replace(/\s*HD$/, '').trim())}));
+}
+
+async function loadDay(sids, date) {
+  const key = ymd(date), need = sids.filter(s => !loaded.has(key + ':' + s));
+  const chunks = [];
+  for (let i = 0; i < need.length; i += 10) chunks.push(need.slice(i, i + 10));  // API rejects >~10 ids
+  $('status').textContent = `Loading ${key}…`;
+  await Promise.all(chunks.map(async chunk => {
+    try {
+      const r = await fetch(`${API}/schedule/${key}/${chunk.join(',')}`);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      for (const s of (await r.json()).schedule) {
+        const m = sched[s.sid] ||= new Map();
+        for (const e of s.events) m.set(e.eid, e);
+        loaded.add(key + ':' + s.sid);
+      }
+    } catch (e) { $('status').textContent = 'Load failed: ' + e.message; }
+  }));
+}
+
+function visible() {
+  const g = GROUPS[$('group').value], q = $('q').value.trim().toLowerCase();
+  let list = channels.filter(ch => g[1](ch.num));
+  if ($('favs').classList.contains('on')) list = channels.filter(ch => favs.has(ch.sid));
+  if (q) list = channels.filter(ch => ch.name.toLowerCase().includes(q) ||
+      [...(sched[ch.sid]?.values() || [])].some(e => (e.t || '').toLowerCase().includes(q)));
+  return list;
+}
+
+async function render() {
+  const list = visible(), date = dayStart;
+  const prev = new Date(date); prev.setDate(prev.getDate() - 1);
+  const next = new Date(date); next.setDate(next.getDate() + 1);
+  const sids = list.map(c => c.sid);
+  await Promise.all([loadDay(sids, date), loadDay(sids, prev), loadDay(sids, next)]);
+  const t0 = date.getTime() / 1000, nextMid = new Date(date); nextMid.setDate(nextMid.getDate() + 1);
+  const t1 = nextMid.getTime() / 1000 + HOURS_AFTER * 3600, width = (t1 - t0) / 60 * PX, now = Date.now() / 1000;
+  const q = $('q').value.trim().toLowerCase();
+  let h = '<div class="timebar"><div class="corner"></div><div class="ticks" style="width:' + width + 'px">';
+  for (let t = t0; t < t1; t += 1800) { const d = new Date(t * 1000), mid = d.getHours() === 0 && d.getMinutes() === 0;
+      h += `<div class="tick${mid ? ' mid' : ''}" style="left:${(t - t0) / 60 * PX}px">${mid ? d.toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric', month: 'short'}) : hm(t)}</div>`; }
+  h += '</div></div>';
+  for (const ch of list) {
+    const lg = (typeof LOGOS !== 'undefined' && LOGOS[ch.sid]) ? `<img class="logo" loading="lazy" src="logos/${LOGOS[ch.sid]}" alt="">` : '';
+    h += `<div class="row"><div class="ch"><div class="chi">${lg}<div><b>${esc(ch.name)}</b><span>${ch.num}</span></div><span class="star ${favs.has(ch.sid) ? 'on' : ''}" data-sid="${ch.sid}">★</span></div></div><div class="evs" style="width:${width}px">`;
+    const evs = [...(sched[ch.sid]?.values() || [])].filter(e => e.st < t1 && e.st + e.d > t0).sort((a, b) => a.st - b.st);
+    if (!evs.length) h += '<div class="empty">No listings</div>';
+    for (const e of evs) {
+      const l = Math.max(0, (e.st - t0) / 60 * PX), r = Math.min(width, (e.st + e.d - t0) / 60 * PX);
+      const live = e.st <= now && now < e.st + e.d, past = e.st + e.d <= now, hit = q && (e.t || '').toLowerCase().includes(q);
+      const pct = live ? Math.round((now - e.st) / e.d * 100) : 0;
+      h += `<div class="ev g${e.eg || 0} ${live ? 'live' : ''} ${past ? 'past' : ''}${picks[pkey(ch.sid, e.eid)] ? ' picked' : ''}" style="left:${l + 3}px;width:${Math.max(4, r - l - 6)}px;--pct:${pct}%;${hit ? 'outline:2px solid #ffc54d' : ''}" data-sid="${ch.sid}" data-eid="${e.eid}" title="${esc(e.t)}"><span class="lbl"><b>${esc(e.t)}</b><small class="cs">${hm(e.st)}${e.new ? ' · NEW' : ''}</small><span class="det"><span class="meta">${hm(e.st)}–${hm(e.st + e.d)} · ${Math.round(e.d / 60)} min</span>${(e.new || e.hd || e.s || e.ad || e.signed) ? `<span class="tags">${[e.new && 'NEW', e.hd && 'HD', e.s && 'Subtitles', e.ad && 'Audio described', e.signed && 'Signed'].filter(Boolean).join(' · ')}</span>` : ''}${e.sy ? `<span class="syn">${esc(e.sy)}</span>` : ''}</span></span></div>`;
+    }
+    h += '</div></div>';
+  }
+  if (now >= t0 && now < t1) h += `<div class="nowline" id="nowline" style="left:calc(var(--chw) + ${(now - t0) / 60 * PX}px)"></div>`;
+  $('grid').innerHTML = h;
+  $('status').textContent = `${list.length} channels · ${date.toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'})}`;
+}
+
+function scrollNow() {
+  const now = Date.now() / 1000, t0 = dayStart.getTime() / 1000;
+  $('wrap').scrollLeft = Math.max(0, (now - t0) / 60 * PX - 120);
+}
+
+function setDay(offset) {
+  const d = midnight(new Date()); d.setDate(d.getDate() + offset);
+  dayStart = d; $('day').value = offset;
+  render().then(() => { if (offset === 0) scrollNow(); else $('wrap').scrollLeft = 8 * 60 * PX; });
+}
+
+$('grid').addEventListener('click', e => {
+  const star = e.target.closest('.star');
+  if (star) {
+    const s = star.dataset.sid; favs.has(s) ? favs.delete(s) : favs.add(s);
+    try { localStorage.setItem('uktv-favs', JSON.stringify([...favs])); } catch (e) {}
+    star.classList.toggle('on'); return;
+  }
+  const ev = e.target.closest('.ev'); if (!ev) return;
+  const x = sched[ev.dataset.sid].get(ev.dataset.eid), ch = channels.find(c => c.sid === ev.dataset.sid);
+  const d = $('detail'), key = ev.dataset.sid + ':' + ev.dataset.eid;
+  if (d.style.display === 'block' && d.dataset.key === key) { d.style.display = 'none'; return; }
+  d.dataset.key = key;
+  d.innerHTML = `<span class="x" onclick="this.parentNode.style.display='none'">✕</span><h2>${esc(x.t)}</h2>
+    <div class="meta">${esc(ch.name)} · ${hm(x.st)}–${hm(x.st + x.d)} (${Math.round(x.d / 60)} min)${x.new ? ' · New' : ''}${x.hd ? ' · HD' : ''}${x.ad ? ' · AD' : ''}${x.s ? ' · Subtitles' : ''}</div>
+    <p>${esc(x.sy || 'No description.')}</p>
+    <button class="pickbtn${picks[key] ? ' on' : ''}" data-sid="${ev.dataset.sid}" data-eid="${ev.dataset.eid}">${picks[key] ? '★ In my list (click to remove)' : '☆ Add to my list'}</button>`;
+  d.style.display = 'block';
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { $('detail').style.display = 'none'; closeList(); }
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'p') { e.preventDefault(); doPrint(); }
+});
+$('detail').addEventListener('click', e => {
+  const b = e.target.closest('.pickbtn'); if (!b) return;
+  const on = togglePick(b.dataset.sid, b.dataset.eid);
+  b.classList.toggle('on', !!on); b.textContent = on ? '★ In my list (click to remove)' : '☆ Add to my list';
+});
+$('mybtn').onclick = () => document.body.classList.contains('listopen') ? closeList() : openList();
+$('mlclose').onclick = closeList;
+document.querySelectorAll('.seg button[data-r]').forEach(b => b.onclick = () => { listRange = b.dataset.r; renderList(); });
+document.querySelectorAll('.seg button[data-s]').forEach(b => b.onclick = () => { listSort = b.dataset.s; try { localStorage.setItem('uktv-sort', listSort); } catch (e) {} renderList(); });
+$('mlbody').addEventListener('click', e => { const b = e.target.closest('.rm'); if (b) togglePick(b.dataset.sid, b.dataset.eid); });
+$('mlprint').onclick = doPrint;
+$('mlcopy').onclick = async () => {
+  if (!Object.keys(picks).length) { $('mlmsg').textContent = 'Nothing picked yet, so there is no link to copy.'; return; }
+  const link = shareLink(), ok = await copyText(link);
+  $('mlmsg').innerHTML = (ok ? 'Link copied. Open it on your other device to load these picks.' : 'Select and copy this link, then open it on your other device:') + `<input readonly value="${link}" onfocus="this.select()">`;
+};
+$('mlimport').onclick = () => { $('mlimpbox').hidden = !$('mlimpbox').hidden; };
+$('mlimpgo').onclick = async () => {
+  const t = parseLink($('mlimptext').value);
+  if (!t) { $('mlmsg').textContent = 'That does not look like a My list link.'; return; }
+  $('mlmsg').textContent = 'Adding…';
+  const r = await importPicks(t);
+  $('mlmsg').textContent = `Added ${r.added} programme${r.added === 1 ? '' : 's'}${r.missing ? `; ${r.missing} no longer in the listings` : ''}.`;
+  $('mlimptext').value = ''; $('mlimpbox').hidden = true; renderList();
+};
+$('mlclear').onclick = () => {
+  if ($('mlclear').dataset.sure) { picks = {}; savePicks(); delete $('mlclear').dataset.sure; $('mlclear').textContent = 'Clear'; $('mlmsg').textContent = 'List cleared.';
+    document.querySelectorAll('.ev.picked').forEach(el => el.classList.remove('picked')); renderList(); }
+  else { $('mlclear').dataset.sure = 1; $('mlclear').textContent = 'Really clear?'; setTimeout(() => { delete $('mlclear').dataset.sure; $('mlclear').textContent = 'Clear'; }, 3000); }
+};
+$('mlmsg').addEventListener('click', async e => {
+  if (e.target.id === 'mlpendno') { pendingImport = null; $('mlmsg').textContent = ''; history.replaceState(null, '', location.pathname + location.search); }
+  if (e.target.id === 'mlpendadd' && pendingImport) {
+    $('mlmsg').textContent = 'Adding…';
+    const r = await importPicks(pendingImport); pendingImport = null;
+    history.replaceState(null, '', location.pathname + location.search);
+    $('mlmsg').textContent = `Added ${r.added} programme${r.added === 1 ? '' : 's'}${r.missing ? `; ${r.missing} no longer in the listings` : ''}.`; renderList();
+  }
+});
+loadPicks(); savePicks();
+if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.uktvPrint) document.body.classList.add('nativeprint');
+(async () => {
+  const dsel = $('day');
+  for (let i = -1; i <= 7; i++) {
+    const d = new Date(); d.setDate(d.getDate() + i);
+    dsel.add(new Option(i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : i === -1 ? 'Yesterday' : d.toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric', month: 'short'}), i));
+  }
+  GROUPS.forEach((g, i) => $('group').add(new Option(g[0], i)));
+  try { $('region').value = localStorage.getItem('uktv-region') || 'scotland'; } catch (e) {}
+  const setView = v => { document.body.classList.toggle('detailed', v === 'detailed'); $('view').value = v; try { localStorage.setItem('uktv-view', v); } catch (e) {} };
+  try { setView(localStorage.getItem('uktv-view') || 'compact'); } catch (e) {}
+  $('view').onchange = () => setView($('view').value);
+  $('region').onchange = async () => {
+    try { localStorage.setItem('uktv-region', $('region').value); } catch (e) {}
+    $('status').textContent = 'Loading region…';
+    try { await loadChannels(); } catch (e) { $('status').textContent = 'Could not load channel list: ' + e.message; return; }
+    render();
+  };
+  dsel.onchange = () => setDay(+dsel.value);
+  $('prev').onclick = () => { if (+dsel.value > -1) setDay(+dsel.value - 1); };
+  $('next').onclick = () => { if (+dsel.value < 7) setDay(+dsel.value + 1); };
+  $('nowbtn').onclick = () => { if (+dsel.value !== 0) setDay(0); else scrollNow(); };
+  $('group').onchange = () => { $('favs').classList.remove('on'); render(); };
+  $('favs').onclick = e => { e.target.classList.toggle('on'); render(); };
+  let timer; $('q').oninput = () => { clearTimeout(timer); timer = setTimeout(render, 300); };
+  try { await loadChannels(); } catch (e) { $('status').textContent = 'Could not load channel list: ' + e.message; return; }
+  dsel.value = 0; setDay(0);
+  const shared = parseLink(location.hash);
+  if (shared && shared.length) { openList(); showImportPrompt(shared); }
+  setInterval(() => { if (+dsel.value === 0) render(); }, 5 * 60 * 1000);
+})();
+</script>
+</body>
+</html>

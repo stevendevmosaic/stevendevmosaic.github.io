@@ -115,7 +115,18 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://stevendevmosaic.github.io/bardeck/terms.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://stevendevmosaic.github.io/day-one-book.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://stevendevmosaic.github.io/chat-book.html</loc>
     <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
