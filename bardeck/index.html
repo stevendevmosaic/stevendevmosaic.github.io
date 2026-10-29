@@ -62,7 +62,7 @@
 </div>
 
 <figure class="shot">
-  <img src="img/1-the-bar.png" alt="The BarDeck button bar: Files, Apps, Projects, Focus, apple.com and Screenshot buttons in colour-coded groups" width="1360" height="265">
+  <img src="img/1-the-bar.png" alt="The BarDeck button bar: Files, Apps, Projects, Focus, apple.com and Screenshot buttons in colour-coded groups" width="1360" height="278">
 </figure>
 
 <div class="cta">
@@ -71,8 +71,8 @@
     <span class="assure"><b>Signed and notarised by Apple.</b> 14 days with everything unlocked.</span>
   </div>
   <div class="cta-item">
-    <span class="btn secondary" aria-disabled="true" style="opacity:.65;cursor:default">Buy: coming soon</span>
-    <span class="assure">Back on sale soon.</span>
+    <a class="btn secondary" href="https://bardeck.lemonsqueezy.com/checkout/buy/c0a30bfd-507a-43b2-a7c6-19d30e0ae32f">Buy BarDeck &mdash; &pound;9.99</a>
+    <span class="assure"><b>One-off price, no subscription.</b> Your licence key arrives by email and works on 2 Macs.</span>
   </div>
 </div>
 <p class="fine">macOS 13 or later &middot; Apple silicon and Intel &middot; no account and no tracking. <a href="privacy.html">Privacy policy</a> &middot; <a href="terms.html">Terms</a></p>
@@ -86,6 +86,9 @@
   <li><strong>Ready-made sets.</strong> One click adds a set for Mail, Safari, Finder, Terminal, Messages, Photos, Excel, Word, Zoom, Teams, Final Cut Pro or Music, and one click removes it again.</li>
   <li><strong>Easy to arrange.</strong> Drag buttons to reorder them, drag them into and out of stacks, and drop an app, folder, file or web link on the bar to make a button. Drop a file on an app button to open it with that app.</li>
   <li><strong>Touch Bar-style controls.</strong> Add a volume slider, a brightness slider, play/pause, next and previous track, mute, buttons for Music and Spotify, and an emoji picker, each in one click from the right-click menu.</li>
+  <li><strong>Now Playing.</strong> A button that shows the track, artist and cover art from Apple Music, Spotify, Qobuz or a Sonos speaker on your network, and plays or pauses with a tap.</li>
+  <li><strong>Stock prices.</strong> A button for any share or index, with the day&#8217;s change and a small chart. Quotes are delayed, and a tap opens the stock in Yahoo Finance.</li>
+  <li><strong>Compact or Normal.</strong> Every button shares one height, and you can switch the whole bar to a larger Normal size from the right-click menu.</li>
   <li><strong>Share a setup.</strong> Export your whole layout, or just one stack or one app's set, and import other people's. Your licence is never included, and you can remove personal details before sharing.</li>
   <li><strong>Stays out of the way.</strong> Auto-hide, a hotkey to show and hide it, a menu bar icon, and it remembers where you put it.</li>
   <li><strong>Safe to experiment.</strong> Undo your last changes, lock buttons so they cannot be moved or removed, and automatic backups you can restore from.</li>
@@ -94,23 +97,33 @@
 <h2>See it</h2>
 
 <figure class="shot">
-  <img src="img/2-stack.png" alt="A stack opening above the bar to show Downloads, Documents, Desktop and New Folder" loading="lazy" width="1360" height="498">
+  <img src="img/2-stack.png" alt="A stack opening above the bar to show Downloads, Documents, Desktop and New Folder" loading="lazy" width="1360" height="566">
   <figcaption>A stack flies out above the bar (or below it, if you keep the bar at the top of the screen).</figcaption>
 </figure>
 
 <figure class="shot">
-  <img src="img/3-browse-folder.png" alt="A folder button showing the folders and files inside it, with their icons" loading="lazy" width="1360" height="823">
+  <img src="img/3-browse-folder.png" alt="A folder button showing the folders and files inside it, with their icons" loading="lazy" width="1360" height="964">
   <figcaption>A folder button lets you browse inside it, step into sub-folders, or open the folder in Finder.</figcaption>
 </figure>
 
 <figure class="shot wide">
-  <img src="img/4-per-app-mail.png" alt="After a divider, a set of Mail buttons: New Message, Get Mail, Reply, Reply All, Forward, Archive, Junk and Flag" loading="lazy" width="1920" height="275">
+  <img src="img/4-per-app-mail.png" alt="After a divider, a set of Mail buttons: New Message, Get Mail, Reply, Reply All, Forward, Archive, Junk and Flag" loading="lazy" width="1920" height="288">
   <figcaption>Buttons that follow the app you are using. With Mail in front, its own set appears after the divider.</figcaption>
 </figure>
 
 <figure class="shot wide">
-  <img src="img/6-controls.png" alt="The bar with a volume slider, a brightness slider, a play/pause button and an emoji picker" loading="lazy" width="1700" height="298">
+  <img src="img/6-controls.png" alt="The bar with a volume slider, a brightness slider, a play/pause button and an emoji picker" loading="lazy" width="1700" height="312">
   <figcaption>Touch Bar-style controls: volume and brightness sliders, media buttons and an emoji picker.</figcaption>
+</figure>
+
+<figure class="shot wide">
+  <img src="img/11-now-playing.png" alt="Three Now Playing buttons showing a track, artist and cover art for Apple Music, a Sonos speaker and Qobuz" loading="lazy" width="1882" height="352">
+  <figcaption>Now Playing buttons show what is playing, with cover art, for Apple Music, Spotify, Qobuz and Sonos. Tap to play or pause.</figcaption>
+</figure>
+
+<figure class="shot wide">
+  <img src="img/12-stocks.png" alt="Four stock buttons with prices, daily change and a small chart: Apple, FTSE 100, S&amp;P 500 and BP" loading="lazy" width="1752" height="352">
+  <figcaption>Stock buttons show a delayed price, the day&#8217;s change and a small chart for any share or index.</figcaption>
 </figure>
 
 <figure class="shot">
@@ -125,7 +138,9 @@
 <p>BarDeck asks only when you use a feature that needs it, and everything else works without them.</p>
 <ul>
   <li><strong>Accessibility</strong>, for the <em>press keys</em> and <em>paste text</em> buttons, which work by sending keystrokes to the app in front.</li>
-  <li><strong>Automation</strong>, for the <em>New Folder</em> button, which asks Finder to create a folder in the window you have open.</li>
+  <li><strong>Automation</strong>, for the <em>New Folder</em> button, which asks Finder to create a folder in the window you have open, and for the Apple Music and Spotify buttons, which ask to read and control those apps.</li>
+  <li><strong>Accessibility</strong> is also used by the Qobuz Now Playing button, which reads the track shown in the Qobuz window.</li>
+  <li><strong>Local network</strong>, for the Sonos Now Playing button, which looks for speakers on your network. Stock buttons ask Yahoo Finance for delayed quotes over the internet.</li>
 </ul>
 
 <h2>Private by design</h2>
@@ -140,7 +155,7 @@
 <dd>No. It sits alongside it. Think of it as a set of your own shortcuts that is always in reach, not a launcher for everything.</dd>
 
 <dt>What happens if I move to a new Mac?</dt>
-<dd>Install BarDeck there and enter the same licence key. Your buttons live in a small file you can copy across (the right-click menu has <em>Edit config file</em> and <em>Backups</em>).</dd>
+<dd>On the old Mac choose <em>Licence&hellip;</em> from the menu and <em>Deactivate this Mac</em>, then install BarDeck on the new one and enter the same licence key. (A key works on 2 Macs at the same time.) Your buttons live in a small file you can copy across (the right-click menu has <em>Edit config file</em> and <em>Backups</em>).</dd>
 
 <dt>Do I have to pay for updates?</dt>
 <dd>No. Your licence covers every 1.x version, including new features as well as fixes. If a 2.0 ever arrives it may be a paid upgrade, and I would say so clearly before you were asked to pay anything. 1.x would keep working either way.</dd>
