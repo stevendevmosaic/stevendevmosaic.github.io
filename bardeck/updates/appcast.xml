@@ -3,6 +3,28 @@
     <channel>
         <title>BarDeck</title>
         <item>
+            <title>1.4.1</title>
+            <pubDate>Mon, 02 Nov 2026 08:47:38 +0000</pubDate>
+            <sparkle:version>8</sparkle:version>
+            <sparkle:shortVersionString>1.4.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h3>BarDeck 1.4.1</h3>
+<p><strong>Fixed</strong></p>
+<ul>
+  <li>The edit window for Live data buttons no longer cuts off its labels and hint text.</li>
+  <li>A Live data button now always shows its title and value in full. When space is short, the small detail line is shortened first.</li>
+</ul>
+]]></description>
+            <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck-1.4.1.dmg" length="2750881" type="application/octet-stream" sparkle:edSignature="sDUiO6dneiD7dxYLhxwNO/kRU+zY2Tqa75Q4QWmuGpJCaCht6L/MaZKGQ8U9k97oc4kMALJF4BJxGwd7rH+9Dg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck8-7.delta" sparkle:deltaFrom="7" length="121898" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="3/HC3QmHYfZRM4zZyuiowMqwP1zBJ8lazL4C2cwxmF+XvegKaiaznu4+EjGQd69/w1aof5SukOR/6VLFYSYvCQ=="/>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck8-6.delta" sparkle:deltaFrom="6" length="414750" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="cS6gh4JjEZdCavJYuL7jKJfO7vMCax2dtyJM/veXbXQANLDPGvgizBJhMM0SScTiD8qWwXcqYSIa67G/fVZzBw=="/>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck8-4.delta" sparkle:deltaFrom="4" length="592786" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="GuZUvZOWkggoeT3AO7xzlKgJc9g7V9u05v7gcbMWlBhoSru4Du5ddOHmFzotwpGHBe33yTc0M+Ae9SODXNV/Cg=="/>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck8-3.delta" sparkle:deltaFrom="3" length="593186" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="/AEHLoOsf4v/VWmZ94hcEoM39ZuqskALsE+RV2YUasVHHloW/pkUupMpgWHsghUp6/zzHrvmEhH8Hb0okkMWDA=="/>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck8-2.delta" sparkle:deltaFrom="2" length="645314" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="91X69Hr8PyyLy8qTGSEwdgzg0IqmSrKWZ8VJZYFljO3ix2bmc0QY2NvffMSwoRnjCcCzlScQYtMWXO1iIPYCAw=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.4.0</title>
             <pubDate>Mon, 02 Nov 2026 08:15:43 +0000</pubDate>
             <sparkle:version>7</sparkle:version>
@@ -43,25 +65,6 @@
                 <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck6-4.delta" sparkle:deltaFrom="4" length="441130" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="+BA3eFk93L69ZvpbHvaks1ifVCkN5Puw9PGQdfO7zI6+gaSjRD39YSh5sbFWXSwz4jgP3znHRDnqo/DBgs6jCA=="/>
                 <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck6-3.delta" sparkle:deltaFrom="3" length="443438" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="gO/87aFqH3HjEbc890w85AyQNZyQ8n6FB7L6lmtiIrIJgTH8yTl1J54yjXPUtzxOgucAoSOoIDvZTMYO+HT3Bw=="/>
                 <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck6-2.delta" sparkle:deltaFrom="2" length="511462" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="HnnR2XLvNp7tPJsM9zoyRhBqN1E44u+TgH5xRAoGLwbPtAGAi1OKqa1zmovKF1xAqccwqwDcJ6T5pHPuL0vyDw=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.1.1</title>
-            <pubDate>Tue, 20 Oct 2026 14:44:41 +0100</pubDate>
-            <sparkle:version>4</sparkle:version>
-            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h3>BarDeck 1.1.1</h3>
-<p><strong>New: Zoom and Teams</strong></p>
-<ul>
-  <li>Two new ready-made sets: <em>Zoom</em> (mic, camera, share screen, raise hand, chat, participants and a red Leave button) and <em>Teams</em> (mic, camera, share, raise hand and Leave).</li>
-  <li>Right-click the bar and choose <em>Add app preset</em>. The buttons appear while the call window is in front, and BarDeck never takes focus from it.</li>
-</ul>
-]]></description>
-            <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck-1.1.1.dmg" length="2313280" type="application/octet-stream" sparkle:edSignature="CNcpcqGZjjvBNrj37JoWbjPpCVKpfid+zzN6qZ4jtGPSb9fIfvZn4F250kLtyR8qui+cW8Aag6r9A2BmAF9YCQ=="/>
-            <sparkle:deltas>
-                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck4-3.delta" sparkle:deltaFrom="3" length="56694" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="uwm7XogzSgwmyu0C+7fp4h5AF8HAFn4cImJVWpmIaHPiJdFoxYH/ekwTmIvQ5a8b9MjbN/LVLPFGxW68O/TnDQ=="/>
-                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck4-2.delta" sparkle:deltaFrom="2" length="268174" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="CERvIGVl/zF/thsy6Xrc0jZ2nj5WfiF2kidZyMbHCKC3F9VpiSCqOQwVRhh6Bzg9Xor9nC4F+tQA69DhWLApDA=="/>
             </sparkle:deltas>
         </item>
     </channel>
