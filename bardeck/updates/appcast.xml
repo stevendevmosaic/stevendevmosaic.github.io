@@ -3,6 +3,27 @@
     <channel>
         <title>BarDeck</title>
         <item>
+            <title>1.4.0</title>
+            <pubDate>Mon, 02 Nov 2026 08:15:43 +0000</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h3>BarDeck 1.4.0</h3>
+<p><strong>New</strong></p>
+<ul>
+  <li><em>Live data</em> buttons show anything that changes: a button runs a command or fetches a web address every so often and draws the result, with an optional chart. Use <em>Test</em> in the edit window to see exactly what it prints. A button only runs after you approve it, and importing a layout clears every approval.</li>
+  <li>Example scripts for the weather, whether a website is up, what is on TV and smart-meter electricity are on the recipes page of the BarDeck website.</li>
+</ul>
+]]></description>
+            <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck-1.4.0.dmg" length="2745893" type="application/octet-stream" sparkle:edSignature="PbtwW++3DTFhgnGyMDd1BO/fUH16By3DE6th42MInIToDr3xzzsZydl4BVEdpDxrt9XtcatZY/uuMLZFuErBBQ=="/>
+            <sparkle:deltas>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck7-6.delta" sparkle:deltaFrom="6" length="413786" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="qo5aMG18nmIfWwAMWUiTLItd7D06bctLfud+BRaTFpxprZYnhiZIeey3MvYnM6FeDkvye5FJ1vpL4aavs65+DQ=="/>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck7-4.delta" sparkle:deltaFrom="4" length="592050" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="oOJKht+336SwBaOMN2/9tyE2FqjHbUb4JPIqGQ3RVUAEYJ60G7zkMyhZlG2hiHxPRhtQAy9I+XPz6uB0Qkw7Aw=="/>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck7-3.delta" sparkle:deltaFrom="3" length="591554" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="PLpHG2XDuROTnQmhbrgAyIixu22fOW9/8jsnttMzDyvUrviP33VLsmemy0FAvAviEYsOHBkPV++700UEjetmBg=="/>
+                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck7-2.delta" sparkle:deltaFrom="2" length="641282" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Y5JqIObRqd+owSk1hlVdZS/H3ZobnaRbYvd7bqhTX9A6CDGfMPHTN4OZDKM4icL7c1zor2rrw/83K/dWJVPICQ=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.3.0</title>
             <pubDate>Thu, 29 Oct 2026 15:51:27 +0000</pubDate>
             <sparkle:version>6</sparkle:version>
@@ -41,31 +62,6 @@
             <sparkle:deltas>
                 <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck4-3.delta" sparkle:deltaFrom="3" length="56694" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="uwm7XogzSgwmyu0C+7fp4h5AF8HAFn4cImJVWpmIaHPiJdFoxYH/ekwTmIvQ5a8b9MjbN/LVLPFGxW68O/TnDQ=="/>
                 <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck4-2.delta" sparkle:deltaFrom="2" length="268174" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="CERvIGVl/zF/thsy6Xrc0jZ2nj5WfiF2kidZyMbHCKC3F9VpiSCqOQwVRhh6Bzg9Xor9nC4F+tQA69DhWLApDA=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.1.0</title>
-            <pubDate>Mon, 19 Oct 2026 21:59:19 +0100</pubDate>
-            <sparkle:version>3</sparkle:version>
-            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h3>BarDeck 1.1</h3>
-<p><strong>New: controls</strong></p>
-<ul>
-  <li>Right-click the bar and choose <em>Add control</em> to add a <strong>volume slider</strong>, a <strong>brightness slider</strong>, play/pause, next and previous track, mute and an <strong>emoji picker</strong>.</li>
-  <li>Buttons that control <strong>Music</strong> and <strong>Spotify</strong> directly.</li>
-  <li>The brightness slider works with the built-in display and Apple's own displays.</li>
-</ul>
-<p><strong>New: share your setup</strong></p>
-<ul>
-  <li><em>Share layout</em> exports your whole layout, or just one stack or one app's set, and imports other people's. Your licence is never included.</li>
-  <li>You can remove personal details (paths, pasted text, commands) before sharing, and importing warns about buttons that run shell commands.</li>
-  <li>Importing merges instead of piling up copies.</li>
-</ul>
-]]></description>
-            <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck-1.1.0.dmg" length="2312273" type="application/octet-stream" sparkle:edSignature="z0DG6NdAbstQy04jCqBUGeWt3bbZfh0nEuaCBxp+PfxJtiogYuaAJVHNKgHUYzh1xcSVcQXqnj43z+4MquvMDw=="/>
-            <sparkle:deltas>
-                <enclosure url="https://stevendevmosaic.github.io/bardeck/updates/BarDeck3-2.delta" sparkle:deltaFrom="2" length="269254" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="979056" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="XhJgteNLClib4cUji0x7UJJarGMvKpcoP4e1lSu+bWfeys3109AkX+mO/fzeW4ChLh2gPWBmyWvJu20D9FefBA=="/>
             </sparkle:deltas>
         </item>
     </channel>
