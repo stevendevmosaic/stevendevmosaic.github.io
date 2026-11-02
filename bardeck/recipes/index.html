@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BarDeck Live Data Recipes</title>
+<meta name="description" content="Example scripts for BarDeck&#8217;s Live data button: weather, site check, TV now and next, and smart-meter electricity.">
+<link rel="icon" type="image/png" href="../../favicon.png">
+<style>
+  :root { --ink: #1d2433; --muted: #6b7385; --accent: #2f5fb3; --amber: #e8962a; --border: #dde2ec; --bg: #f3f5fa; --card: #ffffff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.65; }
+  .brandbar { height: 4px; background: linear-gradient(90deg, #12183a 0 40%, #e8962a 0 60%, #8fb2e8 0 100%); }
+  .topnav { position: sticky; top: 0; z-index: 4; background: rgba(243,245,250,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; gap: 4px; justify-content: center; padding: 8px 12px; flex-wrap: wrap; }
+  .topnav a { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 6px 13px; border-radius: 6px; }
+  .topnav a:hover { color: var(--accent); background: #fff; }
+  .topnav a.home { color: var(--muted); }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 46px 24px 80px; }
+  h1 { font-size: 32px; font-weight: 700; margin: 0 0 6px; line-height: 1.2; }
+  h2 { font-size: 20px; font-weight: 700; margin: 32px 0 10px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .updated { font-size: 13.5px; color: var(--muted); margin: 0 0 24px; }
+  .lead { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; font-size: 15.5px; }
+  .sub { font-size: 18px; color: var(--muted); margin: 0 0 24px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0 6px; }
+  .btn { display: inline-block; font-weight: 700; text-decoration: none; padding: 11px 20px; border-radius: 9px; border: 1px solid var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.secondary { background: #fff; color: var(--accent); }
+  .fine { font-size: 13.5px; color: var(--muted); }
+  footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 40px; }
+  a { color: var(--accent); }
+  dt { font-weight: 700; margin-top: 18px; }
+  dd { margin: 4px 0 0; }
+  .recipe { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 0 0 16px; }
+  .recipe h3 { margin: 0 0 4px; font-size: 18px; }
+  .recipe p { margin: 0 0 8px; }
+  .recipe .btn { padding: 7px 14px; font-size: 14.5px; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; }
+  pre { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
+  .warn { background: #fff7e8; border: 1px solid #f0d9ad; border-radius: 12px; padding: 14px 18px; font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="brandbar"></div>
+<nav class="topnav">
+  <a class="home" href="../../index.html">&#8962; Apps</a>
+  <a href="../index.html">BarDeck</a>
+  <a href="../privacy.html">Privacy</a>
+  <a href="../terms.html">Terms</a>
+  <a href="../support.html">Support</a>
+</nav>
+<div class="wrap">
+
+<h1>Live data recipes</h1>
+<p class="updated">Example scripts for BarDeck&#8217;s Live data button</p>
+
+<p class="warn"><strong>These are examples, not part of BarDeck, and they are not supported.</strong> A Live data button runs a script on your Mac automatically, so read a script before you use it. These only use tools every Mac already has (zsh, curl and <code>osascript</code>) and only talk to the service named under each one. Services change without notice, so a recipe can stop working. If one does, the fix is to edit the script; no BarDeck update is needed.</p>
+
+<h2>The recipes</h2>
+
+<div class="recipe">
+<h3>Weather</h3>
+<p>Temperature, conditions, wind and a chart of today&#8217;s temperature. Uses the free, key-less Open-Meteo service. Change the place and its latitude and longitude at the top of the script.</p>
+<a class="btn secondary" href="bardeck-recipe-weather.zip">Download</a>
+</div>
+
+<div class="recipe">
+<h3>Is my site up?</h3>
+<p>Shows UP in green or DOWN in red, with the HTTP status and response time. A tap opens the site. Change the address at the top of the script.</p>
+<a class="btn secondary" href="bardeck-recipe-site-up.zip">Download</a>
+</div>
+
+<div class="recipe">
+<h3>TV now and next (UK)</h3>
+<p>What is on a channel now, how many minutes are left, and what is next. <strong>It reads Sky&#8217;s public listings feed, which is unofficial and can change or stop at any time.</strong> The listings are Sky&#8217;s, for personal use. A list of channel numbers is included.</p>
+<a class="btn secondary" href="bardeck-recipe-tv-now-next.zip">Download</a>
+</div>
+
+<div class="recipe">
+<h3>Electricity: Bright / Glow smart meter</h3>
+<p>Live electricity use, today&#8217;s cost and a chart of today&#8217;s half-hours. It signs in to the same web service the Bright app uses, with your own Bright login, which you keep in your Mac&#8217;s Keychain rather than in any file. <strong>That service is not a published API for outsiders and can change or stop at any time.</strong></p>
+<a class="btn secondary" href="bardeck-recipe-energy-glow.zip">Download</a>
+</div>
+
+<p><a href="bardeck-recipes-all.zip">Download all four in one zip</a></p>
+
+<h2>Set one up (about two minutes)</h2>
+<p>You need BarDeck 1.4 or later. Each zip has a folder with the script, a ready-made button and a short instruction file.</p>
+<ol>
+  <li>Make a folder called <code>BarDeckRecipes</code> in your home folder and copy the recipe&#8217;s <code>.sh</code> file into it.</li>
+  <li>Open the <code>.sh</code> file in TextEdit and change the settings at the top (place, address, channel).</li>
+  <li>In Terminal, make it runnable once. Use the script&#8217;s own name:
+<pre>chmod +x ~/BarDeckRecipes/weather.sh</pre></li>
+  <li>Check it works. You should see a line of JSON:
+<pre>~/BarDeckRecipes/weather.sh</pre></li>
+  <li>In BarDeck, open the menu, choose <em>Import layout&#8230;</em>, pick the recipe&#8217;s <code>button.json</code> and choose <em>Add to my layout</em>.</li>
+  <li>The new button says <em>Tap to allow</em>. Tap it, read the command it shows, and choose <em>Allow</em>.</li>
+</ol>
+<p>Or skip steps 5 and 6: right-click the bar, choose <em>Add button&#8230;</em>, set the action to <em>Live data</em>, type <code>~/BarDeckRecipes/weather.sh</code> in the command box, press <em>Test</em>, then <em>Add</em>.</p>
+
+<h2>Make your own</h2>
+<p>Anything that prints text can be a button: a build status, a server check, a number from a spreadsheet, a count from your inbox. The simplest recipe to start from is <em>Is my site up?</em>. A script prints JSON with any of these, all optional:</p>
+<pre>{"label":"Electricity","value":"412 W",
+ "detail":"&#163;0.31/kWh &#183; today &#163;2.18",
+ "color":"orange","spark":[1,2,3,2,4],
+ "url":"https://example.com"}</pre>
+<ul>
+  <li><code>label</code> is the small text on top, <code>value</code> the big text and <code>detail</code> the small line.</li>
+  <li><code>color</code> is one of cyan, orange, green, purple, red, yellow or white.</li>
+  <li><code>spark</code> is up to 60 numbers for the little chart, and <code>url</code> is an address a tap can open.</li>
+  <li>If it is not JSON, the first line becomes the value and the second the detail.</li>
+</ul>
+<p>Output over 4 KB is cut off, and a script that takes more than 15 seconds is stopped. If a script fails, the button keeps its last value, dimmed and marked &#8220;stale&#8221;. BarDeck only runs a button while the bar is showing and your Mac is awake.</p>
+
+<h2>Why you are asked to allow it</h2>
+<p>Because a Live data button runs by itself, a layout you import can never start running anything until you have looked at it and chosen <em>Allow</em>. Importing a layout clears every approval, and <em>Share layout</em> can remove the commands before you pass a layout on.</p>
+
+<footer>Made by Steven Muir. <a href="../support.html">Support</a></footer>
+</div>
+</body>
+</html>

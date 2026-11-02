@@ -71,6 +71,15 @@
 <dt>Play/Pause controls the wrong app.</dt>
 <dd>macOS sends the play/pause and next/previous keys to whichever app last claimed them, which may not be the one you want. Use the <em>Music</em> or <em>Spotify</em> buttons from <em>Add control</em> to control one of those apps directly. They only act if that app is already open, and macOS asks once to allow BarDeck to control it.</dd>
 
+<dt>How do I make a Live data button?</dt>
+<dd>Right-click the bar, choose <em>Add button&#8230;</em>, set the action to <em>Live data</em> and type a command or a web address. Press <em>Test</em> to see exactly what it prints, then <em>Add</em>. Ready-made examples are on the <a href="recipes/">recipes page</a>. They are examples and not supported, so if one stops working the script needs editing.</dd>
+
+<dt>My Live data button says &#8220;Tap to allow&#8221;.</dt>
+<dd>A Live data button runs by itself, so BarDeck waits for your approval first. This happens after you import a layout, or if the command has changed. Tap the button, read the command it shows and choose <em>Allow</em>.</dd>
+
+<dt>My Live data button is dimmed and says &#8220;stale&#8221;.</dt>
+<dd>The last run failed or took more than 15 seconds, so BarDeck is showing the last good value. Press <em>Test</em> in the button&#8217;s edit window to see the error. After three failures in a row it shows the error on the button.</dd>
+
 <dt>Can I share my buttons with someone?</dt>
 <dd>Yes. Right-click and choose <em>Share layout</em> &rarr; <em>Export layout&hellip;</em>. You can export everything, or tick just one stack or one app&#8217;s set. Your licence is never in the file. Leave <em>Remove personal details</em> ticked to leave out file paths, pasted text, commands and Shortcut names. To use someone else&#8217;s file, choose <em>Import layout&hellip;</em>; it warns you if the file has buttons that run shell commands, and adding never piles up copies of buttons you already have.</dd>
 

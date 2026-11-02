@@ -80,6 +80,7 @@
 <ul>
   <li><strong>Stock price.</strong> BarDeck asks Yahoo Finance for a delayed quote for the symbol you typed (for example <code>AAPL</code> or <code>^FTSE</code>), about every five minutes. Like any web request, it is visible to Yahoo as an ordinary request, including your IP address and the symbol. Nothing else about you or your Mac is sent.</li>
   <li><strong>Now Playing.</strong> For Apple Music and Spotify, BarDeck asks the app on your Mac what is playing. Spotify cover art is fetched from Spotify&#8217;s image servers, and Qobuz cover art from Qobuz&#8217;s image servers, with an ordinary request that includes your IP address and the cover&#8217;s name.</li>
+  <li><strong>Live data.</strong> BarDeck itself sends nothing for these buttons. A Live data button runs a command you chose, or fetches a web address you typed, and what that command or address contacts is up to it. The example recipes on this site contact Open-Meteo, the site you name, Sky&#8217;s listings feed, or Bright&#8217;s Glowmarkt service, only when you use them. A button runs only after you approve it, and importing a layout clears every approval.</li>
   <li><strong>Sonos.</strong> BarDeck looks for Sonos speakers on your own network and reads what is playing from the one you choose. This stays on your local network and does not go to the internet (except the cover art, if the speaker is playing from a service that provides it).</li>
 </ul>
 <p>None of these buttons sends your listening, your buttons or any personal information to me.</p>
