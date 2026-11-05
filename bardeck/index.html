@@ -34,6 +34,7 @@
   .fine { font-size: 13.5px; color: var(--muted); }
   .shot { margin: 20px 0; }
   .shot img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); }
+  .shot video { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); background: #0e1116; }
   .shot figcaption { font-size: 13.5px; color: var(--muted); margin-top: 7px; }
   .shot.wide { width: min(960px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
   footer { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 40px; }
@@ -60,6 +61,23 @@
 <div class="lead">
   <p style="margin:0">BarDeck keeps the things you reach for most one click away, on a slim bar that floats above your other windows without taking focus. Open folders and apps, run Shortcuts, press key combinations, paste text, and see extra buttons that appear only for the app you are using. It is the Touch Bar idea, on any Mac.</p>
 </div>
+
+<figure class="shot wide">
+  <video id="demo" autoplay loop muted playsinline preload="metadata" poster="img/demo-poster.jpg" width="1920" height="606" aria-label="A short screen recording of BarDeck in use: the Files stack opens and browses a folder, the bar gains Finder's buttons, the Apps stack opens, the Now Playing button follows Apple Music, and Safari's buttons appear when Safari comes forward.">
+    <source src="img/demo-loop.webm" type="video/webm">
+    <source src="img/demo-loop.mp4" type="video/mp4">
+  </video>
+  <figcaption>BarDeck on a real Mac: stacks, folder browsing, Now Playing, and buttons that change with the app in front.</figcaption>
+</figure>
+<script>
+  // Respect reduced-motion settings: show the first frame with controls instead of autoplaying.
+  (function () {
+    var v = document.getElementById('demo');
+    if (v && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.removeAttribute('autoplay'); v.pause(); v.setAttribute('controls', '');
+    }
+  })();
+</script>
 
 <figure class="shot">
   <img src="img/1-the-bar.png" alt="The BarDeck button bar: Files, Apps, Projects, Focus, apple.com and Screenshot buttons in colour-coded groups" width="1360" height="278">
