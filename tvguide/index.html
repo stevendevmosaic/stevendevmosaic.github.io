@@ -140,10 +140,18 @@ body.listopen #mylist{display:flex}
 </div>
 <script src="logos.js"></script>
 <script>
-// Data: Sky's public EPG JSON (unofficial, undocumented). Region 4101/1 = London.
-const API = 'https://awk.epgsky.com/hawk/linear';
-// Sky region feeds (bouquet/sub-bouquet): Scotland 4098/35 carries BBC One Scotland + STV
-const REGIONS = {scotland: '4098/35', london: '4101/1'};
+// Data: static JSON built from the Freeview-EPG XMLTV feed (tools/build-epg.py), published beside this page in data/.
+// (Sky's own EPG API started refusing requests in Nov 2026.) Native app loads from file://, so it reads the web copy.
+const DATA = location.protocol === 'file:' ? 'https://stevendevmosaic.github.io/tvguide/data' : 'data';
+const dayFiles = {};   // 'region/yyyymmdd' -> Promise of {sid: [[st,d,t,sy,eg,new],...]}
+function dayFile(region, key) {
+  return dayFiles[region + '/' + key] ||= fetch(`${DATA}/${region}/${key}.json`).then(r => {
+    if (r.status === 404) return {};                       // outside the 8-day window
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }).catch(e => { delete dayFiles[region + '/' + key]; throw e; });
+}
+const toEvent = a => ({eid: String(a[0]), st: a[0], d: a[1], t: a[2], sy: a[3], eg: a[4], new: !!a[5]});
 const RENAME = {'BBC One Lon': 'BBC One London', 'BBC One Scot': 'BBC One Scotland', 'BBC One Wal': 'BBC One Wales', 'BBC One NI': 'BBC One N. Ireland'};
 const HOURS_AFTER = 12;         // keep the timeline going this many hours past midnight
 const PX = 5.4;                 // pixels per minute
@@ -250,21 +258,18 @@ async function importPicks(triples) {
   const want = new Map(triples.map(([sid, eid, st]) => [sid + '|' + eid, st])), byDay = {};
   for (const [sid, , st] of triples) (byDay[ymd(new Date(st * 1000))] ||= new Set()).add(sid);
   let added = 0;
-  for (const [day, sids] of Object.entries(byDay)) {
-    const ids = [...sids];
-    for (let i = 0; i < ids.length; i += 10) {
-      try {
-        const r = await fetch(`${API}/schedule/${day}/${ids.slice(i, i + 10).join(',')}`);
-        if (!r.ok) continue;
-        for (const s of (await r.json()).schedule) for (const e of s.events) {
-          if (!want.has(s.sid + '|' + e.eid)) continue;
-          const k = pkey(s.sid, e.eid);
-          if (!picks[k]) added++;
-          picks[k] = {sid: s.sid, eid: e.eid, t: e.t, st: e.st, d: e.d, sy: e.sy || '', eg: e.eg || 0, nw: !!e.new, cn: chanName(s.sid)};
-          want.delete(s.sid + '|' + e.eid);
-        }
-      } catch (e) { /* skip this chunk */ }
-    }
+  for (const day of Object.keys(byDay)) {
+    try {
+      const data = await dayFile($('region').value, day);
+      for (const sid of byDay[day]) for (const a of (data[sid] || [])) {
+        const e = toEvent(a), w = sid + '|' + e.eid;
+        if (!want.has(w)) continue;
+        const k = pkey(sid, e.eid);
+        if (!picks[k]) added++;
+        picks[k] = {sid, eid: e.eid, t: e.t, st: e.st, d: e.d, sy: e.sy || '', eg: e.eg || 0, nw: !!e.new, cn: chanName(sid)};
+        want.delete(w);
+      }
+    } catch (e) { /* skip this day */ }
   }
   savePicks();
   document.querySelectorAll('.ev').forEach(el => el.classList.toggle('picked', !!picks[pkey(el.dataset.sid, el.dataset.eid)]));
@@ -280,34 +285,23 @@ const hm = t => new Date(t * 1000).toLocaleTimeString('en-GB', {hour: '2-digit',
 const midnight = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
 
 async function loadChannels() {
-  const r = await fetch(`${API}/services/${REGIONS[$('region').value]}`);
-  const list = (await r.json()).services;
-  const seen = new Map();
-  for (const s of list) {
-    const c = parseInt(s.c, 10);
-    if (s.adult || !c || c >= 1000) continue;
-    // prefer HD, de-dupe on channel number
-    if (!seen.has(c) || (s.sf === 'HD' && seen.get(c).sf !== 'HD')) seen.set(c, s);
-  }
-  channels = [...seen.entries()].sort((a, b) => a[0] - b[0]).map(([c, s]) => ({sid: s.sid, num: c, name: (n => RENAME[n] || n)(s.t.replace(/\s*HD$/, '').trim())}));
+  const r = await fetch(`${DATA}/${$('region').value}/channels.json`);
+  if (!r.ok) throw new Error('listings data unavailable (HTTP ' + r.status + ')');
+  channels = (await r.json()).map(c => ({sid: c.sid, num: c.num, name: c.name}));
 }
 
 async function loadDay(sids, date) {
-  const key = ymd(date), need = sids.filter(s => !loaded.has(key + ':' + s));
-  const chunks = [];
-  for (let i = 0; i < need.length; i += 10) chunks.push(need.slice(i, i + 10));  // API rejects >~10 ids
+  const key = ymd(date), region = $('region').value;
+  if (loaded.has(region + key)) return;
   $('status').textContent = `Loading ${key}…`;
-  await Promise.all(chunks.map(async chunk => {
-    try {
-      const r = await fetch(`${API}/schedule/${key}/${chunk.join(',')}`);
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      for (const s of (await r.json()).schedule) {
-        const m = sched[s.sid] ||= new Map();
-        for (const e of s.events) m.set(e.eid, e);
-        loaded.add(key + ':' + s.sid);
-      }
-    } catch (e) { $('status').textContent = 'Load failed: ' + e.message; }
-  }));
+  try {
+    const data = await dayFile(region, key);
+    for (const sid of Object.keys(data)) {
+      const m = sched[sid] ||= new Map();
+      for (const a of data[sid]) { const e = toEvent(a); m.set(e.eid, e); }
+    }
+    loaded.add(region + key);
+  } catch (e) { $('status').textContent = 'Load failed: ' + e.message; }
 }
 
 function visible() {
@@ -334,7 +328,7 @@ async function render() {
   h += '</div></div>';
   for (const ch of list) {
     const lg = (typeof LOGOS !== 'undefined' && LOGOS[ch.sid]) ? `<img class="logo" loading="lazy" src="logos/${LOGOS[ch.sid]}" alt="">` : '';
-    h += `<div class="row"><div class="ch"><div class="chi">${lg}<div><b>${esc(ch.name)}</b><span>${ch.num}</span></div><span class="star ${favs.has(ch.sid) ? 'on' : ''}" data-sid="${ch.sid}">★</span></div></div><div class="evs" style="width:${width}px">`;
+    h += `<div class="row"><div class="ch"><div class="chi">${lg}<div><b>${esc(ch.name)}</b><span>${ch.num >= 1000 ? '' : ch.num}</span></div><span class="star ${favs.has(ch.sid) ? 'on' : ''}" data-sid="${ch.sid}">★</span></div></div><div class="evs" style="width:${width}px">`;
     const evs = [...(sched[ch.sid]?.values() || [])].filter(e => e.st < t1 && e.st + e.d > t0).sort((a, b) => a.st - b.st);
     if (!evs.length) h += '<div class="empty">No listings</div>';
     for (const e of evs) {
